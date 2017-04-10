@@ -1,7 +1,7 @@
-set :application, 'elasticcar'
+set :application, 'elasticar'
 set :repo_url, '#'
 
-set :deploy_to, '/home/elasticcar/'
+set :deploy_to, '/home/elasticar/'
 
 set :archive_cache, true
 set :branch, 'master'
