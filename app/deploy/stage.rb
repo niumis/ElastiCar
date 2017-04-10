@@ -1,1 +1,1 @@
-server 'deploy.nfqakademija.lt', user: 'elasticcar', roles: %w{web}
+server 'deploy.nfqakademija.lt', user: 'elasticar', roles: %w{web}
