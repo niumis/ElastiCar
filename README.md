@@ -1,6 +1,16 @@
 
-NFQ Akademijos projektas
+[ElastiCar](http://elasticar.projektai.nfqakademija.lt/) - automobilių skelbimų agregatorius
 ============
 
 
-In progress..
+## Komanda
+
+* Tomas Nemeikšis
+
+* Skirmantas Januškas
+
+* Giedrius Skužinskas
+
+## Mentorius
+
+* Žygimantas Rukas
