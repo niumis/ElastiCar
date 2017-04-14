@@ -1,7 +1,12 @@
 {% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/main-min.js') }}"></script>
+{% endblock %}
+
 {% block page_title %}
-    asd
+
 {% endblock %}
 
 {% block avanzu_sidebar %}

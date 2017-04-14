@@ -12,7 +12,7 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Admin:index.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:index.html.twig', array(// ...
         ));
     }
 
@@ -21,7 +21,7 @@ class AdminController extends Controller
      */
     public function filtersAction()
     {
-        return $this->render('AppBundle:Admin:filters.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:filters.html.twig', array(// ...
         ));
     }
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
      */
     public function visitorStatsAction()
     {
-        return $this->render('AppBundle:Admin:visitors_stats.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:visitors_stats.html.twig', array(// ...
         ));
     }
 
@@ -39,7 +39,7 @@ class AdminController extends Controller
      */
     public function crawlerStatsAction()
     {
-        return $this->render('AppBundle:Admin:crawler_stats.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:crawler_stats.html.twig', array(// ...
         ));
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
      */
     public function settingsAction()
     {
-        return $this->render('AppBundle:Admin:settings.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:settings.html.twig', array(// ...
         ));
     }
 
