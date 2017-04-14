@@ -1,8 +1,9 @@
 {% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
 
 {% block javascripts %}
+    <script src="{{ asset('js/admin-min.js') }}"></script>
+
     {{ parent() }}
-    <script src="{{ asset('js/main-min.js') }}"></script>
 {% endblock %}
 
 {% block page_title %}
