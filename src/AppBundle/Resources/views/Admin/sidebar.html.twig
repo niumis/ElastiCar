@@ -1,11 +1,11 @@
 <ul class="sidebar-menu">
     <li>
-        <a href="/admin">
+        <a href="{{ path('admin_index') }}">
             <i class="fa fa-dashboard"></i> <span>Pradinis</span>
         </a>
     </li>
     <li>
-        <a href="/admin/filters">
+        <a href="{{ path('admin_filters') }}">
             <i class="fa fa-filter"></i> <span>Filtrai</span>
         </a>
     </li>
@@ -16,12 +16,12 @@
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="/admin/stats/visitors"><i class="fa fa-circle-o"></i> Lankytojai</a></li>
-            <li><a href="/admin/stats/crawler"><i class="fa fa-circle-o"></i> Crawleris</a></li>
+            <li><a href="{{ path('admin_stats_visitors') }}"><i class="fa fa-circle-o"></i> Lankytojai</a></li>
+            <li><a href="{{ path('admin_stats_crawler') }}"><i class="fa fa-circle-o"></i> Crawleris</a></li>
         </ul>
     </li>
     <li>
-        <a href="/admin/settings">
+        <a href="{{ path('admin_settings') }}">
             <i class="fa fa-cog"></i> <span>Nustatymai</span>
         </a>
     </li>
