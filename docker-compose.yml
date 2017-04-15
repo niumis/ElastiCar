@@ -19,7 +19,7 @@ services:
         LOCAL_GROUP_ID: $LOCAL_GROUP_ID
     user: "$LOCAL_USER_ID:$LOCAL_GROUP_ID"
     links:
-      - mysql
+      - mariadb
     volumes:
       - ".docker/.composer:/.composer"
       - "./:/var/www"
@@ -28,7 +28,7 @@ services:
       - frontend
       - backend
     environment:
-      XDEBUG_CONFIG: remote_host=172.27.0.1
+      XDEBUG_CONFIG: remote_host=$LOCAL_XDEBUG_HOST
   npm:
     image: ongr/nodejs:6.4.0
     user: "$LOCAL_USER_ID:$LOCAL_GROUP_ID"
@@ -60,9 +60,9 @@ networks:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.27.0.0/24
+      - subnet: $LOCAL_FRONTEND_SUBNET
   backend:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.27.1.0/24
+      - subnet: $LOCAL_BACKEND_SUBNET

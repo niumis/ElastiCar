@@ -1,0 +1,17 @@
+{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/admin-min.js') }}"></script>
+
+    {{ parent() }}
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block avanzu_sidebar %}
+    {{ parent() }}
+
+    {% include '@App/Admin/sidebar.html.twig' %}
+{% endblock %}

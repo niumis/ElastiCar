@@ -20,3 +20,6 @@
 /bin/*
 .env
 npm-debug.log
+
+#ignore phpstorm configs
+.idea/
