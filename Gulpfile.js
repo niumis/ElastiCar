@@ -53,6 +53,7 @@ gulp.task('js', function () {
 gulp.task('admin-js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
+        dir.npm + 'chart.js/dist/Chart.js'
     ])
         .pipe(concat('admin.js'))
         .pipe(minify())
