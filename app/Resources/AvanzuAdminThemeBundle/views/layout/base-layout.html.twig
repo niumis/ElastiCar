@@ -37,13 +37,13 @@
         <header class="main-header">
             {% block avanzu_logo %}
                 <a href="#" class="logo">
-                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    {# Add the class icon to your logo image or logo icon to add the margining #}
                     {{ block('title') }}
                 </a>
             {% endblock %}
-            <!-- Header Navbar: style can be found in header.less -->
+            {# Header Navbar: style can be found in header.less #}
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
+                {# Sidebar toggle button#}
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
@@ -63,9 +63,9 @@
         </header>
     {% endblock %}
 
-    <!-- Left side column. contains the logo and sidebar -->
+    {# Left side column. contains the logo and sidebar #}
     <aside class="main-sidebar sidebar-offcanvas">
-        <!-- sidebar: style can be found in sidebar.less -->
+        {# sidebar: style can be found in sidebar.less #}
         <section class="sidebar">
             {% block avanzu_sidebar %}
                 {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -75,12 +75,12 @@
                 {{ render(controller('AvanzuAdminThemeBundle:Sidebar:menu', {'request':app.request})) }}
             {% endblock %}
         </section>
-        <!-- /.sidebar -->
+        {# /.sidebar #}
     </aside>
 
-    <!-- Right side column. Contains the navbar and content of the page -->
+    {# Right side column. Contains the navbar and content of the page #}
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {# Content Header (Page header) #}
         <section class="content-header">
             <h1>
                 {% block page_title %}Blank page{% endblock %}
@@ -91,13 +91,13 @@
             {% endblock %}
         </section>
 
-        <!-- Main content -->
+        {# Main content #}
         <section class="content">
             {% block page_content %}{% endblock %}
         </section>
-        <!-- /.content -->
+        {# /.content #}
     </div>
-    <!-- /.content-wrapper -->
+    {# /.content-wrapper #}
 
     {% block avanzu_admin_footer %}
         <footer class="main-footer">
@@ -109,7 +109,7 @@
     {% endblock %}
 
 </div>
-<!-- ./wrapper -->
+{# ./wrapper #}
 
 {# ------------------------------------------------------------------------------------------------------ JAVASCRIPTS #}
 {% block javascripts %}
