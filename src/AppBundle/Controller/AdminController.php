@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin")
+     * @Route("/admin", name="admin_index")
      */
     public function indexAction()
     {
@@ -17,7 +17,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/filters")
+     * @Route("/admin/filters", name="admin_filters")
      */
     public function filtersAction()
     {
@@ -26,7 +26,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/stats/visitors")
+     * @Route("/admin/stats/visitors", name="admin_stats_visitors")
      */
     public function visitorStatsAction()
     {
@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/stats/crawler")
+     * @Route("/admin/stats/crawler", name="admin_stats_crawler")
      */
     public function crawlerStatsAction()
     {
@@ -44,7 +44,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/settings")
+     * @Route("/admin/settings", name="admin_settings")
      */
     public function settingsAction()
     {
