@@ -13,12 +13,6 @@
     <li><a href="{{ path('admin_index') }}">Admin</a></li>
 {% endblock %}
 
-{% block newest %}
-    <!-- Carousel
-        ================================================== -->
-
-{% endblock %}
-
 {% block container %}
     {% for i in 0..5 %}
         <div class="row">
@@ -27,7 +21,7 @@
                     <a href="{{ asset('images/audi.png') }}">
                         <img src="{{ asset('images/audi.png') }}" alt="Audi">
                         <div class="caption">
-                            <p>Audi (1234)</p>
+                            <h6>Audi (1234)</h6>
                         </div>
                     </a>
                 </div>
