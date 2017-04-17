@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Crawler stats <small>last hour</small></h3>
+
+            <div class="box-body">
+                <div class="col-md-8 col-sm-12">
+                    {% include '@App/Admin/Components/chart.html.twig' with {'id': 'crawlerLastHourChart', 'height': '300'} %}
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <p class="text-center">
+                        <strong>Crawled 678 ads from</strong>
+                    </p>
+
+                    <div class="progress-group">
+                        <span class="progress-text">Autogidas.lt</span>
+                        <span class="progress-number"><b>248</b>/678</span>
+
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua" style="width: 36.6%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text">Autoplius.lt</span>
+                        <span class="progress-number"><b>205</b>/678</span>
+
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-red" style="width: 30.2%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text">Autobilis.lt</span>
+                        <span class="progress-number"><b>114</b>/678</span>
+
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-green" style="width: 16.8%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                        <span class="progress-text">Automobilis.lt</span>
+                        <span class="progress-number"><b>111</b>/678</span>
+
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-yellow" style="width: 16.4%"></div>
+                        </div>
+                    </div>
+                    <!-- /.progress-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
