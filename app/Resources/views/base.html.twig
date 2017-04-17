@@ -28,7 +28,7 @@
                 {% block menu %}{% endblock %}
             </ul>
             <form class="form-inline navbar-form navbar-right">
-                <button class="btn btn-find btn-success" type="submit">Facebook</button>
+                <a href="{{ path('homepage') }}connect/facebook" class="btn btn-find btn-success" >Facebook</a>
             </form>
             <form class="form-inline navbar-form navbar-right">
                 <input class="form-control" type="text" placeholder="Volvo S60 2003m..">
@@ -55,7 +55,7 @@
 </div>
 
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>z
 {% endblock %}
 </body>
 </html>

@@ -18,6 +18,7 @@ class AppKernel extends Kernel
 
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             new AppBundle\AppBundle(),
         );
