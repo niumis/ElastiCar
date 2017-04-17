@@ -12,6 +12,7 @@ var batch = require('gulp-batch');
 
 
 var dir = {
+    app_assets: './app/Resources/',
     assets: './src/AppBundle/Resources/',
     dist: './web/',
     npm: './node_modules/'
@@ -44,6 +45,7 @@ gulp.task('js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        dir.assets + ''
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
@@ -53,7 +55,8 @@ gulp.task('js', function () {
 gulp.task('admin-js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
-        dir.npm + 'chart.js/dist/Chart.js'
+        dir.npm + 'chart.js/dist/Chart.js',
+        dir.app_assets + 'admin/js/**'
     ])
         .pipe(concat('admin.js'))
         .pipe(minify())
