@@ -26,4 +26,13 @@ class HomeController extends Controller
 
         ]);
     }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function searchAction() {
+        return $this->render('@App/Home/search.html.twig', [
+
+        ]);
+    }
 }
