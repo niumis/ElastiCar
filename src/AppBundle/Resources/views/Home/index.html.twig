@@ -9,6 +9,7 @@
 
 {% block menu %}
     <li class="active"><a href="{{ path('homepage') }}">Pradžia</a></li>
+    <li><a href="{{ path('search') }}">Detali paieška</a></li>
     <li><a href="{{ path('about') }}">Apie</a></li>
     <li><a href="{{ path('admin_index') }}">Admin</a></li>
 {% endblock %}
@@ -21,7 +22,7 @@
                     <a href="{{ asset('images/audi.png') }}">
                         <img src="{{ asset('images/audi.png') }}" alt="Audi">
                         <div class="caption">
-                            <h6>Audi (1234)</h6>
+                            <p>Audi (1234)</p>
                         </div>
                     </a>
                 </div>
