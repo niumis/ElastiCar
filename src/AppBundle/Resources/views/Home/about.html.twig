@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apie - {{ parent() }}{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('homepage') }}">Pradžia</a></li>
+    <li class="active"><a href="{{ path('about') }}">Apie</a></li>
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div>Apie..</div>
+        <div>Apie..</div>
+        <div>Apie..</div>
+        <div>Apie..</div>
+        <div>Apie..</div>
+    </div>
+{% endblock %}
