@@ -8,6 +8,3 @@ services:
 #    app.example:
 #        class: AppBundle\Service\ExampleService
 #        arguments: ["@doctrine.orm.entity_manager"]
-    app.connect:
-        class: AppBundle\Service\Connect
-        arguments: [doctrine.dbal.%service_conn%_connection]
