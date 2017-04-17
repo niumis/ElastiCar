@@ -15,6 +15,7 @@ body {
 
 .thumbnail:hover {
   box-shadow: 0 0 7px #00a7d0;
+  text-decoration: none;
 }
 
 .footer {
@@ -27,7 +28,7 @@ body {
 
 .container {
   width: auto;
-  max-width: 769px;
+  max-width: 960px;
   padding: 0 15px;
   &__text {
     margin: 10px 0;
