@@ -18,7 +18,12 @@
 /web/fonts
 /web/images
 /node_modules
-/bin/*
 .env
 npm-debug.log
+<<<<<<< HEAD
 /.idea/
+=======
+
+#ignore phpstorm configs
+.idea/
+>>>>>>> e80470dde893bbcff0e9a4a3ab8e1adb4ca3bb10
