@@ -45,10 +45,11 @@
         {% endblock %}
         {% block body %}{% endblock %}
     {% endblock %}
-    {% block footer %}
-        {% include "::inc/footer.html.twig" %}
-    {% endblock %}
 </div>
+
+{% block footer %}
+    {% include "::inc/footer.html.twig" %}
+{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/script.js') }}"></script>
