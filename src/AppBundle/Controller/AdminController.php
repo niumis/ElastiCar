@@ -8,11 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin", name="admin_index")
+     * @Route("/admin/dashboard", name="admin_dashboard")
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Admin/Pages:index.html.twig', array(// ...
+        return $this->render('AppBundle:Admin/Pages:dashboard.html.twig', array(// ...
         ));
     }
 

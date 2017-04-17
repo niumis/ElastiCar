@@ -1,0 +1,15 @@
+{% extends '@App/Admin/base.html.twig' %}
+
+{% block title %}{{ 'Admin CP'|trans }}{% endblock %}
+{% block page_title %}{{ 'Dashboard'|trans }}{% endblock %}
+
+{% block page_content %}
+
+<div class="row">
+    {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-green', 'icon': 'fa-cog', 'title': 'Crawler status', 'content': 'ON'} %}
+    {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-red', 'icon': 'fa-exclamation-triangle', 'title': 'Crawler fails today', 'content': '58'} %}
+    {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-blue', 'icon': 'fa-plus', 'title': 'New ads today', 'content': '1,867'} %}
+    {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-yellow', 'icon': 'fa-file-text', 'title': 'Active ads', 'content': '105,965'} %}
+</div>
+
+{% endblock %}
