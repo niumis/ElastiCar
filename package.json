@@ -1,11 +1,10 @@
 {
-  "name": "nfqakademija",
+  "name": "elasticar",
   "version": "1.0.0",
   "license": "MIT",
   "author": "NFQ",
   "repository": "https://github.com/nfqakademija/ElastiCar.git",
   "devDependencies": {
-    "bootstrap-sass": "3.*",
     "gulp": "^3.9.0",
     "gulp-css": "~0.1.0",
     "gulp-cli": "^1.2.2",
@@ -15,9 +14,11 @@
     "gulp-watch": "~4.3.11",
     "gulp-batch": "~1.0.5",
     "gulp-minify": "0.0.15",
+    "bootstrap-sass": "3.*",
     "jquery": "3.2.*"
   },
   "dependencies": {
+    "bootstrap-slider": "^9.7.3",
     "chart.js": "^2.5.0"
   }
 }

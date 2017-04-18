@@ -1,0 +1,64 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8 searchBox" style="padding: 0px;">
+            {# <div class="well" style="padding-bottom: 50px;"> #}
+            <div class="form-inline text-center filters">
+                <div class="form-group col-md-3">
+                    <select id="manufacturer" class="col-md-12 input-lg border-right">
+                        <option hidden>{{ "Markė"|trans }}</option>
+                        <option>Audi</option>
+                        <option>BMW</option>
+                        <option>Ford</option>
+                        <option>Volkswagen</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <select id="model" class="col-md-12 input-lg border-right">
+                        <option hidden>{{ "Modelis"|trans }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <select id="priceFrom" class="col-md-12 input-lg border-right">
+                        <option hidden>{{ "Kaina (nuo)"|trans }}</option>
+                        <option>100</option>
+                        <option>500</option>
+                        <option>1000</option>
+                        <option>2500</option>
+                        <option>5000</option>
+                        <option>10000</option>
+                        <option>15000</option>
+                        <option>25000</option>
+                        <option>50000</option>
+                        <option>75000</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <select id="priceTo" class="col-md-12 input-lg">
+                        <option hidden>{{ "Kaina (iki)"|trans }}</option>
+                        <option>100</option>
+                        <option>500</option>
+                        <option>1000</option>
+                        <option>2500</option>
+                        <option>5000</option>
+                        <option>10000</option>
+                        <option>15000</option>
+                        <option>25000</option>
+                        <option>50000</option>
+                        <option>75000</option>
+                    </select>
+                </div>
+            </div>
+            {# </div> #}
+
+            <div class="col-md-12 text-center" style="padding: 0px;">
+                <button type="submit" id="searchButton" class="btn btn-lg">Ieškoti</button>
+            </div>
+        </div>
+
+        <div class="col-md-2"></div>
+    </div>
+
+</form>
