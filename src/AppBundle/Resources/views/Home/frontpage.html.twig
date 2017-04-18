@@ -167,7 +167,17 @@
 {% block container %}
     <div class="row header">
         <div class="col-md-4 logo">
-            <img src="{{ asset('images/logo.png') }}" width="200" alt="ElastiCar"/>
+            <a href="{{ path('homepage') }}">
+                <img src="{{ asset('images/logo.png') }}" width="200" alt="ElastiCar"/>
+            </a>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="col-md-2">
+            <div style="margin: 15px;">
+                <a href="{{ path('homepage') }}connect/facebook" id="login" title="Login with Facebook!" onclick="logIn()" style="color: grey; text-decoration: none; display:none;">{{ "Prisijungti"|trans }}</a>
+                <a href="{{ path('homepage') }}" id="logout" title="Logout!" onclick="logOut()" style="color: grey; text-decoration: none; display:none;">{{ "Atsijungti"|trans }}</a>
+            </div>
         </div>
     </div>
 
@@ -252,7 +262,31 @@
     <script src="{{ asset("js/main-min.js") }}"></script>
     <script>
 
+        function logIn(){
+            console.log('wtf');
+            localStorage.setItem('loggedIn', true);
+        }
+
+        function logOut(){
+            console.log('wtf2');
+            localStorage.removeItem('loggedIn');
+        }
+
+        function isLoggedIn(){
+            let status = localStorage.getItem('loggedIn');
+            return status;
+        }
+
         $(document).ready(function () {
+
+            if (isLoggedIn()){
+                $('#login').hide();
+                $('#logout').show();
+            } else {
+                $('#login').show();
+                $('#logout').hide();
+            }
+
             let manufacturerInput = $('#manufacturer');
             let modelInput = $('#model');
             let priceToInput = $('#priceTo');
@@ -316,7 +350,7 @@
                 return false;
             });
 
-            $('.classified').on('click', function () {
+            $('#results').on('click', '.classified', function () {
                 window.open($(this).data('link'));
             });
 
