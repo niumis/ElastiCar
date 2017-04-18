@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', [
+        return $this->render('AppBundle:Home:frontpage.html.twig', [
         ]);
     }
 
@@ -32,15 +32,6 @@ class HomeController extends Controller
      */
     public function searchAction() {
         return $this->render('@App/Home/search.html.twig', [
-
-        ]);
-    }
-
-    /**
-     * @Route("/frontpage", name="frontpage")
-     */
-    public function frontpageAction() {
-        return $this->render('@App/Home/frontpage.html.twig', [
 
         ]);
     }
