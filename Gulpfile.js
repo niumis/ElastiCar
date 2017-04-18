@@ -13,14 +13,18 @@ var batch = require('gulp-batch');
 
 var dir = {
     app_assets: './app/Resources/',
+    public_assets: './app/Resources/public/',
     assets: './src/AppBundle/Resources/',
     dist: './web/',
     npm: './node_modules/'
 };
 
-
 gulp.task('sass', function () {
-    gulp.src(dir.assets + 'style/main.scss')
+    gulp.src([
+        dir.assets + 'style/main.scss',
+        dir.npm + 'bootstrap-slider/dist/css/bootstrap-slider.min.css',
+        dir.public_assets + 'css/**'
+    ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(concat('style.css'))
         .pipe(gulp.dest(dir.dist + 'css'));
@@ -45,7 +49,8 @@ gulp.task('js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        dir.assets + ''
+        dir.npm + 'bootstrap-slider/dist/bootstrap-slider.js',
+        dir.public_assets + 'js/**'
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
