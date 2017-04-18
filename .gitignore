@@ -21,4 +21,4 @@
 npm-debug.log
 
 #ignore phpstorm configs
-.idea/
+/.idea/
