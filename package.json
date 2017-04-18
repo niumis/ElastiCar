@@ -5,24 +5,20 @@
   "author": "NFQ",
   "repository": "https://github.com/nfqakademija/ElastiCar.git",
   "devDependencies": {
-    "bootstrap-sass": "3.*",
     "gulp": "^3.9.0",
     "gulp-css": "~0.1.0",
     "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
-<<<<<<< HEAD
-    "bootstrap-sass": "3.*",
-    "jquery": "3.2.*"
-=======
     "gulp-watch": "~4.3.11",
     "gulp-batch": "~1.0.5",
     "gulp-minify": "0.0.15",
+    "bootstrap-sass": "3.*",
     "jquery": "3.2.*"
   },
   "dependencies": {
+    "bootstrap-slider": "^9.7.3",
     "chart.js": "^2.5.0"
->>>>>>> e80470dde893bbcff0e9a4a3ab8e1adb4ca3bb10
   }
 }

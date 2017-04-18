@@ -35,4 +35,13 @@ class HomeController extends Controller
 
         ]);
     }
+
+    /**
+     * @Route("/frontpage", name="frontpage")
+     */
+    public function frontpageAction() {
+        return $this->render('@App/Home/frontpage.html.twig', [
+
+        ]);
+    }
 }

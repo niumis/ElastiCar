@@ -1,0 +1,60 @@
+<div class="col-md-6">
+    <div class="col-md-12 classified" data-model="{{ model }}" data-manufacturer="{{ manufacturer }}" data-link="{{ link }}">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="col-md-12 thumbnail">
+                    <img src="{{ thumbnail }}" alt="{{ title }}">
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="row params">
+                        <p class="link">{{ title }}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-filter classified-icon"></i>
+                            <span class="classified-param">{{ gas_type }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-cog classified-icon"></i>
+                            <span class="classified-param">{{ gearbox }}</span>
+                        </div>
+                    </div>
+                    <div class="row classified-params">
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-calendar classified-icon"></i>
+                            <span class="classified-param">{{ year }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-dashboard classified-icon"></i>
+                            <span class="classified-param">{{ kw }} kw</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 logo text-center">
+                <img src="{{ provider_logo }}"/>
+            </div>
+
+            <div class="col-md-9">
+                <div class="col-md-12 classified-params">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-euro classified-icon"></i>
+                            <span class="classified-param">{{ (price|round(-2))|number_format(0, ',')}} EUR</span>
+                        </div>
+                        <div class="col-md-6">
+                            <i class="glyphicon glyphicon-road classified-icon"></i>
+                            <span class="classified-param">{{ run|number_format(0, ',') }} km</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
