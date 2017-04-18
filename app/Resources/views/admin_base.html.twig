@@ -22,68 +22,78 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <a href="{{ path('admin_login') }}"><b>Elasti</b>Car</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+<body class="{{ admin_skin|default('skin-blue')}}">
+<div class="wrapper">
 
-        <form action="{{ path('admin_login') }}" method="post">
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> Remember Me
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <a href="{{ path('admin_dashboard') }}" class="btn btn-primary btn-block btn-flat">Sign In</a>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
+    {% block admin_header %}
+        <header class="main-header">
+            {% block logo %}
+                <a href="#" class="logo">
+                    {# Add the class icon to your logo image or logo icon to add the margining #}
+                    {{ block('title') }}
+                </a>
+            {% endblock %}
+            {# Header Navbar: style can be found in header.less #}
+            <nav class="navbar navbar-static-top" role="navigation">
+                {# Sidebar toggle button#}
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+            </nav>
+        </header>
+    {% endblock %}
 
+    {# Left side column. contains the logo and sidebar #}
+    <aside class="main-sidebar sidebar-offcanvas">
+        {# sidebar: style can be found in sidebar.less #}
+        <section class="sidebar">
+            {% block sidebar %}{% endblock %}
+        </section>
+        {# /.sidebar #}
+    </aside>
+
+    {# Right side column. Contains the navbar and content of the page #}
+    <div class="content-wrapper">
+        {# Content Header (Page header) #}
+        <section class="content-header">
+            <h1>
+                {% block page_title %}Blank page{% endblock %}
+                <small>{% block page_subtitle %}Control panel{% endblock %}</small>
+            </h1>
+        </section>
+
+        {# Main content #}
+        <section class="content">
+            {% block page_content %}{% endblock %}
+        </section>
+        {# /.content #}
     </div>
-    <!-- /.login-box-body -->
+    {# /.content-wrapper #}
+
+    {% block admin_footer %}
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        </footer>
+    {% endblock %}
+
 </div>
-<!-- /.login-box -->
+{# ./wrapper #}
 
 {# ------------------------------------------------------------------------------------------------------ JAVASCRIPTS #}
 {% block javascripts %}
-
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
-
 {% endblock %}
 
 {# ----------------------------------------------------------------------------------------------- JAVASCRIPTS_INLINE #}
 {% block javascripts_inline %}
-    <script>
-        $(function () {
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue',
-                increaseArea: '20%' // optional
-            });
-        });
-    </script>
 {% endblock %}
 </body>
 </html>

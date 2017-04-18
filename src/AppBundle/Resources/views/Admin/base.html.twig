@@ -1,4 +1,4 @@
-{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block javascripts %}
     <script src="{{ asset('js/admin-min.js') }}"></script>
@@ -6,13 +6,13 @@
     {{ parent() }}
 {% endblock %}
 
-{% block avanzu_logo %}
+{% block logo %}
     <a href="{{ path('admin_dashboard') }}" class="logo">
         {{ 'Admin CP'|trans }}
     </a>
 {% endblock %}
 
-{% block avanzu_sidebar %}
+{% block sidebar %}
     {{ parent() }}
 
     {% include '@App/Admin/sidebar.html.twig' %}
