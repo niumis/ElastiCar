@@ -3,5 +3,53 @@
 {% block title %}{{ 'Stats -> Visitors'|trans }}{% endblock %}
 
 {% block page_content %}
-    {{ 'Visitor stats'|trans }}
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Visitors - Clicks <small>Last week</small></h3>
+
+                    <div class="box-body">
+                        {% include '@App/Admin/Components/chart.html.twig' with {'id': 'visitorsChart'} %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts_inline %}
+
+    <script>
+        let ctx = document.getElementById("visitorsChart");
+        let data = [
+            {
+                label: "Visitors",
+                data: [1048, 1200, 1340, 1245, 1011, 1124, 1189],
+                spanGaps: false,
+                backgroundColor: "rgba(11, 82, 222, 0.4)",
+            },
+            {
+                label: "Clicks on ads",
+                data: [785, 815, 900, 820, 700, 800, 947],
+                spanGaps: false,
+                backgroundColor: "rgba(11, 222, 46, 1)",
+            }
+        ];
+
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["04-12","04-13","04-14","04-15","04-16","04-17","04-18"],
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+        });
+    </script>
+
 {% endblock %}

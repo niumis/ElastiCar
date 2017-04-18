@@ -12,6 +12,7 @@ var batch = require('gulp-batch');
 
 
 var dir = {
+    app_assets: './app/Resources/',
     public_assets: './app/Resources/public/',
     assets: './src/AppBundle/Resources/',
     dist: './web/',
@@ -59,7 +60,8 @@ gulp.task('js', function () {
 gulp.task('admin-js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
-        dir.npm + 'chart.js/dist/Chart.js'
+        dir.npm + 'chart.js/dist/Chart.js',
+        dir.app_assets + 'admin/js/**'
     ])
         .pipe(concat('admin.js'))
         .pipe(minify())

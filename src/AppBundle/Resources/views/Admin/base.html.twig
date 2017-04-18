@@ -6,8 +6,10 @@
     {{ parent() }}
 {% endblock %}
 
-{% block page_title %}
-
+{% block avanzu_logo %}
+    <a href="{{ path('admin_dashboard') }}" class="logo">
+        {{ 'Admin CP'|trans }}
+    </a>
 {% endblock %}
 
 {% block avanzu_sidebar %}

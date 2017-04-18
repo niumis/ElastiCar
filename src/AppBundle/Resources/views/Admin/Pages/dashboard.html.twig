@@ -1,0 +1,83 @@
+{% extends '@App/Admin/base.html.twig' %}
+
+{% block title %}{{ 'Admin CP'|trans }}{% endblock %}
+{% block page_title %}{{ 'Dashboard'|trans }}{% endblock %}
+
+{% block page_content %}
+
+    <div class="row">
+        {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-green', 'icon': 'fa-cog', 'title': 'Crawler status', 'content': 'ON'} %}
+        {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-red', 'icon': 'fa-exclamation-triangle', 'title': 'Crawler fails today', 'content': '58'} %}
+        {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-blue', 'icon': 'fa-plus', 'title': 'New ads today', 'content': '1,867'} %}
+        {% include '@App/Admin/Components/info_box.html.twig' with {'bg_class': 'bg-yellow', 'icon': 'fa-file-text', 'title': 'Active ads', 'content': '105,965'} %}
+    </div>
+
+    <div class="row">
+        {% include '@App/Admin/Components/chart_crawler_last_hour.html.twig' %}
+        {% include '@App/Admin/Components/chart_visitors_last_hour.html.twig' %}
+    </div>
+{% endblock %}
+
+{% block javascripts_inline %}
+    {{ parent() }}
+
+    <script>
+        function initCrawlerLastHourChart() {
+            let ctx = document.getElementById("crawlerLastHourChart").getContext('2d');
+            let data = [
+                {
+                    label: "Ads crawled",
+                    data: [105, 134, 111, 106, 97, 125],
+                    spanGaps: false,
+                    backgroundColor: "rgba(11, 82, 222, 0.6)",
+                }
+            ];
+
+            let chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["-60m", "-50m", "-40m", "-30m", "-20m", "-10m"],
+                    datasets: data
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
+            });
+        }
+
+        function initVisitorsLastHourChart() {
+            let ctx = document.getElementById("visitorsLastHourChart").getContext('2d');
+            let data = [
+                {
+                    label: "Visitors",
+                    data: [67, 69, 80, 77, 75, 70],
+                    spanGaps: false,
+                    backgroundColor: "rgba(0, 255, 100, 0.4)",
+                },
+                {
+                    label: "Clicks",
+                    data: [55, 58, 61, 67, 58, 55],
+                    spanGaps: false,
+                    backgroundColor: "rgba(100, 0, 100, 1)",
+                }
+            ];
+
+            let chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["-60m", "-50m", "-40m", "-30m", "-20m", "-10m"],
+                    datasets: data
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
+            });
+        }
+
+        initCrawlerLastHourChart();
+        initVisitorsLastHourChart();
+    </script>
+
+{% endblock %}
