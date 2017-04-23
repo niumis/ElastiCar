@@ -42,6 +42,12 @@ class Car
      */
     private $price;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Gearbox", inversedBy="cars")
+     * @ORM\JoinColumn(name="gearbox_id", referencedColumnName="id")
+     */
+    private $gearbox;
     /**
      * @var \DateTime
      *
@@ -186,5 +192,28 @@ class Car
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set gearbox
+     *
+     * @param \AppBundle\Entity\Gearbox $gearbox
+     *
+     * @return Car
+     */
+    public function setGearbox(Gearbox $gearbox = null)
+    {
+        $this->gearbox = $gearbox;
+
+        return $this;
+    }
+
+    /**
+     * Get gearbox
+     *
+     * @return \AppBundle\Entity\Gearbox
+     */
+    public function getGearbox()
+    {
+        return $this->gearbox;
+    }
+}

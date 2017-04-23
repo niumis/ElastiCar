@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,17 @@ class Gearbox
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="gearbox")
+     */
+    private $cars;
+
+
+    public function __construct()
+    {
+        $this->cars = new ArrayCollection();
+    }
 
 
     /**
@@ -62,5 +74,40 @@ class Gearbox
     {
         return $this->title;
     }
-}
 
+
+
+    /**
+     * Add car
+     *
+     * @param \AppBundle\Entity\Car $car
+     *
+     * @return Gearbox
+     */
+    public function addCar(Car $car)
+    {
+        $this->cars[] = $car;
+
+        return $this;
+    }
+
+    /**
+     * Remove car
+     *
+     * @param \AppBundle\Entity\Car $car
+     */
+    public function removeCar(Car $car)
+    {
+        $this->cars->removeElement($car);
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
+}
