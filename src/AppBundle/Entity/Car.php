@@ -31,7 +31,7 @@ class Car
     /**
      * @var string
      *
-     * @ORM\Column(name="pictureUrl", type="string", length=2083, nullable=true, unique=true)
+     * @ORM\Column(name="picture_url", type="string", length=2083, nullable=true)
      */
     private $pictureUrl;
 
@@ -45,14 +45,14 @@ class Car
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
