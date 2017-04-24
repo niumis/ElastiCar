@@ -146,6 +146,30 @@ class Car
     }
 
     /**
+     * Set gearbox
+     *
+     * @param \AppBundle\Entity\Gearbox $gearbox
+     *
+     * @return Car
+     */
+    public function setGearbox(Gearbox $gearbox = null)
+    {
+        $this->gearbox = $gearbox;
+
+        return $this;
+    }
+
+    /**
+     * Get gearbox
+     *
+     * @return \AppBundle\Entity\Gearbox
+     */
+    public function getGearbox()
+    {
+        return $this->gearbox;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -191,29 +215,5 @@ class Car
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set gearbox
-     *
-     * @param \AppBundle\Entity\Gearbox $gearbox
-     *
-     * @return Car
-     */
-    public function setGearbox(Gearbox $gearbox = null)
-    {
-        $this->gearbox = $gearbox;
-
-        return $this;
-    }
-
-    /**
-     * Get gearbox
-     *
-     * @return \AppBundle\Entity\Gearbox
-     */
-    public function getGearbox()
-    {
-        return $this->gearbox;
     }
 }
