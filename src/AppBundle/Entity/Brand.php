@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,17 @@ class Brand
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Watchlist", mappedBy="brand")
+     */
+    private $watchlists;
+
+
+    public function __construct()
+    {
+        $this->watchlists = new ArrayCollection();
+    }
 
 
     /**
@@ -62,5 +74,38 @@ class Brand
     {
         return $this->title;
     }
-}
 
+    /**
+     * Add watchlist
+     *
+     * @param \AppBundle\Entity\Watchlist $watchlist
+     *
+     * @return Brand
+     */
+    public function addWatchlist(Watchlist $watchlist)
+    {
+        $this->watchlists[] = $watchlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove watchlist
+     *
+     * @param \AppBundle\Entity\Watchlist $watchlist
+     */
+    public function removeWatchlist(Watchlist $watchlist)
+    {
+        $this->watchlists->removeElement($watchlist);
+    }
+
+    /**
+     * Get watchlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWatchlists()
+    {
+        return $this->watchlists;
+    }
+}
