@@ -29,13 +29,6 @@ class Watchlist
     private $userId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="watchlists")
-     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
-     */
-    private $brand;
-
-
-    /**
      * @var int
      *
      * @ORM\Column(name="model_id", type="integer")
@@ -76,25 +69,6 @@ class Watchlist
     {
         return $this->userId;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
-
-    /**
-     * @param mixed $brand
-     * @return Watchlist
-     */
-    public function setBrand($brand)
-    {
-        $this->brand = $brand;
-        return $this;
-    }
-
 
     /**
      * Set modelId
