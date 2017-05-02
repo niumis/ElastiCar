@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -80,11 +81,11 @@ class Brand
     /**
      * Add model
      *
-     * @param \AppBundle\Entity\Model $model
+     * @param Model $model
      *
      * @return Brand
      */
-    public function addModel(\AppBundle\Entity\Model $model)
+    public function addModel(Model $model)
     {
         $this->models[] = $model;
 
@@ -94,11 +95,13 @@ class Brand
     /**
      * Remove model
      *
-     * @param \AppBundle\Entity\Model $model
+     * @param Model $model
      */
-    public function removeModel(\AppBundle\Entity\Model $model)
+    public function removeModel(Model $model)
     {
         $this->models->removeElement($model);
+        
+        return $this;
     }
 
     /**
