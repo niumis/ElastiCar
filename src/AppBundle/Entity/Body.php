@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,7 +39,7 @@ class Body
      */
     public function __construct()
     {
-        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cars = new ArrayCollection();
     }
     
     /**
