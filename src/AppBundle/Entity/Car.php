@@ -42,6 +42,12 @@ class Car
      */
     private $price;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="year", type="date")
+     */
+    private $year;
 
     /**
      * @ORM\ManyToOne(targetEntity="Gearbox", inversedBy="cars")
@@ -244,5 +250,29 @@ class Car
     public function getFuel()
     {
         return $this->fuel;
+    }
+
+    /**
+     * Set year
+     *
+     * @param \DateTime $year
+     *
+     * @return Car
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return \DateTime
+     */
+    public function getYear()
+    {
+        return $this->year;
     }
 }
