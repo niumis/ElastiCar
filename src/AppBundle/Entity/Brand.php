@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,7 +40,7 @@ class Brand
      */
     public function __construct()
     {
-        $this->models = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->models = new ArrayCollection();
     }
 
     /**
