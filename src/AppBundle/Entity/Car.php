@@ -88,6 +88,12 @@ class Car
     private $city;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Body", inversedBy="cars")
+     * @ORM\JoinColumn(name="body_id", referencedColumnName="id")
+     */
+    private $body;
+
+    /**
      * Get id
      *
      * @return int
@@ -335,5 +341,29 @@ class Car
     public function getPower()
     {
         return $this->power;
+    }
+
+    /**
+     * Set body
+     *
+     * @param \AppBundle\Entity\Body $body
+     *
+     * @return Car
+     */
+    public function setBody(\AppBundle\Entity\Body $body = null)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return \AppBundle\Entity\Body
+     */
+    public function getBody()
+    {
+        return $this->body;
     }
 }
