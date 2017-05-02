@@ -78,11 +78,11 @@ class City
     /**
      * Add car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      *
      * @return City
      */
-    public function addCar(\AppBundle\Entity\Car $car)
+    public function addCar(Car $car)
     {
         $this->cars[] = $car;
 
@@ -92,9 +92,9 @@ class City
     /**
      * Remove car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      */
-    public function removeCar(\AppBundle\Entity\Car $car)
+    public function removeCar(Car $car)
     {
         $this->cars->removeElement($car);
     }
