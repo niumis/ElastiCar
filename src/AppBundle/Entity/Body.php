@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Car;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -80,7 +79,7 @@ class Body
     /**
      * Add car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      *
      * @return Body
      */
@@ -94,7 +93,7 @@ class Body
     /**
      * Remove car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      */
     public function removeCar(Car $car)
     {
