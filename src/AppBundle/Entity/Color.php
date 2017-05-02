@@ -35,6 +35,14 @@ class Color
     private $cars;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return int
@@ -67,22 +75,15 @@ class Color
     {
         return $this->title;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cars = new ArrayCollection();
-    }
 
     /**
      * Add car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      *
      * @return Color
      */
-    public function addCar(\AppBundle\Entity\Car $car)
+    public function addCar(Car $car)
     {
         $this->cars[] = $car;
 
@@ -92,11 +93,13 @@ class Color
     /**
      * Remove car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      */
-    public function removeCar(\AppBundle\Entity\Car $car)
+    public function removeCar(Car $car)
     {
         $this->cars->removeElement($car);
+        
+        return $this;
     }
 
     /**
