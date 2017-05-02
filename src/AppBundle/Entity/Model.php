@@ -29,9 +29,15 @@ class Model
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Brand", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="model")
      */
-    private $brands;
+    private $cars;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="models")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     */
+    private $brand;
 
 
     /**
@@ -107,5 +113,53 @@ class Model
     public function getBrands()
     {
         return $this->brands;
+    }
+
+    /**
+     * Add car
+     *
+     * @param \AppBundle\Entity\Car $car
+     *
+     * @return Model
+     */
+    public function addCar(\AppBundle\Entity\Car $car)
+    {
+        $this->cars[] = $car;
+
+        return $this;
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \AppBundle\Entity\Brand $brand
+     *
+     * @return Model
+     */
+    public function setBrand(\AppBundle\Entity\Brand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \AppBundle\Entity\Brand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

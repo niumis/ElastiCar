@@ -76,10 +76,10 @@ class Car
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="cars")
-     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="cars")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
      */
-    private $brand;
+    private $model;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fuel", inversedBy="cars")
@@ -404,26 +404,26 @@ class Car
     }
 
     /**
-     * Set brand
+     * Set model
      *
-     * @param \AppBundle\Entity\Brand $brand
+     * @param \AppBundle\Entity\Model $model
      *
      * @return Car
      */
-    public function setBrand(\AppBundle\Entity\Brand $brand = null)
+    public function setModel(\AppBundle\Entity\Model $model = null)
     {
-        $this->brand = $brand;
+        $this->model = $model;
 
         return $this;
     }
 
     /**
-     * Get brand
+     * Get model
      *
-     * @return \AppBundle\Entity\Brand
+     * @return \AppBundle\Entity\Model
      */
-    public function getBrand()
+    public function getModel()
     {
-        return $this->brand;
+        return $this->model;
     }
 }

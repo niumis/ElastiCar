@@ -29,21 +29,23 @@ class Brand
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Model", inversedBy="brands")
-     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Model", mappedBy="brand")
      */
-    private $model;
+    private $models;
 
+    
     /**
-     * @ORM\OneToMany(targetEntity="Car", mappedBy="brand")
+     * Constructor
      */
-    private $cars;
-
+    public function __construct()
+    {
+        $this->models = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -73,69 +75,38 @@ class Brand
     {
         return $this->title;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Set model
+     * Add model
      *
      * @param \AppBundle\Entity\Model $model
      *
      * @return Brand
      */
-    public function setModel(\AppBundle\Entity\Model $model = null)
+    public function addModel(\AppBundle\Entity\Model $model)
     {
-        $this->model = $model;
+        $this->models[] = $model;
 
         return $this;
     }
 
     /**
-     * Get model
+     * Remove model
      *
-     * @return \AppBundle\Entity\Model
+     * @param \AppBundle\Entity\Model $model
      */
-    public function getModel()
+    public function removeModel(\AppBundle\Entity\Model $model)
     {
-        return $this->model;
+        $this->models->removeElement($model);
     }
 
     /**
-     * Add car
-     *
-     * @param \AppBundle\Entity\Car $car
-     *
-     * @return Brand
-     */
-    public function addCar(\AppBundle\Entity\Car $car)
-    {
-        $this->cars[] = $car;
-
-        return $this;
-    }
-
-    /**
-     * Remove car
-     *
-     * @param \AppBundle\Entity\Car $car
-     */
-    public function removeCar(\AppBundle\Entity\Car $car)
-    {
-        $this->cars->removeElement($car);
-    }
-
-    /**
-     * Get cars
+     * Get models
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCars()
+    public function getModels()
     {
-        return $this->cars;
+        return $this->models;
     }
 }
