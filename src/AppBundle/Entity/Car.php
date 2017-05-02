@@ -53,6 +53,14 @@ class Car
      * @ORM\Column(name="gearbox", type="boolean", nullable=true)
      */
     private $gearbox;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="power", type="string", length=255, nullable=true)
+     */
+    private $power;
+
     /**
      * @var \DateTime
      *
@@ -303,5 +311,29 @@ class Car
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set power
+     *
+     * @param string $power
+     *
+     * @return Car
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return string
+     */
+    public function getPower()
+    {
+        return $this->power;
     }
 }
