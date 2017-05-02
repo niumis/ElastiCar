@@ -94,6 +94,12 @@ class Car
     private $body;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Color", inversedBy="cars")
+     * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
+     */
+    private $color;
+
+    /**
      * Get id
      *
      * @return int
@@ -365,5 +371,29 @@ class Car
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * Set color
+     *
+     * @param \AppBundle\Entity\Color $color
+     *
+     * @return Car
+     */
+    public function setColor(\AppBundle\Entity\Color $color = null)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return \AppBundle\Entity\Color
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }
