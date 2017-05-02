@@ -35,6 +35,14 @@ class Fuel
     private $cars;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return int
@@ -66,13 +74,6 @@ class Fuel
     public function getTitle()
     {
         return $this->title;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cars = new ArrayCollection();
     }
 
     /**
