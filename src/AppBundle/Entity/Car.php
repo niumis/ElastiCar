@@ -50,8 +50,7 @@ class Car
     private $year;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Gearbox", inversedBy="cars")
-     * @ORM\JoinColumn(name="gearbox_id", referencedColumnName="id")
+     * @ORM\Column(name="gearbox", type="boolean", nullable=true)
      */
     private $gearbox;
     /**
@@ -159,11 +158,11 @@ class Car
     /**
      * Set gearbox
      *
-     * @param \AppBundle\Entity\Gearbox $gearbox
+     * @param $gearbox
      *
      * @return Car
      */
-    public function setGearbox(Gearbox $gearbox = null)
+    public function setGearbox($gearbox = null)
     {
         $this->gearbox = $gearbox;
 
@@ -173,7 +172,7 @@ class Car
     /**
      * Get gearbox
      *
-     * @return \AppBundle\Entity\Gearbox
+     * @return int
      */
     public function getGearbox()
     {
@@ -231,11 +230,11 @@ class Car
     /**
      * Set fuel
      *
-     * @param \AppBundle\Entity\Fuel $fuel
+     * @param Fuel $fuel
      *
      * @return Car
      */
-    public function setFuel(\AppBundle\Entity\Fuel $fuel = null)
+    public function setFuel(Fuel $fuel = null)
     {
         $this->fuel = $fuel;
 
@@ -245,7 +244,7 @@ class Car
     /**
      * Get fuel
      *
-     * @return \AppBundle\Entity\Fuel
+     * @return Fuel
      */
     public function getFuel()
     {
