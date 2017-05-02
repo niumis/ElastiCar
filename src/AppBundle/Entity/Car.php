@@ -76,6 +76,12 @@ class Car
     private $updatedAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="cars")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     */
+    private $brand;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Fuel", inversedBy="cars")
      * @ORM\JoinColumn(name="fuel_id", referencedColumnName="id")
      */
@@ -395,5 +401,29 @@ class Car
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \AppBundle\Entity\Brand $brand
+     *
+     * @return Car
+     */
+    public function setBrand(\AppBundle\Entity\Brand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \AppBundle\Entity\Brand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }
