@@ -34,6 +34,14 @@ class Body
     private $cars;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return int
@@ -65,13 +73,6 @@ class Body
     public function getTitle()
     {
         return $this->title;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
