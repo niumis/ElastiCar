@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,6 +40,13 @@ class Model
      */
     private $brand;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->brands = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -72,13 +80,6 @@ class Model
     public function getTitle()
     {
         return $this->title;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->brands = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
