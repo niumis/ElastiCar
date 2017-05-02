@@ -62,6 +62,11 @@ class Car
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Fuel", inversedBy="cars")
+     * @ORM\JoinColumn(name="fuel_id", referencedColumnName="id")
+     */
+    private $fuel;
 
     /**
      * Get id
@@ -215,5 +220,29 @@ class Car
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set fuel
+     *
+     * @param \AppBundle\Entity\Fuel $fuel
+     *
+     * @return Car
+     */
+    public function setFuel(\AppBundle\Entity\Fuel $fuel = null)
+    {
+        $this->fuel = $fuel;
+
+        return $this;
+    }
+
+    /**
+     * Get fuel
+     *
+     * @return \AppBundle\Entity\Fuel
+     */
+    public function getFuel()
+    {
+        return $this->fuel;
     }
 }
