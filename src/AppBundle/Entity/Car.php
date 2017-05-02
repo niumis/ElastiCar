@@ -74,6 +74,12 @@ class Car
     private $fuel;
 
     /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="cars")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
+
+    /**
      * Get id
      *
      * @return int
@@ -273,5 +279,29 @@ class Car
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return Car
+     */
+    public function setCity(\AppBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AppBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

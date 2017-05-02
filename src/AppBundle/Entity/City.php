@@ -28,6 +28,10 @@ class City
      */
     private $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="city")
+     */
+    private $cars;
 
     /**
      * Get id
@@ -62,5 +66,45 @@ class City
     {
         return $this->title;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add car
+     *
+     * @param \AppBundle\Entity\Car $car
+     *
+     * @return City
+     */
+    public function addCar(\AppBundle\Entity\Car $car)
+    {
+        $this->cars[] = $car;
+
+        return $this;
+    }
+
+    /**
+     * Remove car
+     *
+     * @param \AppBundle\Entity\Car $car
+     */
+    public function removeCar(\AppBundle\Entity\Car $car)
+    {
+        $this->cars->removeElement($car);
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
+}
