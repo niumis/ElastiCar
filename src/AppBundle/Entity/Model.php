@@ -85,11 +85,11 @@ class Model
     /**
      * Add brand
      *
-     * @param \AppBundle\Entity\Brand $brand
+     * @param Brand $brand
      *
      * @return Model
      */
-    public function addBrand(\AppBundle\Entity\Brand $brand)
+    public function addBrand(Brand $brand)
     {
         $this->brands[] = $brand;
 
@@ -99,11 +99,13 @@ class Model
     /**
      * Remove brand
      *
-     * @param \AppBundle\Entity\Brand $brand
+     * @param Brand $brand
      */
-    public function removeBrand(\AppBundle\Entity\Brand $brand)
+    public function removeBrand(Brand $brand)
     {
         $this->brands->removeElement($brand);
+        
+        return $this;
     }
 
     /**
@@ -119,11 +121,11 @@ class Model
     /**
      * Add car
      *
-     * @param \AppBundle\Entity\Car $car
+     * @param Car $car
      *
      * @return Model
      */
-    public function addCar(\AppBundle\Entity\Car $car)
+    public function addCar(Car $car)
     {
         $this->cars[] = $car;
 
@@ -143,11 +145,11 @@ class Model
     /**
      * Set brand
      *
-     * @param \AppBundle\Entity\Brand $brand
+     * @param Brand $brand
      *
      * @return Model
      */
-    public function setBrand(\AppBundle\Entity\Brand $brand = null)
+    public function setBrand(Brand $brand = null)
     {
         $this->brand = $brand;
 
@@ -157,7 +159,7 @@ class Model
     /**
      * Get brand
      *
-     * @return \AppBundle\Entity\Brand
+     * @return Brand
      */
     public function getBrand()
     {
