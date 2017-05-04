@@ -10,7 +10,6 @@ let css = require('gulp-css');
 let minify = require('gulp-minify');
 let watch = require('gulp-watch');
 let batch = require('gulp-batch');
-let runSequence = require('run-sequence');
 
 let dir = {
     app_assets: './app/Resources/',
