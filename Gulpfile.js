@@ -50,7 +50,7 @@ gulp.task('babel', function () {
         dir.public_assets + 'js/**',
         dir.assets + 'scripts/**'
     ])
-        .pipe(babel())
+        .pipe(babel({ presets: ['babel-preset-es2015', 'babel-preset-stage-2'].map(require.resolve) }))
         .pipe(concat('babeled.js'))
         .pipe(gulp.dest(dir.dist + 'js'));
 });

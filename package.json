@@ -6,6 +6,8 @@
   "repository": "https://github.com/nfqakademija/ElastiCar.git",
   "devDependencies": {},
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "bootstrap-sass": "3.*",
     "chart.js": "^2.5.0",
     "gulp": "^3.9.0",
