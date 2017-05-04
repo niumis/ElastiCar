@@ -22,8 +22,7 @@ var dir = {
 
 gulp.task('sass', function () {
     gulp.src([
-        dir.assets + 'style/main.scss',
-        dir.npm + 'bootstrap-slider/dist/css/bootstrap-slider.min.css',
+        dir.assets + 'scss/main.scss',
         dir.public_assets + 'css/**'
     ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
