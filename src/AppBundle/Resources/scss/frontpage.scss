@@ -1,3 +1,9 @@
+$dark-red: #e63a35;
+$light-red: #ed5955;
+$dark-gray: #808080;
+
+$white: #fff;
+
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
@@ -10,7 +16,7 @@ hr {
 
 /* Search form */
 .searchBox {
-  border: 5px solid #e63a35 !important;
+  border: 5px solid $dark-red !important;
   border-radius: 3px;
 }
 
@@ -20,8 +26,8 @@ hr {
 
 .filters select {
   border-radius: 0px !important;
-  border-color: #fff;
-  background-color: #fff;
+  border-color: $white;
+  background-color: $white;
   cursor: pointer;
 }
 
@@ -35,15 +41,15 @@ button:focus {
 
 @media only screen and (min-device-width: 768px) {
   .border-right {
-    border-right: 1px solid #FF3956 !important;
+    border-right: 1px solid $dark-red !important;
   }
 }
 
 #searchButton {
   margin-top: 3px;
   width: 100%;
-  border-radius: 0px;
-  background-color: #ed5955;
+  border-radius: 0;
+  background-color: $light-red;
 }
 
 /* Provider-info */
@@ -84,7 +90,7 @@ button:focus {
 }
 
 .most-popular_thumbnail:hover {
-  box-shadow: 0 0 3px #ED5955;
+  box-shadow: 0 0 3px $light-red;
 }
 
 .most-popular_thumbnail p {
@@ -92,7 +98,7 @@ button:focus {
 }
 
 .most-popular_thumbnail--count {
-  color: #808080;
+  color: $dark-gray;
 }
 
 /* Results */
@@ -109,7 +115,7 @@ button:focus {
   padding-bottom: 5px;
   padding-left: 5px;
 
-  border: 1px solid #808080 !important;
+  border: 1px solid $dark-gray !important;
   border-radius: 3px;
 
   margin-top: 30px;
@@ -129,12 +135,12 @@ button:focus {
 .classified .classified-icon {
   margin-right: 5px;
   border-radius: 25px;
-  color: #FFFFFF;
+  color: $white;
   height: 25px;
   line-height: 25px;
   text-align: center;
   width: 25px;
-  background: #ed5955;
+  background: $light-red;
 }
 
 .classified-param {
