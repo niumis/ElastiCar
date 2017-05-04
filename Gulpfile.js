@@ -1,17 +1,18 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+let gulp = require('gulp');
+let babel = require('gulp-babel');
+let sass = require('gulp-sass');
+let concat = require('gulp-concat');
+let uglify = require('gulp-uglify');
 
-var css = require('gulp-css');
-var minify = require('gulp-minify');
-var watch = require('gulp-watch');
-var batch = require('gulp-batch');
+let css = require('gulp-css');
+let minify = require('gulp-minify');
+let watch = require('gulp-watch');
+let batch = require('gulp-batch');
+let runSequence = require('run-sequence');
 
-
-var dir = {
+let dir = {
     app_assets: './app/Resources/',
     public_assets: './app/Resources/public/',
     assets: './src/AppBundle/Resources/',
@@ -21,8 +22,7 @@ var dir = {
 
 gulp.task('sass', function () {
     gulp.src([
-        dir.assets + 'style/main.scss',
-        dir.npm + 'bootstrap-slider/dist/css/bootstrap-slider.min.css',
+        dir.assets + 'scss/main.scss',
         dir.public_assets + 'css/**'
     ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -45,16 +45,25 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest(dir.dist + 'fonts'));
 });
 
-gulp.task('js', function () {
+gulp.task('babel', function () {
     gulp.src([
+        dir.public_assets + 'js/**',
+        dir.assets + 'scripts/**'
+    ])
+        .pipe(babel())
+        .pipe(concat('babeled.js'))
+        .pipe(gulp.dest(dir.dist + 'js'));
+});
+
+gulp.task('js', function () {
+    return gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        dir.npm + 'bootstrap-slider/dist/bootstrap-slider.js',
-        dir.public_assets + 'js/**'
+        dir.dist + 'js/babeled.js'
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
-        .pipe(gulp.dest(dir.dist + 'js'))
+        .pipe(gulp.dest(dir.dist + 'js'));
 });
 
 gulp.task('admin-js', function () {
@@ -68,4 +77,11 @@ gulp.task('admin-js', function () {
         .pipe(gulp.dest(dir.dist + 'js'))
 });
 
-gulp.task('default', ['sass', 'js', 'admin-js', 'fonts', 'images']);
+gulp.task('default', ['sass',  'admin-js', 'fonts', 'images', 'babel-js']);
+
+gulp.task('babel-js', function(done) {
+    runSequence('babel', 'js', function() {
+        console.log('Run something else');
+        done();
+    });
+});
