@@ -46,7 +46,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('babel', function () {
-    gulp.src([
+    return gulp.src([
         dir.public_assets + 'js/**',
         dir.assets + 'scripts/**'
     ])
@@ -55,8 +55,8 @@ gulp.task('babel', function () {
         .pipe(gulp.dest(dir.dist + 'js'));
 });
 
-gulp.task('js', function () {
-    return gulp.src([
+gulp.task('js', ['babel'], function () {
+    gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
         dir.dist + 'js/babeled.js'
@@ -77,11 +77,4 @@ gulp.task('admin-js', function () {
         .pipe(gulp.dest(dir.dist + 'js'))
 });
 
-gulp.task('default', ['sass',  'admin-js', 'fonts', 'images', 'babel-js']);
-
-gulp.task('babel-js', function(done) {
-    runSequence('babel', 'js', function() {
-        console.log('Run something else');
-        done();
-    });
-});
+gulp.task('default', ['sass', 'js', 'babel', 'admin-js', 'fonts', 'images']);
