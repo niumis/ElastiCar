@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var babel = require('gulp-babel');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -45,17 +46,25 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest(dir.dist + 'fonts'));
 });
 
+gulp.task('babel', function () {
+    gulp.src([
+        dir.public_assets + 'js/**',
+        dir.assets + 'scripts/**'
+    ])
+        .pipe(babel())
+        .pipe(concat('babeled.js'))
+        .pipe(gulp.dest(dir.dist + 'js'));
+});
+
 gulp.task('js', function () {
     gulp.src([
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        dir.npm + 'bootstrap-slider/dist/bootstrap-slider.js',
-        dir.public_assets + 'js/**',
-        dir.assets + 'scripts/**'
+        dir.dist + 'js/babeled.js'
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
-        .pipe(gulp.dest(dir.dist + 'js'))
+        .pipe(gulp.dest(dir.dist + 'js'));
 });
 
 gulp.task('admin-js', function () {
@@ -69,4 +78,4 @@ gulp.task('admin-js', function () {
         .pipe(gulp.dest(dir.dist + 'js'))
 });
 
-gulp.task('default', ['sass', 'js', 'admin-js', 'fonts', 'images']);
+gulp.task('default', ['sass', 'babel', 'js', 'admin-js', 'fonts', 'images']);
