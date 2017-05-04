@@ -50,7 +50,8 @@ gulp.task('js', function () {
         dir.npm + 'jquery/dist/jquery.min.js',
         dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
         dir.npm + 'bootstrap-slider/dist/bootstrap-slider.js',
-        dir.public_assets + 'js/**'
+        dir.public_assets + 'js/**',
+        dir.assets + 'scripts/**'
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
