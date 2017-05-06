@@ -13,35 +13,7 @@
 <body>
 
 {% block navigation %}
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">ElastiCar Logo</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                {% block menu %}{% endblock %}
-            </ul>
-            <form id="loginForm" class="form-inline navbar-form navbar-right" style="display:none;">
-                <a href="{{ path('homepage') }}connect/facebook" onclick="logIn()" class="btn btn-find btn-success" >Facebook</a>
-            </form>
-            <div id="loggedIn" class="form-inline navbar-form navbar-right" style="display:none;" >
-                <a href="#" class="btn btn-find btn-success">Labas!</a>
-            </div>
-            <form class="form-inline navbar-form navbar-right" action="{{ path('search') }}">
-                <input class="form-control" type="text" placeholder="Volvo S60 2003m..">
-                <button class="btn btn-success" type="submit">Paieška</button>
-            </form>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+
 {% endblock %}
 
 <div class="container">
@@ -58,31 +30,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script>
-        $(document).ready(function (){
 
-           if (isLoggedIn()){
-               $('#loginForm').hide();
-               $('#loggedIn').show();
-           } else {
-               $('#loginForm').show();
-               $('#loggedIn').hide();
-           }
-
-        });
-
-        function logIn(){
-            console.log('set item');
-            localStorage.setItem('loggedIn', true);
-        }
-
-        function isLoggedIn(){
-            let status = localStorage.getItem('loggedIn');
-            console.log(status);
-            return status;
-        }
-    </script>
 {% endblock %}
 </body>
 </html>

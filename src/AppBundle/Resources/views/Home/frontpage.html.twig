@@ -7,100 +7,12 @@
 
 {% endblock %}
 
-{% block navigation %}{% endblock %}
+{% block navigation %}
+<nav class="navbar">
 
-
+</nav>
+{% endblock %}
 {% block container %}
-    <div class="row header">
-        <div class="col-md-4 logo">
-            <a href="{{ path('homepage') }}">
-                <img src="{{ asset('images/logo.png') }}" width="200" alt="ElastiCar"/>
-            </a>
-        </div>
-        <div class="col-md-6"></div>
-
-        <div class="col-md-2">
-            <div style="margin: 15px;">
-                <a href="{{ path('homepage') }}connect/facebook" id="login" title="Login with Facebook!" onclick="logIn()" style="color: grey; text-decoration: none; display:none;">{{ "Prisijungti"|trans }}</a>
-                <a href="{{ path('homepage') }}" id="logout" title="Logout!" onclick="logOut()" style="color: grey; text-decoration: none; display:none;">{{ "Atsijungti"|trans }}</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 description text-center">
-            {{ "Didžiausia automobilių skelbimų bazė Lietuvoje"|trans }}
-        </div>
-    </div>
-
-    <div class="row">
-        {% include 'AppBundle:Home/Components:search_form.html.twig' %}
-    </div>
-
-    <div id="info">
-        {% include 'AppBundle:Home/Components:info.html.twig' %}
-    </div>
-
-    <div id="results" style="display: none;">
-
-        {% for i in 0..79 %}
-            {% set manufacturer = random(['Audi', 'Ford', 'BMW', 'Volkswagen']) %}
-
-            {% if manufacturer == 'Audi' %}
-                {% set thumbnail = asset('images/audi.png') %}
-                {% set models = ["A3", "A4", "A8", "A6", "TT", "A2", "Q5", "80", "100"] %}
-            {% elseif manufacturer == 'Ford' %}
-                {% set thumbnail = asset('images/ford.png') %}
-                {% set models = ["Fiesta", "Mondeo", "C-MAX", "S-MAX", "B-MAX", "Taurus", "Mustang", "GT", "Focus"] %}
-            {% elseif manufacturer == 'BMW' %}
-                {% set thumbnail = asset('images/bmw.png') %}
-                {% set models = ["E36", "E38", "E39", "E46", "E52", "E70", "325i", "X3", "X5"] %}
-            {% elseif manufacturer == 'Volkswagen' %}
-                {% set thumbnail = asset('images/vw.png') %}
-                {% set models = ["Amarok", "Caddy", "Jetta", "Passat", "Polo", "Routan", "Touareg", "Golf", "Beetle"] %}
-            {% endif %}
-
-            {% set model = random(models) %}
-            {% set title = manufacturer ~ " " ~ model %}
-
-            {% set gas_type = random(['Dyzelinas', 'Benzinas', 'Dujos']) %}
-            {% set gearbox = random(['Mechaninė', 'Automatinė']) %}
-
-            {% set provider = random(['autogidas.lt', 'autoplius.lt', 'automobilis.lt', 'autobilis.lt', 'autotaurage.lt', 'autopagunda.lt', 'autotuk.lt', 'rinka.lt']) %}
-            {% if provider == 'autogidas.lt' %}
-                {% set provider_logo = asset('images/web_logo/autogidas.svg') %}
-            {% elseif provider == 'autoplius.lt' %}
-                {% set provider_logo = asset('images/web_logo/autoplius.svg') %}
-            {% elseif provider == 'automobilis.lt' %}
-                {% set provider_logo = asset('images/web_logo/automobilis.png') %}
-            {% elseif provider == 'autobilis.lt' %}
-                {% set provider_logo = asset('images/web_logo/autobilis.png') %}
-            {% elseif provider == 'autotaurage.lt' %}
-                {% set provider_logo = asset('images/web_logo/autotaurage.jpg') %}
-            {% elseif provider == 'autopagunda.lt' %}
-                {% set provider_logo = asset('images/web_logo/autopagunda.png') %}
-            {% elseif provider == 'autotuk.lt' %}
-                {% set provider_logo = asset('images/web_logo/autotuk.jpg') %}
-            {% elseif provider == 'rinka.lt' %}
-                {% set provider_logo = asset('images/web_logo/rinka.png') %}
-            {% endif %}
-
-
-            {% include '@App/Home/Components/classified.html.twig' with {
-            'thumbnail': thumbnail,
-            'title': title,
-            'gas_type': gas_type,
-            'gearbox': gearbox,
-            'year': random(26) + 1990,
-            'kw': random(150) + 70,
-            'provider_logo': provider_logo,
-            'price': random(15000) + 1000,
-            'run': random(300000) + 100000,
-            'link': 'http://' ~ provider
-            } %}
-        {% endfor %}
-
-    </div>
 
 {% endblock %}
 
