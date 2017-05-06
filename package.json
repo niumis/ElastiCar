@@ -4,7 +4,8 @@
   "license": "MIT",
   "author": "NFQ",
   "repository": "https://github.com/nfqakademija/ElastiCar.git",
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -20,6 +21,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "~4.3.11",
+    "gulp-livereload": "^3.8.1",
     "jquery": "3.2.*"
   }
 }

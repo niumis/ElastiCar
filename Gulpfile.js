@@ -11,6 +11,8 @@ let minify = require('gulp-minify');
 let watch = require('gulp-watch');
 let batch = require('gulp-batch');
 
+let livereload = require('gulp-livereload');
+
 let dir = {
     app_assets: './app/Resources/',
     public_assets: './app/Resources/public/',
@@ -26,7 +28,8 @@ gulp.task('sass', function () {
     ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(concat('style.css'))
-        .pipe(gulp.dest(dir.dist + 'css'));
+        .pipe(gulp.dest(dir.dist + 'css'))
+        .pipe(livereload());
 });
 
 
@@ -51,7 +54,8 @@ gulp.task('babel', function () {
     ])
         .pipe(babel())
         .pipe(concat('babeled.js'))
-        .pipe(gulp.dest(dir.dist + 'js'));
+        .pipe(gulp.dest(dir.dist + 'js'))
+        .pipe(livereload());
 });
 
 gulp.task('js', ['babel'], function () {
@@ -62,7 +66,8 @@ gulp.task('js', ['babel'], function () {
     ])
         .pipe(concat('main.js'))
         .pipe(minify())
-        .pipe(gulp.dest(dir.dist + 'js'));
+        .pipe(gulp.dest(dir.dist + 'js'))
+        .pipe(livereload());
 });
 
 gulp.task('admin-js', function () {
@@ -74,6 +79,16 @@ gulp.task('admin-js', function () {
         .pipe(concat('admin.js'))
         .pipe(minify())
         .pipe(gulp.dest(dir.dist + 'js'))
+});
+
+gulp.task('watch', function() {
+    livereload.listen();
+
+    gulp.watch([
+        dir.assets + 'scss/**',
+        dir.public_assets + 'css/**'
+    ], ['sass']);
+
 });
 
 gulp.task('default', ['sass', 'js', 'babel', 'admin-js', 'fonts', 'images']);
