@@ -24,7 +24,7 @@ let dir = {
 gulp.task('sass', function () {
     gulp.src([
         dir.assets + 'scss/main.scss',
-        dir.public_assets + 'css/**'
+        dir.public_assets + 'css/**',
     ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(concat('style.css'))
@@ -83,6 +83,11 @@ gulp.task('admin-js', function () {
 
 gulp.task('watch', function() {
     livereload.listen();
+
+    gulp.watch([
+        dir.public_assets + 'js/**',
+        dir.assets + 'scripts/**'
+    ], ['babel', 'js']);
 
     gulp.watch([
         dir.assets + 'scss/**',
