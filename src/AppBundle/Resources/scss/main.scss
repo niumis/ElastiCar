@@ -1,6 +1,25 @@
 //bootstrap
-@import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// custom front
-//@import "../scss/front";
-@import "frontpage";
+//template
+$main-color: #f26522;
+
+@import "template";
+@import "preset";
+@import "responsive";
+
+//custom modifications
+.how-it-works-icon {
+  color: $main-color;
+  font-size: 50px;
+}
+
+.cta {
+  margin-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#header a.btn {
+  background-color: $main-color;
+}

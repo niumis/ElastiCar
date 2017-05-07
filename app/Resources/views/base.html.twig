@@ -7,29 +7,21 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        {# font #}
+        <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
+
     {% endblock %}
     {% block canonical_meta %}{% endblock %}
 </head>
 <body>
 
-{% block navigation %}
+{% block body %}
 
-{% endblock %}
-
-<div class="container">
-    {% block container %}
-        {% block header %}
-            {% include "::inc/header.html.twig" %}
-        {% endblock %}
-        {% block body %}{% endblock %}
-    {% endblock %}
-</div>
-
-{% block footer %}
-    {% include "::inc/footer.html.twig" %}
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{ asset("js/main-min.js") }}"></script>
 
 {% endblock %}
 </body>

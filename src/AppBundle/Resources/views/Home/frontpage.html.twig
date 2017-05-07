@@ -1,23 +1,23 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}ElastiCar - automobilių skelbimai{% endblock %}
+{% block title %}{{ "AutoSkautas.lt - nusipirk geriausią automobilį"|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-
 {% endblock %}
 
-{% block navigation %}
-<nav class="navbar">
+{% block body %}
 
-</nav>
+    {% include '@App/Home/Components/navbar.html.twig' %}
+    {% include '@App/Home/Components/search.html.twig' %}
+
+    <div class="page">
+        <div class="container">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
 {% endblock %}
-{% block container %}
-
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset("js/main-min.js") }}"></script>
-{% endblock %}
-
-{% block footer %}{% endblock %}
