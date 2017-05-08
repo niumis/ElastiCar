@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Web;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,26 +13,11 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        $brands = $this->container->get('app.auto_api')->getBrands();
+
         return $this->render('AppBundle:Home:frontpage.html.twig', [
+            'brands' => json_decode($brands)
         ]);
     }
 
-    /**
-     * @Route("/about", name="about")
-     */
-    public function aboutAction()
-    {
-        return $this->render('AppBundle:Home:about.html.twig', [
-
-        ]);
-    }
-
-    /**
-     * @Route("/search", name="search")
-     */
-    public function searchAction() {
-        return $this->render('@App/Home/search.html.twig', [
-
-        ]);
-    }
 }
