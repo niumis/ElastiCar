@@ -5,6 +5,6 @@ parameters:
     service_conn: default
 
 services:
-#    app.example:
-#        class: AppBundle\Service\ExampleService
-#        arguments: ["@doctrine.orm.entity_manager"]
+    app.auto_api:
+        class: AppBundle\Service\AutoAPI
+        arguments: ['@service_container']
