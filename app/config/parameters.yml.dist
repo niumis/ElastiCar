@@ -19,6 +19,5 @@ parameters:
     secret:            SuperSecretAcademyHashKeyDoNotTellAnyone
 
     #Auto_API details
-    app:
-        api_host: 127.0.0.1/api/
-        api_key: ~
+    app.api_host: 127.0.0.1/api/
+    app.api_key: ~
