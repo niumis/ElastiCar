@@ -25,7 +25,8 @@
         "twig/twig": "~2.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "symfony/assetic-bundle": "^2.8",
-        "hwi/oauth-bundle": "^0.5.3"
+        "hwi/oauth-bundle": "^0.5.3",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "*",

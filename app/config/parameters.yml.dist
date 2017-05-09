@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            SuperSecretAcademyHashKeyDoNotTellAnyone
+
+    #Auto_API details
+    app:
+        api_host: 127.0.0.1/api/
+        api_key: ~

@@ -22,21 +22,19 @@
                     <div class="contact-info">
                         <form action="#">
                             <h3>Markė</h3>
-                            <div class="dropdown category-dropdown">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
+                            <div class="dropdown category-dropdown" id="dropdown-brand">
+                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text" id="dropdown-current-brand-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu category-change">
-                                    <li><a href="#">Ford</a></li>
-                                    <li><a href="#">BMW</a></li>
-                                    <li><a href="#">Audi</a></li>
+                                    {% for brand in brands %}
+                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brand_id }}" data-name="{{ brand.brand_name }}"><a href="#">{{ brand.brand_name }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <h3>Modelis</h3>
-                            <div class="dropdown category-dropdown">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu category-change">
-                                    <li><a href="#">A4</a></li>
-                                    <li><a href="#">Mondeo</a></li>
-                                    <li><a href="#">e325</a></li>
+                            <div class="dropdown category-dropdown" id="dropdown-model">
+                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text" id="dropdown-current-model-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu category-change" id="dropdown-model-ul">
+
                                 </ul>
                             </div>
                             <h3>Šalis</h3>

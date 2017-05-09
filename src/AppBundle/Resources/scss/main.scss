@@ -23,3 +23,8 @@ $main-color: #f26522;
 #header a.btn {
   background-color: $main-color;
 }
+
+.dropdown-menu {
+  max-height: 250px;
+  overflow: auto;
+}
