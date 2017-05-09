@@ -10,12 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CarController extends Controller
 {
-
-    function __construct()
-    {
-
-    }
-
+    
     /**
      * @return AutoAPI
      */
@@ -28,7 +23,8 @@ class CarController extends Controller
      * @Route("/api/models/{brand_id}", requirements={"brand_id": "\d+"})
      * @Method("GET")
      */
-    public function modelsAction($brand_id){
+    public function modelsAction($brand_id)
+    {
         $autoAPI = $this->getAutoAPI();
         $models = $autoAPI->getModels($brand_id);
 

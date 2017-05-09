@@ -24,9 +24,11 @@ class AutoAPI
      * @param $brand_id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getModels($brand_id){
-        $endpoint = 'models/'.$brand_id;
+    public function getModels($brand_id)
+    {
+        $endpoint = 'models/' . $brand_id;
         $models = $this->request('GET', $endpoint);
+
         return $models->getBody();
     }
 
@@ -36,6 +38,7 @@ class AutoAPI
     public function getBrands()
     {
         $brands = $this->request('GET', 'brands');
+
         return $brands->getBody();
     }
 
@@ -45,7 +48,8 @@ class AutoAPI
      * @param array $query
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    private function request($method, $endpoint, Array $query=[]){
+    private function request($method, $endpoint, Array $query = [])
+    {
         $api_host = $this->getApiHost();
         $api_key = $this->getApiKey();
 
