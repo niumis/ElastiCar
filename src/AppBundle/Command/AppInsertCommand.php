@@ -67,13 +67,11 @@ class AppInsertCommand extends ContainerAwareCommand
                 $this->entityManager->persist($brand);
 
                 if ($count % $batchSize === 0) {
-                    $this->entityManager->flush();
-                    $this->entityManager->clear();
+                    $this->flushBatch();
                 }
             }
 
-            $this->entityManager->flush();
-            $this->entityManager->clear();
+            $this->flushBatch();
 
         } else if ($type === 'model') {
             $data = json_decode($this->autoApi->getModels(), true);
@@ -92,20 +90,26 @@ class AppInsertCommand extends ContainerAwareCommand
                     $this->entityManager->persist($row);
 
                     if ($count % $batchSize === 0) {
-                        $this->entityManager->flush();
-                        $this->entityManager->clear();
+                        $this->flushBatch();
                     }
 
                 }
 
             }
 
-            $this->entityManager->flush();
-            $this->entityManager->clear();
+            $this->flushBatch();
 
         }
 
         $output->writeln('Finished!');
+    }
+
+
+    private function flushBatch(){
+        $this->entityManager->flush();
+        $this->entityManager->clear();
+
+        return $this;
     }
 
 }
