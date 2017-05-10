@@ -48,10 +48,15 @@ class AppInsertCommand extends ContainerAwareCommand
             return;
         }
 
+        $batchSize = 100;
+
         if ($type === 'brand') {
             $data = json_decode($this->autoApi->getBrands(), true);
 
+            $count = 0;
             foreach ($data as $row) {
+                $count++;
+
                 $id = $row['brand_id'];
                 $title = $row['brand_name'];
 
@@ -60,25 +65,43 @@ class AppInsertCommand extends ContainerAwareCommand
                 $brand->setTitle($title);
 
                 $this->entityManager->persist($brand);
-                $this->entityManager->flush();
+
+                if ($count % $batchSize === 0) {
+                    $this->entityManager->flush();
+                    $this->entityManager->clear();
+                }
             }
+
+            $this->entityManager->flush();
+            $this->entityManager->clear();
+
         } else if ($type === 'model') {
             $data = json_decode($this->autoApi->getModels(), true);
 
+            $count = 0;
             foreach ($data as $brand_id => $models){
 
                 foreach ($models as $model){
+                    $count++;
+
                     $row = new Model();
                     $row->setBrandId($brand_id);
                     $row->setModelId($model['model_id']);
                     $row->setTitle($model['model_name']);
 
                     $this->entityManager->persist($row);
-                    $this->entityManager->flush();
+
+                    if ($count % $batchSize === 0) {
+                        $this->entityManager->flush();
+                        $this->entityManager->clear();
+                    }
 
                 }
 
             }
+
+            $this->entityManager->flush();
+            $this->entityManager->clear();
 
         }
 
