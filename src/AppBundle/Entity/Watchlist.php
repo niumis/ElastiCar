@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Watchlist
@@ -24,9 +25,23 @@ class Watchlist
     /**
      * @var int
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="email", type="string", length=255)
      */
-    private $userId;
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="brand_id", type="integer")
+     */
+    private $brandId;
 
     /**
      * @var int
@@ -35,6 +50,19 @@ class Watchlist
      */
     private $modelId;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $createdAt;
+
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -47,27 +75,51 @@ class Watchlist
     }
 
     /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Watchlist
+     * @return int
      */
-    public function setUserId($userId)
+    public function getEmail()
     {
-        $this->userId = $userId;
-
-        return $this;
+        return $this->email;
     }
 
     /**
-     * Get userId
-     *
+     * @param int $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
      * @return int
      */
-    public function getUserId()
+    public function getBrandId()
     {
-        return $this->userId;
+        return $this->brandId;
+    }
+
+    /**
+     * @param int $brandId
+     */
+    public function setBrandId($brandId)
+    {
+        $this->brandId = $brandId;
     }
 
     /**
@@ -93,4 +145,13 @@ class Watchlist
     {
         return $this->modelId;
     }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
 }
