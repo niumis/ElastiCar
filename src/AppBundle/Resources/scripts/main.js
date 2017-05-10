@@ -19,14 +19,14 @@ $(document).ready(function () {
                     let model = 0;
                     for (model; model < models.length; model++) {
 
-                        let element = '<li class="dropdown-item" id="dropdown-model-item" data-id="' + models[model]['model_id'] + '" data-name="' + models[model]['model_name'] + '"><a href="#">' + models[model]['model_name'] + '</a></li>';
+                        let element = '<li class="dropdown-item" id="dropdown-model-item" data-id="' + models[model]['modelId'] + '" data-name="' + models[model]['title'] + '"><a href="#">' + models[model]['title'] + '</a></li>';
                         dropdown_model_ul.append(element);
 
                     }
 
                 })
                 .fail(function () {
-                    alert('Klaida! Bandykite dar kartą.');
+                    alert('Klaida! Pabandykite vėliau.');
                 });
         }
 

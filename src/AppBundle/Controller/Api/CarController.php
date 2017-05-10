@@ -20,13 +20,15 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/api/models/{brand_id}", requirements={"brand_id": "\d+"})
+     * @Route("/api/models/{brandId}", requirements={"brandId": "\d+"})
      * @Method("GET")
      */
-    public function modelsAction($brand_id)
+    public function modelsAction($brandId)
     {
-        $autoAPI = $this->getAutoAPI();
-        $models = $autoAPI->getModels($brand_id);
+        $models = $this->getDoctrine()
+            ->getRepository('AppBundle:Model')
+            ->findByBrandWithColumns($brandId, ['modelId', 'title']);
+        $models = json_encode($models);
 
         $response = new Response();
         $response->setContent($models);
@@ -36,12 +38,12 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/api/ads/{brand_id}/{model_id}", requirements={"brand_id": "\d+", "model_id": "\d+"})
+     * @Route("/api/ads/{brandId}/{modelId}", requirements={"brandId": "\d+", "modelId": "\d+"})
      * @Method("GET")
      */
-    public function adsActions($brand_id, $model_id){
+    public function adsActions($brandId, $modelId){
         $autoAPI = $this->getAutoAPI();
-        $ads = $autoAPI->getAds($brand_id, $model_id);
+        $ads = $autoAPI->getAds($brandId, $modelId);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
