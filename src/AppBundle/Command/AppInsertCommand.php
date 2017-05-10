@@ -17,7 +17,11 @@ class AppInsertCommand extends ContainerAwareCommand
      */
     private $entityManager;
 
-    private $brand_json;
+    /**
+     * @var string
+     */
+    private $brandJson;
+
 
     protected function configure()
     {
@@ -31,14 +35,14 @@ class AppInsertCommand extends ContainerAwareCommand
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
-        $this->brand_json = $this->getContainer()->get('app.auto_api')->getBrands();
+        $this->brandJson = $this->getContainer()->get('app.auto_api')->getBrands();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $argument = $input->getArgument('argument');
 
-        $data = json_decode($this->brand_json, true);
+        $data = json_decode($this->brandJson, true);
 
         foreach ($data as $row) {
             $id = $row['brand_id'];
