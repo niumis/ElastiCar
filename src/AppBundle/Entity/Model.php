@@ -29,7 +29,7 @@ class Model
     private $title;
 
     /**
-     * @ORM\Column(name="model_id", type="integer")
+     * @ORM\Column(name="model_id", type="integer", unique=true)
      */
     private $modelId;
 
