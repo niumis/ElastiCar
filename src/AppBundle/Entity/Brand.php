@@ -24,7 +24,7 @@ class Brand
     /**
      * @var int
      *
-     * @ORM\Column(name="brand_id", type="integer")
+     * @ORM\Column(name="brand_id", type="integer", unique=true)
      */
     private $brandId;
 
@@ -74,9 +74,6 @@ class Brand
     {
         $this->title = $title;
     }
-
-
-
 
 
 }
