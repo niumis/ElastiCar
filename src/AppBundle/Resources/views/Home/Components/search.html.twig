@@ -26,7 +26,7 @@
                                 <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text" id="dropdown-current-brand-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu category-change">
                                     {% for brand in brands %}
-                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brand_id }}" data-name="{{ brand.brand_name }}"><a href="#">{{ brand.brand_name }}</a></li>
+                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brandId }}" data-name="{{ brand.title }}"><a href="#">{{ brand.title }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>

@@ -19,7 +19,7 @@ class HomeController extends Controller
             ->findAllByColumns(['brandId', 'title']);
 
         return $this->render('AppBundle:Home:frontpage.html.twig', [
-            'brands' => json_encode($brands)
+            'brands' => $brands
         ]);
     }
 
