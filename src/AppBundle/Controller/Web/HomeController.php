@@ -13,10 +13,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $brands = $this->container->get('app.auto_api')->getBrands();
+        //$brands = $this->container->get('app.auto_api')->getBrands();
+        $brands = $this->getDoctrine()
+            ->getRepository('AppBundle:Brand')
+            ->findAllByColumns(['brandId', 'title']);
 
         return $this->render('AppBundle:Home:frontpage.html.twig', [
-            'brands' => json_decode($brands)
+            'brands' => json_encode($brands)
         ]);
     }
 

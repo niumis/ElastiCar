@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class BrandRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findAllByColumns(Array $columns){
+        array_walk($columns, function(&$key) { $key = "brand.".$key; });
+
+        return $this->createQueryBuilder('brand')
+            ->select($columns)
+            ->getQuery()
+            ->execute();
+    }
+
 }
