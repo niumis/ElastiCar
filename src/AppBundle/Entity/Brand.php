@@ -18,8 +18,16 @@ class Brand
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="brand_id", type="integer")
+     */
+    private $brandId;
 
     /**
      * @var string
@@ -43,12 +51,21 @@ class Brand
     }
 
     /**
-     * @param int $id
+     * @return int
      */
-    public function setId($id)
+    public function getBrandId()
     {
-        $this->id = $id;
+        return $this->brandId;
     }
+
+    /**
+     * @param int $brandId
+     */
+    public function setBrandId($brandId)
+    {
+        $this->brandId = $brandId;
+    }
+
 
     /**
      * Get id
