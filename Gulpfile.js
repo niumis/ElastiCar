@@ -25,6 +25,7 @@ gulp.task('sass', function () {
     gulp.src([
         dir.assets + 'scss/main.scss',
         dir.public_assets + 'css/**',
+        dir.npm + 'font-awesome/css/font-awesome.css',
     ])
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(concat('style.css'))
@@ -42,7 +43,8 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
     gulp.src([
-        dir.npm + 'bootstrap-sass/assets/fonts/**'
+        dir.npm + 'bootstrap-sass/assets/fonts/**',
+        dir.npm + 'font-awesome/fonts/**',
     ])
         .pipe(gulp.dest(dir.dist + 'fonts'));
 });

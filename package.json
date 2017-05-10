@@ -10,6 +10,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "bootstrap-sass": "3.*",
     "chart.js": "^2.5.0",
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-batch": "~1.0.5",
