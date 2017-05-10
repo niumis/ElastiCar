@@ -24,9 +24,9 @@ class AutoAPI
      * @param $brand_id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getModels($brand_id)
+    public function getModels($brand_id='')
     {
-        $endpoint = 'models/' . $brand_id;
+        $endpoint = empty($brand_id) ? 'models' : 'models/' . $brand_id;
         $models = $this->request('GET', $endpoint);
 
         return $models->getBody();
