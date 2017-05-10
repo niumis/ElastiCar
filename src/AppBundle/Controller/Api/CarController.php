@@ -35,4 +35,30 @@ class CarController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/api/ads/{brand_id}/{model_id}", requirements={"brand_id": "\d+", "model_id": "\d+"})
+     * @Method("GET")
+     */
+    public function adsActions($brand_id, $model_id){
+        $autoAPI = $this->getAutoAPI();
+        $ads = $autoAPI->getAds($brand_id, $model_id);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+
+        $httpStatusCode = $autoAPI->getHttpStatusCode();
+
+        if ($httpStatusCode !== 200) {
+            $response->setStatusCode($httpStatusCode);
+            $content = $autoAPI->getError();
+
+        } else {
+            $content = $ads->getBody();
+        }
+
+        $response->setContent($content);
+
+        return $response;
+    }
+
 }

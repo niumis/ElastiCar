@@ -15,6 +15,9 @@ class AutoAPI
 {
     private $container;
 
+    private $httpStatusCode = 200;
+    private $error = '';
+
     function __construct(Container $container)
     {
         $this->container = $container;
@@ -24,7 +27,7 @@ class AutoAPI
      * @param $brand_id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getModels($brand_id='')
+    public function getModels($brand_id = '')
     {
         $endpoint = empty($brand_id) ? 'models' : 'models/' . $brand_id;
         $models = $this->request('GET', $endpoint);
@@ -42,6 +45,14 @@ class AutoAPI
         return $brands->getBody();
     }
 
+    public function getAds($brand_id, $model_id)
+    {
+
+        $ads = $this->request('GET', 'cars/' . $brand_id . '/' . $model_id);
+
+        return $ads;
+    }
+
     /**
      * @param string $method
      * @param string $endpoint
@@ -53,18 +64,58 @@ class AutoAPI
         $api_host = $this->getApiHost();
         $api_key = $this->getApiKey();
 
-        $client = new Client([
-            'base_uri' => $api_host
-        ]);
+        try {
+            $client = new Client([
+                'base_uri' => $api_host
+            ]);
 
-        $key_query = ['key' => $api_key];
-        $query = empty($query) ? $key_query : array_merge($key_query, $query);
+            $key_query = ['key' => $api_key];
+            $query = empty($query) ? $key_query : array_merge($key_query, $query);
 
-        $response = $client->request($method, $endpoint, [
-            'query' => $query
-        ]);
+            $response = $client->request($method, $endpoint, [
+                'query' => $query
+            ]);
+        } catch (\Exception $e) {
+
+            $this->setHttpStatusCode($e->getCode())->setError('Invalid query.');
+            return false;
+        }
 
         return $response;
+    }
+
+    /**
+     * @return string
+     */
+    public function getError(){
+        return $this->error;
+    }
+
+    /**
+     * @param $error
+     * @return AutoAPI
+     */
+    private function setError($error){
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHttpStatusCode(){
+        return $this->httpStatusCode;
+    }
+
+    /**
+     * @param $httpStatusCode
+     * @return AutoAPI
+     */
+    private function setHttpStatusCode($httpStatusCode){
+        $this->httpStatusCode = $httpStatusCode;
+
+        return $this;
     }
 
     /**
