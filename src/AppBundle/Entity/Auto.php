@@ -24,14 +24,14 @@ class Auto
     /**
      * @var string
      *
-     * @ORM\Column(name="webUrl", type="string", length=2083, unique=true)
+     * @ORM\Column(name="web_url", type="string", length=2083, unique=true)
      */
     private $webUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="imageUrl", type="string", length=2083)
+     * @ORM\Column(name="image_url", type="string", length=2083)
      */
     private $imageUrl;
 
@@ -94,28 +94,28 @@ class Auto
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="adCreatedAt", type="datetime")
+     * @ORM\Column(name="ad_created_at", type="datetime")
      */
     private $adCreatedAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="string", length=255)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="watchlistId", type="integer")
+     * @ORM\Column(name="watchlist_id", type="integer")
      */
     private $watchlistId;
 
@@ -421,7 +421,7 @@ class Auto
     /**
      * Set createdAt
      *
-     * @param string $createdAt
+     * @param \DateTime $createdAt
      *
      * @return Auto
      */
@@ -435,7 +435,7 @@ class Auto
     /**
      * Get createdAt
      *
-     * @return string
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -466,4 +466,3 @@ class Auto
         return $this->watchlistId;
     }
 }
-
