@@ -13,10 +13,9 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        //$brands = $this->container->get('app.auto_api')->getBrands();
         $brands = $this->getDoctrine()
             ->getRepository('AppBundle:Brand')
-            ->findAllByColumns(['brandId', 'title']);
+            ->findAllWithColumns(['brandId', 'title']);
 
         return $this->render('AppBundle:Home:frontpage.html.twig', [
             'brands' => $brands
