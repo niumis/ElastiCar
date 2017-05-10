@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,17 +36,11 @@ class Brand
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Model", mappedBy="brand")
+     * @return int
      */
-    private $models;
-
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
+    public function getId()
     {
-        $this->models = new ArrayCollection();
+        return $this->id;
     }
 
     /**
@@ -66,34 +59,7 @@ class Brand
         $this->brandId = $brandId;
     }
 
-
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Brand
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()
@@ -102,38 +68,15 @@ class Brand
     }
 
     /**
-     * Add model
-     *
-     * @param Model $model
-     *
-     * @return Brand
+     * @param string $title
      */
-    public function addModel(Model $model)
+    public function setTitle($title)
     {
-        $this->models[] = $model;
-
-        return $this;
+        $this->title = $title;
     }
 
-    /**
-     * Remove model
-     *
-     * @param Model $model
-     */
-    public function removeModel(Model $model)
-    {
-        $this->models->removeElement($model);
-        
-        return $this;
-    }
 
-    /**
-     * Get models
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getModels()
-    {
-        return $this->models;
-    }
+
+
+
 }
