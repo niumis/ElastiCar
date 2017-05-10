@@ -17,6 +17,8 @@ class AppInsertCommand extends ContainerAwareCommand
      */
     private $entityManager;
 
+    private $brand_json;
+
     protected function configure()
     {
         $this
@@ -29,23 +31,33 @@ class AppInsertCommand extends ContainerAwareCommand
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $this->brand_json = $this->getContainer()->get('app.auto_api')->getBrands();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $argument = $input->getArgument('argument');
 
-        $brand = new Brand();
-        $brand->setTitle('BMW');
+        $data = json_decode($this->brand_json, true);
 
-        $this->entityManager->persist($brand);
-        $this->entityManager->flush();
+        foreach ($data as $row) {
+            $id = $row['brand_id'];
+            $title = $row['brand_name'];
+
+            $brand = new Brand();
+            $brand->setBrandId($id);
+            $brand->setTitle($title);
+
+            $this->entityManager->persist($brand);
+            $this->entityManager->flush();
+        }
+
 
         if ($input->getOption('option')) {
             // ...
         }
 
-        $output->writeln('Komanda sekminga. Brand ID: ' . $brand->getId());
+        $output->writeln('Komanda sekminga.');
     }
 
 }
