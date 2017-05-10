@@ -29,6 +29,11 @@ class Model
     private $title;
 
     /**
+     * @ORM\Column(name="model_id", type="integer")
+     */
+    private $modelId;
+
+    /**
      * @ORM\Column(name="brand_id", type="integer")
      */
     private $brandId;
@@ -66,6 +71,23 @@ class Model
     public function getTitle()
     {
         return $this->title;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getModelId()
+    {
+        return $this->modelId;
+    }
+
+    /**
+     * @param mixed $modelId
+     */
+    public function setModelId($modelId)
+    {
+        $this->modelId = $modelId;
     }
 
     /**
