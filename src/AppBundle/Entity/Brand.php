@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +22,13 @@ class Brand
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="brand_id", type="integer")
+     */
+    private $brandId;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -30,23 +36,7 @@ class Brand
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Model", mappedBy="brand")
-     */
-    private $models;
-
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->models = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -54,22 +44,22 @@ class Brand
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Brand
+     * @return int
      */
-    public function setTitle($title)
+    public function getBrandId()
     {
-        $this->title = $title;
-
-        return $this;
+        return $this->brandId;
     }
 
     /**
-     * Get title
-     *
+     * @param int $brandId
+     */
+    public function setBrandId($brandId)
+    {
+        $this->brandId = $brandId;
+    }
+
+    /**
      * @return string
      */
     public function getTitle()
@@ -78,38 +68,15 @@ class Brand
     }
 
     /**
-     * Add model
-     *
-     * @param Model $model
-     *
-     * @return Brand
+     * @param string $title
      */
-    public function addModel(Model $model)
+    public function setTitle($title)
     {
-        $this->models[] = $model;
-
-        return $this;
+        $this->title = $title;
     }
 
-    /**
-     * Remove model
-     *
-     * @param Model $model
-     */
-    public function removeModel(Model $model)
-    {
-        $this->models->removeElement($model);
-        
-        return $this;
-    }
 
-    /**
-     * Get models
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getModels()
-    {
-        return $this->models;
-    }
+
+
+
 }

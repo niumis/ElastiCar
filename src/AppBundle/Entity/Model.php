@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,23 +29,15 @@ class Model
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Car", mappedBy="model")
+     * @ORM\Column(name="model_id", type="integer")
      */
-    private $cars;
+    private $modelId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="models")
-     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * @ORM\Column(name="brand_id", type="integer")
      */
-    private $brand;
+    private $brandId;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->brands = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -82,87 +73,38 @@ class Model
         return $this->title;
     }
 
-    /**
-     * Add brand
-     *
-     * @param Brand $brand
-     *
-     * @return Model
-     */
-    public function addBrand(Brand $brand)
-    {
-        $this->brands[] = $brand;
 
-        return $this;
+    /**
+     * @return mixed
+     */
+    public function getModelId()
+    {
+        return $this->modelId;
     }
 
     /**
-     * Remove brand
-     *
-     * @param Brand $brand
+     * @param mixed $modelId
      */
-    public function removeBrand(Brand $brand)
+    public function setModelId($modelId)
     {
-        $this->brands->removeElement($brand);
-        
-        return $this;
+        $this->modelId = $modelId;
     }
 
     /**
-     * Get brands
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getBrands()
+    public function getBrandId()
     {
-        return $this->brands;
+        return $this->brandId;
     }
 
     /**
-     * Add car
-     *
-     * @param Car $car
-     *
-     * @return Model
+     * @param mixed $brandId
      */
-    public function addCar(Car $car)
+    public function setBrandId($brandId)
     {
-        $this->cars[] = $car;
-
-        return $this;
+        $this->brandId = $brandId;
     }
 
-    /**
-     * Get cars
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCars()
-    {
-        return $this->cars;
-    }
 
-    /**
-     * Set brand
-     *
-     * @param Brand $brand
-     *
-     * @return Model
-     */
-    public function setBrand(Brand $brand = null)
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    /**
-     * Get brand
-     *
-     * @return Brand
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
 }
