@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Auto
  *
- * @ORM\Table(name="auto")
+ * @ORM\Table(name="auto", options={"collate"="utf8mb4_general_ci"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AutoRepository")
  */
 class Auto
@@ -24,21 +24,21 @@ class Auto
     /**
      * @var string
      *
-     * @ORM\Column(name="web_url", type="string", length=255, unique=true)
+     * @ORM\Column(name="web_url", type="string", length=190, unique=true)
      */
     private $webUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_url", type="string", length=255)
+     * @ORM\Column(name="image_url", type="string", length=190)
      */
     private $imageUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=190)
      */
     private $title;
 
@@ -52,7 +52,7 @@ class Auto
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=64)
      */
     private $city;
 
@@ -66,14 +66,14 @@ class Auto
     /**
      * @var string
      *
-     * @ORM\Column(name="gearbox", type="string", length=255)
+     * @ORM\Column(name="gearbox", type="string", length=64)
      */
     private $gearbox;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fuel", type="string", length=255)
+     * @ORM\Column(name="fuel", type="string", length=64)
      */
     private $fuel;
 
