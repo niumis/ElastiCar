@@ -59,7 +59,7 @@ class AutoAPI
         $ads = json_decode($ads);
         $ads = $this->addInsertedOn($ads);
 
-        usort($ads, function ($a, $b){
+        usort($ads, function ($a, $b) {
             return (strtotime($b->inserted_on) - strtotime($a->inserted_on));
         });
 
@@ -103,9 +103,9 @@ class AutoAPI
         if ($seconds < 60) {
             $time = 'Prieš 1 min.';
         } else if ($seconds < 60 * 60) {
-            $time = 'Prieš '. floor($seconds / 60) . ' min.';
+            $time = 'Prieš ' . floor($seconds / 60) . ' min.';
         } else if ($seconds < 24 * 60 * 60) {
-            $time = 'Prieš '. (floor($seconds / (60 * 60)) + 1) . ' val.';
+            $time = 'Prieš ' . (floor($seconds / (60 * 60)) + 1) . ' val.';
         } else {
             $time = 'Prieš 1 d.';
         }
