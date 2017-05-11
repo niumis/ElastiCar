@@ -1,18 +1,23 @@
 $(document).ready(function () {
+    let buttonPressed = false;
+    let carsAds = '#cars-ads';
 
     $('.dropdown-item').on('click', function (e) {
 
         if ($(this).attr('id') === 'dropdown-brand-item') {
-            let brand_id = $(this).data('value');
-            let brand_name = $(this).data('name');
+            let brandId = $(this).data('value');
+            let brandName = $(this).data('name');
 
-            let dropdown_model_ul = $('#dropdown-model-ul');
-            dropdown_model_ul.empty();
+            let dropdownModelUl = $('#dropdown-model-ul');
+            dropdownModelUl.empty();
 
-            updateDropdownText('brand', brand_name);
+            updateDropdownText('brand', brandName);
             updateDropdownText('model', 'Pasirinkite');
 
-            $.get("/api/models/" + brand_id, function () {
+            updateDropdownValue('brand', brandId);
+            updateDropdownValue('model', 0);
+
+            $.get("/api/models/" + brandId, function () {
             })
                 .done(function (models) {
 
@@ -20,7 +25,7 @@ $(document).ready(function () {
                     for (model; model < models.length; model++) {
 
                         let element = '<li class="dropdown-item" id="dropdown-model-item" data-id="' + models[model]['modelId'] + '" data-name="' + models[model]['title'] + '"><a href="#">' + models[model]['title'] + '</a></li>';
-                        dropdown_model_ul.append(element);
+                        dropdownModelUl.append(element);
 
                     }
 
@@ -34,15 +39,62 @@ $(document).ready(function () {
     });
 
     $('#dropdown-model-ul').on('click', '#dropdown-model-item', function (e) {
-        let model_id = $(this).data('value');
-        let model_name = $(this).data('name');
+        let modelId = $(this).data('id');
+        let modelName = $(this).data('name');
 
-        updateDropdownText('model', model_name);
+        updateDropdownText('model', modelName);
+        updateDropdownValue('model', modelId);
+
+        e.preventDefault();
+    });
+
+    $('#search-submit').on('click', function (e) {
+
+        let brandId = parseInt(getDropdownValue('brand'));
+        let modelId = parseInt(getDropdownValue('model'));
+
+        if (brandId <= 0 || modelId <= 0 || isNaN(brandId) || isNaN(modelId)) {
+            alert('Pasirinkite markę ir modelį!');
+
+            return false;
+        }
+
+        if (buttonPressed){
+            let carsDiv = $(carsAds);
+            carsDiv.slideUp('fast');
+            setTimeout(function (){
+                carsDiv.remove();
+            }, 300);
+        }
+
+        buttonPressed = true;
+
+        $.get("/api/cars/" + brandId + "/" + modelId, function () {
+        })
+            .done(function (cars) {
+
+                $(carsAds).remove();
+                $('#content').prepend(cars);
+
+                $(carsAds).slideDown('fast');
+
+            })
+            .fail(function () {
+                alert('Klaida! Pabandykite vėliau.');
+            });
 
         e.preventDefault();
     });
 
     function updateDropdownText(id, text) {
         $('#dropdown-current-' + id + '-text').text(text);
+    }
+
+    function updateDropdownValue(id, value) {
+        $('#dropdown-current-' + id + '-text').attr('data-value', value);
+    }
+
+    function getDropdownValue(id) {
+        return $('#dropdown-current-' + id + '-text').attr('data-value');
     }
 });
