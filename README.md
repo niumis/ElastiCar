@@ -1,5 +1,5 @@
 
-[AutoSkautas.lt](http://elasticar.projektai.nfqakademija.lt/) - car clsasified aggregator
+[AutoSkautas.lt](http://elasticar.projektai.nfqakademija.lt/) - car classified aggregator
 ============
 
 ## Dependencies
