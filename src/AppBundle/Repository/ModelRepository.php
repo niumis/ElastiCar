@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class ModelRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param integer $brandId
+     * @param array $columns
+     * @return mixed
+     */
+    public function findByBrandWithColumns($brandId, Array $columns){
+        array_walk($columns, function(&$key) { $key = "model.".$key; });
+
+        return $this->createQueryBuilder('model')
+            ->select($columns)
+            ->where('model.brandId = :brandId')
+            ->setParameter('brandId', $brandId)
+            ->getQuery()
+            ->execute();
+    }
 }

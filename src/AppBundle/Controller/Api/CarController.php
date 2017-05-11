@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CarController extends Controller
 {
-    
+
     /**
      * @return AutoAPI
      */
@@ -20,19 +20,47 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/api/models/{brand_id}", requirements={"brand_id": "\d+"})
+     * @Route("/api/models/{brandId}", requirements={"brandId": "\d+"})
      * @Method("GET")
      */
-    public function modelsAction($brand_id)
+    public function modelsAction($brandId)
     {
-        $autoAPI = $this->getAutoAPI();
-        $models = $autoAPI->getModels($brand_id);
+        $models = $this->getDoctrine()
+            ->getRepository('AppBundle:Model')
+            ->findByBrandWithColumns($brandId, ['modelId', 'title']);
+        $models = json_encode($models);
 
         $response = new Response();
         $response->setContent($models);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /**
+     * @Route("/api/cars/{brandId}/{modelId}", requirements={"brandId": "\d+", "modelId": "\d+"})
+     * @Method("GET")
+     */
+    public function carsActions($brandId, $modelId)
+    {
+        $autoAPI = $this->getAutoAPI();
+        $ads = $autoAPI->getAds($brandId, $modelId);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+        $httpStatusCode = $autoAPI->getHttpStatusCode();
+
+        if ($httpStatusCode !== 200) {
+
+            $response->setStatusCode($httpStatusCode);
+            $content = $autoAPI->getError();
+
+        } else {
+            $content = $ads;
+        }
+
+        $response->setContent($content);
+        return $this->render('@App/Home/Components/ads.html.twig', array('ads' => json_decode($content  )));
     }
 
 }

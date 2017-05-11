@@ -4,47 +4,50 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="car-info">
-                    <ul class="socail list-inline">
-                        <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                    </ul>
-                    <h1>Negaišk laiko!</h1>
-                    <h2>Rask <span>geriausią automobilį</span></h2>
-                    <p>Pasirodžius naujam Tave dominančio automobilio skelbimui, būsi informuotas el. paštu ar SMS žinute</p>
-                    <a href="#" class="btn btn-primary">Kaip tai veikia?</a>
+                    <h1>{{  'Sužinok pirmas!'|trans }}</h1>
+                    <h2>{{ 'Rask'|trans }} <span>{{ 'geriausią automobilį'|trans }}</span></h2>
+                    <p>{{  'Pasirodžius naujam Jus dominančio automobilio skelbimui, būsite informuotas el. paštu vos per 5 minutes!'|trans }}</p>
+                    <a href="#" class="btn btn-primary">{{ 'Kaip tai veikia?'|trans }}</a>
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="contact-form">
-                    <h1>Rask automobilį</h1>
+                    <h1>{{ 'Raskite automobilį'|trans }}</h1>
                     <div class="contact-info">
                         <form action="#">
-                            <h3>Markė</h3>
+                            <h3>{{ 'Markė'|trans }}</h3>
                             <div class="dropdown category-dropdown" id="dropdown-brand">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text" id="dropdown-current-brand-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
+                                <a data-toggle="dropdown" href="#" aria-expanded="false">
+                                    <span class="change-text" id="dropdown-current-brand-text" data-value="">{{ 'Pasirinkite'|trans }}</span>
+                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
+                                </a>
                                 <ul class="dropdown-menu category-change">
                                     {% for brand in brands %}
-                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brand_id }}" data-name="{{ brand.brand_name }}"><a href="#">{{ brand.brand_name }}</a></li>
+                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brandId }}" data-name="{{ brand.title }}"><a href="#">{{ brand.title }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <h3>Modelis</h3>
+                            <h3>{{ 'Modelis'|trans }}</h3>
                             <div class="dropdown category-dropdown" id="dropdown-model">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text" id="dropdown-current-model-text">Pasirinkite</span> <i class="fa fa-angle-down"></i></a>
+                                <a data-toggle="dropdown" href="#" aria-expanded="false">
+                                    <span class="change-text" id="dropdown-current-model-text" data-value="">{{ 'Pasirinkite'|trans }}</span>
+                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
+                                </a>
                                 <ul class="dropdown-menu category-change" id="dropdown-model-ul">
 
                                 </ul>
                             </div>
-                            <h3>Šalis</h3>
+                            <h3>{{ 'Šalis'|trans }}</h3>
                             <div class="dropdown category-dropdown">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Lietuva</span> <i class="fa fa-angle-down"></i></a>
+                                <a data-toggle="dropdown" href="#" aria-expanded="false">
+                                    <span class="change-text">Lietuva</span>
+                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
+                                </a>
                                 <ul class="dropdown-menu category-change">
                                     <li><a href="#">Lietuva</a></li>
                                 </ul>
                             </div>
-                            <button type="submit" class="form-control" value="Toliau">Toliau</button>
+                            <button type="submit" class="form-control" id="search-submit" value="{{ 'Toliau'|trans }}">{{ 'Toliau'|trans }}</button>
                         </form>
                     </div>
                 </div>

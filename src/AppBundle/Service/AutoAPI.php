@@ -15,6 +15,9 @@ class AutoAPI
 {
     private $container;
 
+    private $httpStatusCode = 200;
+    private $error = '';
+
     function __construct(Container $container)
     {
         $this->container = $container;
@@ -24,7 +27,7 @@ class AutoAPI
      * @param $brand_id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getModels($brand_id='')
+    public function getModels($brand_id = '')
     {
         $endpoint = empty($brand_id) ? 'models' : 'models/' . $brand_id;
         $models = $this->request('GET', $endpoint);
@@ -43,6 +46,74 @@ class AutoAPI
     }
 
     /**
+     * @param $brand_id
+     * @param $model_id
+     * @return mixed|\Psr\Http\Message\ResponseInterface|string
+     */
+    public function getAds($brand_id, $model_id)
+    {
+
+        $ads = $this->request('GET', 'cars/' . $brand_id . '/' . $model_id);
+        $ads = $ads->getBody()->getContents();
+
+        $ads = json_decode($ads);
+        $ads = $this->addInsertedOn($ads);
+
+        usort($ads, function ($a, $b) {
+            return (strtotime($b->inserted_on) - strtotime($a->inserted_on));
+        });
+
+        $ads = json_encode($ads);
+        return $ads;
+    }
+
+    /**
+     * @param $ads
+     * @return mixed
+     */
+    private function addInsertedOn($ads)
+    {
+
+        array_map(function (&$ad) {
+
+            $timeToSubtract = 0;
+            foreach ($ad->inserted_before as $timeAmount) {
+                $timeAmount = str_replace(['val', 'min', 'd'], ['hours', 'minutes', 'days'], $timeAmount);
+                $timeToSubtract += strtotime('-' . $timeAmount);
+            }
+
+            $insertedBefore = time() - $timeToSubtract;
+            $ad->inserted_before = $this->secondsToTimeString($insertedBefore);
+            $ad->inserted_on = date('Y-m-d H:i', time() - $insertedBefore);
+
+        }, $ads);
+
+        return $ads;
+    }
+
+    /**
+     * @param $seconds
+     * @return string
+     */
+    public function secondsToTimeString($seconds)
+    {
+        //TO-DO: Needs to be translated
+
+        $time = '';
+        if ($seconds < 60) {
+            $time = 'Prieš 1 min.';
+        } else if ($seconds < 60 * 60) {
+            $time = 'Prieš ' . floor($seconds / 60) . ' min.';
+        } else if ($seconds < 24 * 60 * 60) {
+            $time = 'Prieš ' . (floor($seconds / (60 * 60)) + 1) . ' val.';
+        } else {
+            $time = 'Prieš 1 d.';
+        }
+
+        return $time;
+    }
+
+    /**
      * @param string $method
      * @param string $endpoint
      * @param array $query
@@ -53,18 +124,62 @@ class AutoAPI
         $api_host = $this->getApiHost();
         $api_key = $this->getApiKey();
 
-        $client = new Client([
-            'base_uri' => $api_host
-        ]);
+        try {
+            $client = new Client([
+                'base_uri' => $api_host
+            ]);
 
-        $key_query = ['key' => $api_key];
-        $query = empty($query) ? $key_query : array_merge($key_query, $query);
+            $key_query = ['key' => $api_key];
+            $query = empty($query) ? $key_query : array_merge($key_query, $query);
 
-        $response = $client->request($method, $endpoint, [
-            'query' => $query
-        ]);
+            $response = $client->request($method, $endpoint, [
+                'query' => $query
+            ]);
+        } catch (\Exception $e) {
+
+            $this->setHttpStatusCode($e->getCode())->setError('Invalid query.');
+            return false;
+        }
 
         return $response;
+    }
+
+    /**
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @param $error
+     * @return AutoAPI
+     */
+    private function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHttpStatusCode()
+    {
+        return $this->httpStatusCode;
+    }
+
+    /**
+     * @param $httpStatusCode
+     * @return AutoAPI
+     */
+    private function setHttpStatusCode($httpStatusCode)
+    {
+        $this->httpStatusCode = $httpStatusCode;
+
+        return $this;
     }
 
     /**

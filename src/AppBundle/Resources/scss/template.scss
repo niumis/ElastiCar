@@ -809,7 +809,7 @@ a.verified i {
   transition: all 0.5s ease-in-out;
 }
 
-.ad-item:hover .item-image img {
+.post-item:hover .item-image img {
   -moz-transform: scale(1.05) rotate(2deg);
   -webkit-transform: scale(1.05) rotate(2deg);
   -o-transform: scale(1.05) rotate(2deg);
@@ -817,7 +817,7 @@ a.verified i {
   transform: scale(1.05) rotate(2deg);
 }
 
-.ad-item {
+.post-item {
   border: 1px solid #f3f3f3;
   margin: 18px 0;
   min-height: 152px;
@@ -846,17 +846,17 @@ a.verified i {
   padding: 15px 30px;
 }
 
-.ad-item .ad-info {
+.post-item .ad-info {
   overflow:hidden;
 }
 
-.ad-item .ad-info span+a {
+.post-item .ad-info span+a {
   color: #9fa4a4;
   font-size: 14px;
   line-height: 16px;
 }
 
-.ad-item .ad-info span,
+.post-item .ad-info span,
 .featured .ad-info span{
   color: #a0a0a0;
   font-size: 14px;
@@ -1149,7 +1149,6 @@ a.verified i {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  overflow: hidden;
   padding: 35px;
   border-radius: 4px;
 }
@@ -1450,7 +1449,7 @@ a.verified i {
   color: #000;
   background-color: #fff;
   border-radius: 4px;
-  overflow: hidden;
+  padding-bottom: 30px;
 }
 
 .home-banner .contact-info {
@@ -1470,6 +1469,8 @@ a.verified i {
   background-color: #f7f7f7;
   text-transform: capitalize;
   border-bottom: 1px solid #ececec;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .home-banner .contact-form h3 {
@@ -1503,7 +1504,8 @@ a.verified i {
 }
 
 .home-banner .dropdown.category-dropdown a i {
-  color: #000;
+  font-size: 10px;
+  color: #9d9b9d;
 }
 
 .home-banner .contact-form i {
@@ -1627,7 +1629,7 @@ a.verified i {
 }
 
 .section.cars-ads .car-info i {
-  color: #a4a9a9;
+  color: $main-color;
   margin-right: 10px;
 }
 
