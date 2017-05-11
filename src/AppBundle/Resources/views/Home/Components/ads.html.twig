@@ -1,0 +1,56 @@
+<div class="section trending-ads cars-ads" id="cars-ads">
+    <div class="section-title">
+        <h4>{{ 'Naujausi skelbimai per 24 val.'|trans }} <small>({{ ads|length }})</small></h4>
+    </div>
+
+    {% for ad in ads %}
+    <div class="post-item row">
+        <div class="item-image-box  col-sm-12 col-md-5">
+            <div class="item-image">
+                <a href="#"><img src="{{ ad.img_url }}" alt="Image" class="img-responsive"></a>
+            </div><!-- item-image -->
+            <div class="ad-info">
+                <h4 class="item-title"><a href="#">{{ ad.title }}</a></h4>
+                <h3 class="item-price">{{ ad.price|number_format }} &euro;</h3>
+            </div>
+        </div>
+        <div class="cars-ads-box col-sm-12 col-md-7">
+            <div class="car-info">
+                <ul>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ 'Registracijos data'|trans }}: {{ ad.year }}</li>
+                    <li>
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>{{ 'Rida'|trans }}:
+                        {% if ad.mileage matches '/^\\d+$/' %}
+                            {{ ad.mileage|number_format }} km
+                        {% else %}
+                            {{ 'Nenurodyta'|trans }}
+                        {% endif %}
+                    </li>
+                    <li><i class="fa fa-external-link" aria-hidden="true"></i>{{ 'Pavarų dėžė'|trans }}: {{ (ad.gearbox|default('Nenurodyta'))|trans }}</li>
+                </ul>
+            </div>
+            <div class="car-info">
+                <ul>
+                    <li><i class="fa fa-eyedropper" aria-hidden="true"></i>{{ 'Galia'|trans }}:
+                        {% if ad.power matches '/^\\d+$/' %}
+                            {{ ad.power|number_format }} kW
+                        {% else %}
+                            {{ 'Nenurodyta'|trans }}
+                        {% endif %}</li>
+                    <li><i class="fa fa-bitbucket" aria-hidden="true"></i>{{ 'Kuro tipas'|trans }}: {{ (ad.fuel|default('Nenurodyta'))|trans }}</li>
+                    <li><i class="fa fa-database" aria-hidden="true"></i>{{ 'Miestas'|trans }}: {{ ad.city }}</li>
+                </ul>
+            </div>
+            <div class="ad-meta">
+                <div class="meta-content">
+                    <span class="dated"><a href="#">{{ ad.inserted_before }}</a></span>
+                </div>
+                <!-- item-info-right -->
+                <div class="user-option pull-right">
+                </div><!-- item-info-right -->
+            </div><!-- ad-meta -->
+        </div>
+    </div><!-- post-item -->
+    {% endfor %}
+
+</div>
