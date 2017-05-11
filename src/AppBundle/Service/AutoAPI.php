@@ -45,12 +45,72 @@ class AutoAPI
         return $brands->getBody();
     }
 
+    /**
+     * @param $brand_id
+     * @param $model_id
+     * @return mixed|\Psr\Http\Message\ResponseInterface|string
+     */
     public function getAds($brand_id, $model_id)
     {
 
         $ads = $this->request('GET', 'cars/' . $brand_id . '/' . $model_id);
+        $ads = $ads->getBody()->getContents();
+
+        $ads = json_decode($ads);
+        $ads = $this->addInsertedOn($ads);
+
+        usort($ads, function ($a, $b){
+            return (strtotime($b->inserted_on) - strtotime($a->inserted_on));
+        });
+
+        $ads = json_encode($ads);
+        return $ads;
+    }
+
+    /**
+     * @param $ads
+     * @return mixed
+     */
+    private function addInsertedOn($ads)
+    {
+
+        array_map(function (&$ad) {
+
+            $timeToSubtract = 0;
+            foreach ($ad->inserted_before as $timeAmount) {
+                $timeAmount = str_replace(['val', 'min', 'd'], ['hours', 'minutes', 'days'], $timeAmount);
+                $timeToSubtract += strtotime('-' . $timeAmount);
+            }
+
+            $insertedBefore = time() - $timeToSubtract;
+            $ad->inserted_before = $this->secondsToTimeString($insertedBefore);
+            $ad->inserted_on = date('Y-m-d H:i', time() - $insertedBefore);
+
+        }, $ads);
 
         return $ads;
+    }
+
+    /**
+     * @param $seconds
+     * @return string
+     */
+    public function secondsToTimeString($seconds)
+    {
+        //TO-DO: Needs to be translated
+
+        $time = '';
+        if ($seconds < 60) {
+            $time = 'Prieš 1 min.';
+        } else if ($seconds < 60 * 60) {
+            $time = 'Prieš '. floor($seconds / 60) . ' min.';
+        } else if ($seconds < 24 * 60 * 60) {
+            $time = 'Prieš '. (floor($seconds / (60 * 60)) + 1) . ' val.';
+        } else {
+            $time = 'Prieš 1 d.';
+        }
+
+        return $time;
     }
 
     /**
@@ -87,7 +147,8 @@ class AutoAPI
     /**
      * @return string
      */
-    public function getError(){
+    public function getError()
+    {
         return $this->error;
     }
 
@@ -95,7 +156,8 @@ class AutoAPI
      * @param $error
      * @return AutoAPI
      */
-    private function setError($error){
+    private function setError($error)
+    {
         $this->error = $error;
 
         return $this;
@@ -104,7 +166,8 @@ class AutoAPI
     /**
      * @return int
      */
-    public function getHttpStatusCode(){
+    public function getHttpStatusCode()
+    {
         return $this->httpStatusCode;
     }
 
@@ -112,7 +175,8 @@ class AutoAPI
      * @param $httpStatusCode
      * @return AutoAPI
      */
-    private function setHttpStatusCode($httpStatusCode){
+    private function setHttpStatusCode($httpStatusCode)
+    {
         $this->httpStatusCode = $httpStatusCode;
 
         return $this;
