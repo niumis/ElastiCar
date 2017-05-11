@@ -59,9 +59,11 @@ class AutoAPI
         $ads = json_decode($ads);
         $ads = $this->addInsertedOn($ads);
 
+
         usort($ads, function ($a, $b) {
-            return (strtotime($b->inserted_on) - strtotime($a->inserted_on));
+            return ($b->inserted_on - $a->inserted_on);
         });
+
 
         $ads = json_encode($ads);
         return $ads;
@@ -79,12 +81,13 @@ class AutoAPI
             $timeToSubtract = 0;
             foreach ($ad->inserted_before as $timeAmount) {
                 $timeAmount = str_replace(['val', 'min', 'd'], ['hours', 'minutes', 'days'], $timeAmount);
-                $timeToSubtract += strtotime('-' . $timeAmount);
+                $timeToSubtract += time() - strtotime('-' . $timeAmount);
             }
 
+
             $insertedBefore = time() - $timeToSubtract;
-            $ad->inserted_before = $this->secondsToTimeString($insertedBefore);
-            $ad->inserted_on = date('Y-m-d H:i', time() - $insertedBefore);
+            $ad->inserted_before = $this->secondsToTimeString($timeToSubtract);
+            $ad->inserted_on = $insertedBefore;
 
         }, $ads);
 
@@ -102,9 +105,9 @@ class AutoAPI
         $time = '';
         if ($seconds < 60) {
             $time = 'Prieš 1 min.';
-        } else if ($seconds < 60 * 60) {
+        } else if ($seconds < (60 * 60)) {
             $time = 'Prieš ' . floor($seconds / 60) . ' min.';
-        } else if ($seconds < 24 * 60 * 60) {
+        } else if ($seconds < (24 * 60 * 60)) {
             $time = 'Prieš ' . (floor($seconds / (60 * 60)) + 1) . ' val.';
         } else {
             $time = 'Prieš 1 d.';
