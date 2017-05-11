@@ -59,8 +59,22 @@ class CarController extends Controller
             $content = $ads;
         }
 
+        $brand = $this->getDoctrine()
+            ->getRepository('AppBundle:Brand')
+            ->findOneBy(['brandId' => $brandId])
+            ->getTitle();
+
+        $model = $this->getDoctrine()
+            ->getRepository('AppBundle:Model')
+            ->findOneBy(['modelId' => $modelId])
+            ->getTitle();
+
         $response->setContent($content);
-        return $this->render('@App/Home/Components/ads.html.twig', array('ads' => json_decode($content  )));
+        return $this->render('@App/Home/Components/ads.html.twig', [
+            'ads' => json_decode($content),
+            'brand' => $brand,
+            'model' => $model,
+        ]);
     }
 
 }
