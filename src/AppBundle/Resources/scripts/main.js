@@ -78,6 +78,10 @@ $(document).ready(function () {
 
                 $(carsAds).slideDown('fast');
 
+                $('html, body').animate({
+                    scrollTop: $(carsAds).offset().top
+                }, 1000);
+
             })
             .fail(function () {
                 alert('Klaida! Pabandykite vėliau.');
