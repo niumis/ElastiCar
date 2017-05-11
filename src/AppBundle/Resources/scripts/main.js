@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let buttonPressed = false;
     let carsAds = '#cars-ads';
+    let body = 'body';
 
     $('.dropdown-item').on('click', function (e) {
 
@@ -69,9 +70,13 @@ $(document).ready(function () {
 
         buttonPressed = true;
 
+        $(body).addClass('loading');
+
         $.get("/api/cars/" + brandId + "/" + modelId, function () {
         })
             .done(function (cars) {
+
+                $(body).removeClass('loading');
 
                 $(carsAds).remove();
                 $('#content').prepend(cars);
@@ -85,6 +90,7 @@ $(document).ready(function () {
             })
             .fail(function () {
                 alert('Klaida! Pabandykite vėliau.');
+                $(body).removeClass('loading');
             });
 
         e.preventDefault();
