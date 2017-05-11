@@ -28,3 +28,17 @@ $main-color: #f26522;
   max-height: 250px;
   overflow: auto;
 }
+
+@media only screen and (min-width: 700px) {
+  .trending-ads.cars-ads .item-image {
+    width: 230px;
+  }
+}
+
+.trending-ads {
+  margin-top: 20px;
+}
+
+.section {
+  display: none;
+}
