@@ -809,7 +809,7 @@ a.verified i {
   transition: all 0.5s ease-in-out;
 }
 
-.ad-item:hover .item-image img {
+.post-item:hover .item-image img {
   -moz-transform: scale(1.05) rotate(2deg);
   -webkit-transform: scale(1.05) rotate(2deg);
   -o-transform: scale(1.05) rotate(2deg);
@@ -817,7 +817,7 @@ a.verified i {
   transform: scale(1.05) rotate(2deg);
 }
 
-.ad-item {
+.post-item {
   border: 1px solid #f3f3f3;
   margin: 18px 0;
   min-height: 152px;
@@ -846,17 +846,17 @@ a.verified i {
   padding: 15px 30px;
 }
 
-.ad-item .ad-info {
+.post-item .ad-info {
   overflow:hidden;
 }
 
-.ad-item .ad-info span+a {
+.post-item .ad-info span+a {
   color: #9fa4a4;
   font-size: 14px;
   line-height: 16px;
 }
 
-.ad-item .ad-info span,
+.post-item .ad-info span,
 .featured .ad-info span{
   color: #a0a0a0;
   font-size: 14px;

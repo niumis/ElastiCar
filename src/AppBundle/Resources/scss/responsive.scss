@@ -59,7 +59,7 @@
     right:0;
     width:150%;
   }
-  .item-info, .ad-item {
+  .item-info, .post-item {
     min-height: 160px;
   }
   .ad-profile .user{
@@ -95,14 +95,14 @@
   .section.cars-ads .item-title {
     margin-bottom: 0;
   }
-  .section.cars-ads .ad-item {
+  .section.cars-ads .post-item {
     min-height: 175px;
   }
   .section.cars-ads .item-title a {
     font-size: 16px;
   }
   .home-one .featured,
-  .home-one .ad-item {
+  .home-one .post-item {
     overflow: hidden;
   }
   .home-one .ad-meta {
@@ -148,7 +148,7 @@
   .ad-info .item-title {
     font-size:16px;
   }
-  .ad-item, .item-info {
+  .post-item, .item-info {
     min-height: 180px;
   }
   .ad-meta .user-option a {
@@ -266,7 +266,7 @@
     width:150%;
   }
   .home-one .featured,
-  .home-one .ad-item {
+  .home-one .post-item {
     overflow: hidden;
   }
   .home-one .ad-meta {
@@ -337,7 +337,7 @@
   .pricing-section .pric h2 {
     margin-bottom: 10px;
   }
-  .trending-ads.cars-ads .ad-item {
+  .trending-ads.cars-ads .post-item {
     min-height: 299px;
   }
   .section.cars-ads .ad-meta {
@@ -427,10 +427,10 @@
   .ad-section {
     margin: 0 0 25px;
   }
-  .ad-item .ad-info {
+  .post-item .ad-info {
     min-height: 150px;
   }
-  .item-image-box, .ad-item {
+  .item-image-box, .post-item {
     max-height:inherit;
   }
   .ad-info .item-title {
@@ -864,7 +864,7 @@
   .tab-manu .nav-tabs li a {
     padding:10px 6px;
   }
-  .ad-item .ad-info {
+  .post-item .ad-info {
     min-height: 185px;
   }
   .download-app {
