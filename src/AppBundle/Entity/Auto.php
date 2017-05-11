@@ -24,14 +24,14 @@ class Auto
     /**
      * @var string
      *
-     * @ORM\Column(name="web_url", type="string", length=2083, unique=true)
+     * @ORM\Column(name="web_url", type="string", length=255, unique=true)
      */
     private $webUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image_url", type="string", length=2083)
+     * @ORM\Column(name="image_url", type="string", length=255)
      */
     private $imageUrl;
 
