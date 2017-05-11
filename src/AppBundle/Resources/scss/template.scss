@@ -368,7 +368,7 @@ textarea {
 .banner-form {
   background-color: rgba(0, 0, 0, 0.14);
   padding: 8px;
-  max-width: 750px;
+  max-width: 600px;
   margin: 12px auto;
   border-radius: 5px;
   text-align:left;
@@ -410,13 +410,13 @@ textarea {
 }
 
 .banner-form input {
+  color: $gray;
   min-width: 375px;
   padding:0 18px 0;
   margin: 0;
   border-radius: 0;
   font-family: 'MyriadPro-Regular', sans-serif;
   border: none;
-  margin-left: -4px;
 }
 
 .banner-form .form-control,
@@ -442,7 +442,7 @@ textarea {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  height:49px;
+  height:48px;
 }
 
 .banner-form button:hover {

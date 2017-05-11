@@ -3,6 +3,8 @@
 
 //template
 $main-color: #f26522;
+$white: #f8f8f8;
+$gray: #a4a4a4;
 
 @import "template";
 @import "preset";
@@ -40,7 +42,7 @@ $main-color: #f26522;
 }
 
 .section {
-  display: none;
+  //display: none;
 }
 
 body.loading:after {
@@ -97,4 +99,17 @@ body.loading:after {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.section-email {
+  min-height: 200px;
+  background-color: $main-color;
+  opacity: 0.95;
+  border-radius: 4px;
+  color: $white;
+}
+
+
+.banner-form button {
+  min-width: 200px;
 }
