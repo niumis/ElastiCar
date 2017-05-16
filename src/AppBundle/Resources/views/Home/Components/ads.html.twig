@@ -7,18 +7,7 @@
         {% endif %}
     </div>
 
-    <div class="section-email row">
-        <div class="col-sm-12 col-md-12 text-center">
-            <h1>{{ 'Sužinok apie naujus skelbimus pirmas!'|trans }}</h1>
-            {{ 'Gaukite pranešimus apie naujus'|trans }} <b>{{ brand }} {{ model }}</b> {{ 'skelbimus vos per 5 minutes nuo jų atsiradimo populiariausiuose skelbimų portaluose.'|trans }}
-            <div class="banner-form">
-                <form action="#">
-                    <input type="text" class="form-control" placeholder="{{ 'Įveskite el. pašto adresą'|trans }}">
-                    <button type="submit" class="form-control" value="{{ 'Prenumeruoti'|trans }}">{{ 'Prenumeruoti'|trans }}</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    {% include '@App/Home/Components/subscription-box.html.twig' %}
 
     {% for ad in ads %}
     <div class="post-item row">
