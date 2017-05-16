@@ -41,7 +41,7 @@ class CarController extends Controller
      * @Route("/api/cars/{brandId}/{modelId}", requirements={"brandId": "\d+", "modelId": "\d+"})
      * @Method("GET")
      */
-    public function carsActions($brandId, $modelId)
+    public function carsAction($brandId, $modelId)
     {
         $autoAPI = $this->getAutoAPI();
         $ads = $autoAPI->getAds($brandId, $modelId);
