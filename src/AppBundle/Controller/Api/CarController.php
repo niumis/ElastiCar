@@ -54,18 +54,16 @@ class CarController extends Controller
     public function carsAction($brandId, $modelId)
     {
         $autoAPI = $this->getAutoAPI();
-        $ads = $autoAPI->getAds($brandId, $modelId);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
         $httpStatusCode = $autoAPI->getHttpStatusCode();
 
         if ($httpStatusCode !== 200) {
-
             $response->setStatusCode($httpStatusCode);
             $content = $autoAPI->getError();
-
         } else {
+            $ads = $autoAPI->getAds($brandId, $modelId);
             $content = $ads;
         }
 
@@ -94,8 +92,8 @@ class CarController extends Controller
     public function subscribeAction(Request $request)
     {
         $email = $request->request->get('email');
-        $brandId = (int) $request->request->get('brandId');
-        $modelId = (int) $request->request->get('modelId');
+        $brandId = (int)$request->request->get('brandId');
+        $modelId = (int)$request->request->get('modelId');
 
         $subscription = $this->getSubscription();
         $subscription->setEmail($email);
@@ -105,7 +103,7 @@ class CarController extends Controller
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
 
-        if ($subscription->validate()){
+        if ($subscription->validate()) {
             $subscription->subscribe();
 
             //TO-DO: modify and translate response
