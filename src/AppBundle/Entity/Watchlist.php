@@ -75,7 +75,7 @@ class Watchlist
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getEmail()
     {
@@ -83,7 +83,7 @@ class Watchlist
     }
 
     /**
-     * @param int $email
+     * @param string $email
      */
     public function setEmail($email)
     {
