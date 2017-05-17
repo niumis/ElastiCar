@@ -3,9 +3,11 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Service\AutoAPI;
+use AppBundle\Service\Subscription;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CarController extends Controller
@@ -17,6 +19,14 @@ class CarController extends Controller
     private function getAutoAPI()
     {
         return $this->get('app.auto_api');
+    }
+
+    /**
+     * @return Subscription
+     */
+    private function getSubscription()
+    {
+        return $this->get('app.subscription');
     }
 
     /**
@@ -75,6 +85,44 @@ class CarController extends Controller
             'brand' => $brand,
             'model' => $model,
         ]);
+    }
+
+    /**
+     * @Route ("/api/subscribe")
+     * @Method ("POST")
+     */
+    public function subscribeAction(Request $request)
+    {
+        $email = $request->request->get('email');
+        $brandId = (int) $request->request->get('brandId');
+        $modelId = (int) $request->request->get('modelId');
+
+        $subscription = $this->getSubscription();
+        $subscription->setEmail($email);
+        $subscription->setBrandId($brandId);
+        $subscription->setModelId($modelId);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+
+        if ($subscription->validate()){
+            $subscription->subscribe();
+
+            //TO-DO: modify and translate response
+            $responseString = json_encode([
+                'message' => 'Atlikta!'
+            ]);
+        } else {
+
+            $responseString = json_encode([
+                'errors' => 'Invalid request.'
+            ]);
+            $response->setStatusCode(400);
+        }
+
+        $response->setContent($responseString);
+
+        return $response;
     }
 
 }
