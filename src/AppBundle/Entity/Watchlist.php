@@ -53,6 +53,14 @@ class Watchlist
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="created_at", type="datetime")
      * @Assert\DateTime()
      */
@@ -61,12 +69,11 @@ class Watchlist
 
     public function __construct()
     {
+        $this->updatedAt = new \DateTime();
         $this->createdAt = new \DateTime();
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -75,7 +82,17 @@ class Watchlist
     }
 
     /**
-     * @return string
+     * @param int $id
+     * @return Watchlist
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
      */
     public function getEmail()
     {
@@ -83,11 +100,13 @@ class Watchlist
     }
 
     /**
-     * @param string $email
+     * @param int $email
+     * @return Watchlist
      */
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -100,10 +119,12 @@ class Watchlist
 
     /**
      * @param string $city
+     * @return Watchlist
      */
     public function setCity($city)
     {
         $this->city = $city;
+        return $this;
     }
 
     /**
@@ -116,29 +137,15 @@ class Watchlist
 
     /**
      * @param int $brandId
+     * @return Watchlist
      */
     public function setBrandId($brandId)
     {
         $this->brandId = $brandId;
-    }
-
-    /**
-     * Set modelId
-     *
-     * @param integer $modelId
-     *
-     * @return Watchlist
-     */
-    public function setModelId($modelId)
-    {
-        $this->modelId = $modelId;
-
         return $this;
     }
 
     /**
-     * Get modelId
-     *
      * @return int
      */
     public function getModelId()
@@ -147,11 +154,49 @@ class Watchlist
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param int $modelId
+     * @return Watchlist
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setModelId($modelId)
+    {
+        $this->modelId = $modelId;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     * @return Watchlist
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     * @return Watchlist
+     */
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
 }
