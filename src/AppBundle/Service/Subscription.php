@@ -72,7 +72,7 @@ class Subscription
         $validator = $this->getContainer()->get('validator');
         $errors = $validator->validate($this);
 
-        if (count($errors) > 0) {
+        if (!empty($errors)) {
             return false;
         }
 
