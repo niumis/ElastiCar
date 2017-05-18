@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include '@App/Home/Components/navbar.html.twig' %}
+
+    <section class="clearfix text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="found-section section">
+                        <h1>404</h1>
+                        <h2>{{ 'Puslapis nerastas' | trans }}</h2>
+                        <p>{{ 'Mes negalime rasti puslapio, kurio Jūs ieškote.' | trans }}</p>
+                        <a href="{{ path('homepage') }}" class="btn btn-primary">{{ 'Į pradžią' | trans }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page">
+        <div class="container" id="content">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
+
+{% endblock %}
