@@ -11,9 +11,9 @@
                     <div class="found-section section">
                         <h1>{{ status_code }}</h1>
                         <h2>{{ status_text | trans }}</h2>
-                        <p>{{ 'Kažkas negerai. Klaida artimiausiu metu bus pataisyta. Atsiprašome.' | trans }}</p>
+                        <p>{{ 'err_info' | trans }}</p>
                         <a href="{{ path('homepage') }}"
-                           class="btn btn-primary">{{ 'Grįžti į praeitą puslapį' | trans }}</a>
+                           class="btn btn-primary">{{ 'err_btn' | trans }}</a>
                     </div>
                 </div>
             </div>
