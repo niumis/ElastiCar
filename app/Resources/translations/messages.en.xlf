@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="error_button">
+                <source>err_btn</source>
+                <target>Go to home</target>
+            </trans-unit>
+            <trans-unit id="error_info">
+                <source>err_info</source>
+                <target>Something is broken. Please let us know what you were doing when this error occurred.
+                    We will fix it as soon as possible. Sorry for any inconvenience caused.</target>
+            </trans-unit>
+            <trans-unit id="error_403_head">
+                <source>err_403_head</source>
+                <target>Forbidden</target>
+            </trans-unit>
+            <trans-unit id="error_403_info">
+                <source>err_403_info</source>
+                <target>You don't have permissions to access on this page.</target>
+            </trans-unit>
+            <trans-unit id="error_404_head">
+                <source>err_404_head</source>
+                <target>Page Not Found</target>
+            </trans-unit>
+            <trans-unit id="error_404_info">
+                <source>err_404_info</source>
+                <target>We can't seem to find the page you're looking for.</target>
+            </trans-unit>
+            <trans-unit id="error_500_head">
+                <source>err_500_head</source>
+                <target>Opsss!</target>
+            </trans-unit>
+            <trans-unit id="error_500_info">
+                <source>err_500_info</source>
+                <target>We Had some technical problems during your last operation.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
