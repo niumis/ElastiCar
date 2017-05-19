@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="error_button">
+                <source>err_btn</source>
+                <target>Go to home</target>
+            </trans-unit>
+            <trans-unit id="error_info">
+                <source>err_info</source>
+                <target>Something is broken. Please let us know what you were doing when this error occurred.
+                    We will fix it as soon as possible. Sorry for any inconvenience caused.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
