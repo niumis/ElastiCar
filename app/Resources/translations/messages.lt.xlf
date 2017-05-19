@@ -10,6 +10,30 @@
                 <source>err_info</source>
                 <target>Kažkas negerai. Klaida artimiausiu metu bus pataisyta. Atsiprašome.</target>
             </trans-unit>
+            <trans-unit id="error_403_head">
+                <source>err_403_head</source>
+                <target>Prieiga negalima</target>
+            </trans-unit>
+            <trans-unit id="error_403_info">
+                <source>err_403_info</source>
+                <target>Nepakanka teisių į puslapį, kurį norite atverti.</target>
+            </trans-unit>
+            <trans-unit id="error_404_head">
+                <source>err_404_head</source>
+                <target>Puslapis nerastas</target>
+            </trans-unit>
+            <trans-unit id="error_404_info">
+                <source>err_404_info</source>
+                <target>Mes negalime rasti puslapio, kurio Jūs ieškote.</target>
+            </trans-unit>
+            <trans-unit id="error_500_head">
+                <source>err_500_head</source>
+                <target>Upsss!</target>
+            </trans-unit>
+            <trans-unit id="error_500_info">
+                <source>err_500_info</source>
+                <target>Mes turime keletą techninių problemų. Greit bus ištaisyta, aplankykite vėliau.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
