@@ -1,0 +1,68 @@
+<style>
+    table, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    td{
+        padding: 5px;
+        text-align: center;
+    }
+
+    img {
+        max-width: 120px;
+    }
+</style>
+
+<h1>AutoSkautas.lt</h1>
+
+{% if firstMail %}
+    Registracija sėkminga!<br>
+    Nuo šiol, vos per 5 minutes nuo skelbimo įkėlimo, apie jį būsite informuoti el. paštu.<br>
+    <br>
+    <b>Šios dienos naujausi skelbimai:</b><br>
+{% else %}
+    Nauji skelbimai:<br>
+{% endif %}
+
+<table style="border: 1px solid black;border-collapse: collapse;">
+    <thead>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Nuotrauka</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Pavadinimas</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Registracijos data</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Galia</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Rida</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Kuro tipas</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Pavarų dėžė</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Miestas</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Kaina</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Nuoroda</td>
+    <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">Įkelta prieš</td>
+    </thead>
+    {% for ad in ads %}
+        <tr>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;"><img src="{{ ad.img_url }}" style="max-width: 120px;"></td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ ad.title }}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ ad.year }}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">
+                {% if ad.power matches '/^\\d+$/' %}
+                    {{ ad.power|number_format }} kW
+                {% else %}
+                    Nenurodyta
+                {% endif %}
+            </td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">
+                {% if ad.mileage matches '/^\\d+$/' %}
+                    {{ ad.mileage|number_format }} km
+                {% else %}
+                    Nenurodyta
+                {% endif %}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ (ad.fuel|default('Nenurodyta'))|trans }}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ (ad.gearbox|default('Nenurodyta'))|trans }}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ ad.city }}</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ ad.price|number_format }} &euro;</td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;"><a href="{{ ad.url }}" target="_blank">Peržiūrėti</a></td>
+            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: center;">{{ ad.inserted_before }}</td>
+        </tr>
+    {% endfor %}
+</table>
