@@ -42,6 +42,56 @@
                 <source>title_info</source>
                 <target>nusipirk geriausią automobilį</target>
             </trans-unit>
+            <trans-unit id="navigation">
+                <source>navigation</source>
+                <target>Navigacija</target>
+            </trans-unit>
+            <trans-unit id="find_car">
+                <source>find_car</source>
+                <target>Rask automobilį</target>
+            </trans-unit>
+            <trans-unit id="brand">
+                <source>brand</source>
+                <target>Markė</target>
+            </trans-unit>
+            <trans-unit id="model">
+                <source>model</source>
+                <target>Modelis</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Toliau</target>
+            </trans-unit>
+            <trans-unit id="find">
+                <source>find</source>
+                <target>Rask</target>
+            </trans-unit>
+            <trans-unit id="best_car">
+                <source>best_car</source>
+                <target>geriausią automobilį</target>
+            </trans-unit>
+            <trans-unit id="select">
+                <source>select</source>
+                <target>Pasirinkite</target>
+            </trans-unit>
+            <trans-unit id="find_out_first">
+                <source>find_out_first</source>
+                <target>Sužinok pirmas!</target>
+            </trans-unit>
+            <trans-unit id="how_it_work">
+                <source>how_it_work</source>
+                <target>Kaip tai veikia?</target>
+            </trans-unit>
+            <trans-unit id="informed_email">
+                <source>informed_email</source>
+                <target>Pasirodžius naujam Jus dominančio automobilio skelbimui, būsite informuotas el. paštu vos per 5
+                    minutes!
+                </target>
+            </trans-unit>
+            <trans-unit id="year">
+                <source>year</source>
+                <target>Metai</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
