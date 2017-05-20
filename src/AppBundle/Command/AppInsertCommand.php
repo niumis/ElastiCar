@@ -42,8 +42,7 @@ class AppInsertCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $type = $input->getArgument('type');
-        if (!in_array($type, ['brand', 'model'])){
-
+        if (!in_array($type, ['brand', 'model'])) {
             $output->writeln('Wrong type!');
             return;
         }
@@ -72,14 +71,12 @@ class AppInsertCommand extends ContainerAwareCommand
             }
 
             $this->flushBatch();
-
-        } else if ($type === 'model') {
+        } elseif ($type === 'model') {
             $data = json_decode($this->autoApi->getModels(), true);
 
             $count = 0;
-            foreach ($data as $brand_id => $models){
-
-                foreach ($models as $model){
+            foreach ($data as $brand_id => $models) {
+                foreach ($models as $model) {
                     $count++;
 
                     $row = new Model();
@@ -92,24 +89,21 @@ class AppInsertCommand extends ContainerAwareCommand
                     if ($count % $batchSize === 0) {
                         $this->flushBatch();
                     }
-
                 }
-
             }
 
             $this->flushBatch();
-
         }
 
         $output->writeln('Finished!');
     }
 
 
-    private function flushBatch(){
+    private function flushBatch()
+    {
         $this->entityManager->flush();
         $this->entityManager->clear();
 
         return $this;
     }
-
 }

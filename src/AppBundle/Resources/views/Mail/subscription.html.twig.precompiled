@@ -1,0 +1,72 @@
+{#
+Compile with: https://templates.mailchimp.com/resources/inline-css/
+Make sure to update subscription.html.twig with compiled code.
+ #}
+<style>
+    table, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    td{
+        padding: 5px;
+        text-align: center;
+    }
+
+    img {
+        max-width: 120px;
+    }
+</style>
+
+<h1>AutoSkautas.lt</h1>
+
+{% if firstMail %}
+    Registracija sėkminga!<br />
+    Nuo šiol, vos per 5 minutes nuo skelbimo įkėlimo, apie jį būsite informuoti el. paštu.<br />
+    <br />
+    <b>Šios dienos naujausi skelbimai:</b><br />
+{% else %}
+    Nauji skelbimai:<br />
+{% endif %}
+
+<table>
+    <thead>
+    <td>Nuotrauka</td>
+    <td>Pavadinimas</td>
+    <td>Registracijos data</td>
+    <td>Galia</td>
+    <td>Rida</td>
+    <td>Kuro tipas</td>
+    <td>Pavarų dėžė</td>
+    <td>Miestas</td>
+    <td>Kaina</td>
+    <td>Nuoroda</td>
+    <td>Įkelta prieš</td>
+    </thead>
+    {% for ad in ads %}
+        <tr>
+            <td><img src="{{ ad.img_url }}"/></td>
+            <td>{{ ad.title }}</td>
+            <td>{{ ad.year }}</td>
+            <td>
+                {% if ad.power matches '/^\\d+$/' %}
+                    {{ ad.power|number_format }} kW
+                {% else %}
+                    Nenurodyta
+                {% endif %}
+            </td>
+            <td>
+                {% if ad.mileage matches '/^\\d+$/' %}
+                    {{ ad.mileage|number_format }} km
+                {% else %}
+                    Nenurodyta
+                {% endif %}</td>
+            <td>{{ (ad.fuel|default('Nenurodyta'))|trans }}</td>
+            <td>{{ (ad.gearbox|default('Nenurodyta'))|trans }}</td>
+            <td>{{ ad.city }}</td>
+            <td>{{ ad.price|number_format }} &euro;</td>
+            <td><a href="{{ ad.url }}" target="_blank">Peržiūrėti</a></td>
+            <td>{{ ad.inserted_before }}</td>
+        </tr>
+    {% endfor %}
+</table>

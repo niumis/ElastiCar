@@ -1,13 +1,17 @@
 $(document).ready(function () {
+    // Search
     let buttonPressed = false;
     let carsAds = '#cars-ads';
     let body = 'body';
 
+    let brandId, brandName;
+    let modelId, modelName;
+
     $('.dropdown-item').on('click', function (e) {
 
         if ($(this).attr('id') === 'dropdown-brand-item') {
-            let brandId = $(this).data('value');
-            let brandName = $(this).data('name');
+            brandId = $(this).data('value');
+            brandName = $(this).data('name');
 
             let dropdownModelUl = $('#dropdown-model-ul');
             dropdownModelUl.empty();
@@ -40,8 +44,8 @@ $(document).ready(function () {
     });
 
     $('#dropdown-model-ul').on('click', '#dropdown-model-item', function (e) {
-        let modelId = $(this).data('id');
-        let modelName = $(this).data('name');
+        modelId = $(this).data('id');
+        modelName = $(this).data('name');
 
         updateDropdownText('model', modelName);
         updateDropdownValue('model', modelId);
@@ -60,10 +64,10 @@ $(document).ready(function () {
             return false;
         }
 
-        if (buttonPressed){
+        if (buttonPressed) {
             let carsDiv = $(carsAds);
             carsDiv.slideUp('fast');
-            setTimeout(function (){
+            setTimeout(function () {
                 carsDiv.remove();
             }, 300);
         }
@@ -107,4 +111,28 @@ $(document).ready(function () {
     function getDropdownValue(id) {
         return $('#dropdown-current-' + id + '-text').attr('data-value');
     }
+
+    // Subscription
+    $('#content').on('click', '#subscribe', function (e) {
+        let email = $('#email').val();
+
+        let postData = {
+            email: email,
+            brandId: brandId,
+            modelId: modelId,
+        };
+
+        $.post("/api/subscribe", postData, function () {
+        })
+            .done(function () {
+                //update subscription box
+                alert('Atlikta!');
+
+            })
+            .fail(function () {
+                alert('Klaida! Pabandykite vėliau.');
+            });
+
+        e.preventDefault();
+    });
 });

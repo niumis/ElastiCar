@@ -22,9 +22,16 @@ class Auto
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ad_id", type="integer")
+     */
+    private $adId;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="web_url", type="string", length=190, unique=true)
+     * @ORM\Column(name="web_url", type="string", length=190)
      */
     private $webUrl;
 
@@ -43,9 +50,9 @@ class Auto
     private $title;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="year", type="datetime")
+     * @ORM\Column(name="year", type="string", length=7)
      */
     private $year;
 
@@ -119,6 +126,11 @@ class Auto
      */
     private $watchlistId;
 
+    public function __construct()
+    {
+        $this->updatedAt = new \DateTime();
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -128,6 +140,24 @@ class Auto
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAdId()
+    {
+        return $this->adId;
+    }
+
+    /**
+     * @param int $adId
+     * @return Auto
+     */
+    public function setAdId($adId)
+    {
+        $this->adId = $adId;
+        return $this;
     }
 
     /**
@@ -205,7 +235,7 @@ class Auto
     /**
      * Set year
      *
-     * @param \DateTime $year
+     * @param string $year
      *
      * @return Auto
      */
@@ -219,7 +249,7 @@ class Auto
     /**
      * Get year
      *
-     * @return \DateTime
+     * @return string
      */
     public function getYear()
     {

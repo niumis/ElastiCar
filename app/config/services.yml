@@ -8,3 +8,11 @@ services:
     app.auto_api:
         class: AppBundle\Service\AutoAPI
         arguments: ['@service_container']
+
+    app.subscription:
+        class: AppBundle\Service\Subscription
+        arguments: ['@service_container', '@doctrine.orm.entity_manager']
+
+    app.subscription_mail:
+        class: AppBundle\Service\SubscriptionMail
+        arguments: ['@service_container']

@@ -105,6 +105,4 @@ class Model
     {
         $this->brandId = $brandId;
     }
-
-
 }

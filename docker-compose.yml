@@ -29,6 +29,9 @@ services:
       - backend
     environment:
       XDEBUG_CONFIG: remote_host=$LOCAL_XDEBUG_HOST
+    labels:
+      deck-chores.dump.command: bin/console app:crawl
+      deck-chores.dump.interval: every minute
   npm:
     image: ongr/nodejs:6.4.0
     user: "$LOCAL_USER_ID:$LOCAL_GROUP_ID"
@@ -55,6 +58,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
     networks:
       - backend
+  officer:
+    image: funkyfuture/deck-chores
+    restart: unless-stopped
+    environment:
+      TIMEZONE: Asia/Tel Aviv
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 networks:
   frontend:
     driver: bridge

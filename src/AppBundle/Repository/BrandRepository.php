@@ -15,9 +15,10 @@ class BrandRepository extends \Doctrine\ORM\EntityRepository
      * @param array $columns
      * @return mixed
      */
-    public function findAllWithColumns(Array $columns){
-        array_walk($columns, function(&$key) {
-            $key = "brand.".$key;
+    public function findAllWithColumns(array $columns)
+    {
+        array_walk($columns, function (&$key) {
+            $key = "brand." . $key;
         });
 
         return $this->createQueryBuilder('brand')
@@ -25,5 +26,4 @@ class BrandRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->execute();
     }
-
 }
