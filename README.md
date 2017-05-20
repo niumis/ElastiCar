@@ -2,6 +2,15 @@
 [AutoSkautas.lt](http://elasticar.projektai.nfqakademija.lt/) - car classified aggregator
 ============
 
+## PSR-2 standarts
+[![Build Status](https://travis-ci.org/nfqakademija/ElastiCar.svg?branch=master)](https://travis-ci.org/nfqakademija/ElastiCar)
+
+Check the code style before creating a PR by the following command:
+
+```
+vendor/bin/phpcs -p --standard=PSR2 --extensions=php ./src
+```
+
 ## Dependencies
 In order to have main functions of the project working, make sure to setup [Auto API](https://github.com/DarkerTH/auto_api) on a remote server and modify `parameters.yml`.
 
