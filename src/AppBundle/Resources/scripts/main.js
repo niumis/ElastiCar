@@ -126,7 +126,7 @@ $(document).ready(function () {
         })
             .done(function (response) {
                 //update subscription box
-
+                alert('Atlikta!');
 
             })
             .fail(function () {
