@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Auto;
+use AppBundle\Entity\Watchlist;
 use AppBundle\Service\AutoAPI;
 use AppBundle\Service\SubscriptionMail;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,6 +30,11 @@ class AppCrawlCommand extends ContainerAwareCommand
      */
     private $subscriptionMail;
 
+    /**
+     * @var OutputInterface
+     */
+    private $output;
+
 
     protected function configure()
     {
@@ -42,6 +48,8 @@ class AppCrawlCommand extends ContainerAwareCommand
         $this->em = $this->getContainer()->get('doctrine')->getManager();
         $this->autoApi = $this->getContainer()->get('app.auto_api');
         $this->subscriptionMail = $this->getContainer()->get('app.subscription_mail');
+
+        $this->output = $output;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -53,75 +61,134 @@ class AppCrawlCommand extends ContainerAwareCommand
         $watchlistRepository = $em->getRepository('AppBundle:Watchlist');
         $autoRepository = $em->getRepository('AppBundle:Auto');
 
-        $queries = $watchlistRepository
-            ->findAll();
-
+        $queries = $watchlistRepository->findAll();
         if (!empty($queries)) {
             $output->writeln('Executing queries...');
 
             foreach ($queries as $query) {
-                $brandId = $query->getBrandId();
-                $modelId = $query->getModelId();
-                $email = $query->getEmail();
-                $watchlistId = $query->getId();
-                $mailSent = $query->getMailSent();
-
-                $ads = json_decode($autoApi->getAds($brandId, $modelId));
-                $oldAds = $autoRepository
-                    ->findByWatchlistId($watchlistId, ['adId'], 200);
-
-                $output->writeln('Found ' . count($ads) . ' ads for ' . $email . '.');
-
-                $uniqueIds = $this->getUniqueIds($ads, $oldAds);
-                $uniqueAds = [];
-
-                foreach ($ads as $ad) {
-                    if (!in_array($ad->id, $uniqueIds)) {
-                        continue;
-                    }
-                    $uniqueAds[] = $ad;
-
-                    $adCreatedAt = new \DateTime();
-                    $adCreatedAt = $adCreatedAt->setTimestamp($ad->inserted_on);
-
-                    $newAd = new Auto();
-                    $newAd->setWebUrl($ad->url);
-                    $newAd->setImageUrl($ad->img_url);
-                    $newAd->setMileage($ad->mileage);
-                    $newAd->setPower($ad->power);
-                    $newAd->setPrice($ad->price);
-                    $newAd->setYear($ad->year);
-                    $newAd->setGearbox($ad->gearbox);
-                    $newAd->setCity($ad->city);
-                    $newAd->setTitle($ad->title);
-                    $newAd->setFuel($ad->fuel);
-                    $newAd->setWatchlistId($watchlistId);
-                    $newAd->setAdId($ad->id);
-                    $newAd->setAdCreatedAt($adCreatedAt);
-
-                    $this->em->persist($newAd);
-                }
-
-                if (!empty($uniqueAds)) {
-                    $mailer = $this->getSubscriptionMail();
-                    $mailer->sendMail($email, $uniqueAds, !$mailSent);
-
-                    if (!$mailSent) {
-                        $query->setMailSent(1);
-                        $output->writeln("First mail sent.");
-                    }
-                }
-
-                $this->em->flush();
-                $this->em->clear();
-
-                $output->writeln('Inserted ' . count($uniqueIds) . ' new ads.');
+                $this->processQuery($query);
             }
         } else {
             $output->writeln('No queries found.');
         }
 
         $output->writeln('Finished crawler.');
+    }
+
+    /**
+     * @param Watchlist $query
+     * @return $this
+     */
+    private function processQuery(Watchlist $query)
+    {
+        $output = $this->getOutput();
+        $em = $this->getEm();
+
+        $autoApi = $this->getAutoApi();
+        $autoRepository = $em->getRepository('AppBundle:Auto');
+
+        $brandId = $query->getBrandId();
+        $modelId = $query->getModelId();
+        $email = $query->getEmail();
+        $watchlistId = $query->getId();
+
+        $ads = json_decode($autoApi->getAds($brandId, $modelId));
+        $oldAds = $autoRepository->findByWatchlistId($watchlistId, ['adId'], 200);
+
+        $output->writeln('Found ' . count($ads) . ' ads for ' . $email . '.');
+
+        $uniqueAds = $this->getUniqueAds($ads, $oldAds);
+        if (!empty($uniqueAds)) {
+            $this->processAds($uniqueAds, $query);
+        }
+
+        $em->flush();
+        $em->clear();
+
+        $output->writeln('Inserted ' . count($uniqueAds) . ' new ads.');
+
+        return $this;
+    }
+
+    /**
+     * @param $uniqueAds
+     * @param Watchlist $query
+     * @return $this
+     */
+    private function processAds($uniqueAds, Watchlist $query)
+    {
+        $mailer = $this->getSubscriptionMail();
+
+        $mailSent = $query->getMailSent();
+        $email = $query->getEmail();
+        $watchlistId = $query->getId();
+
+        foreach ($uniqueAds as $ad) {
+            if ($ad->img_url === null) {
+                continue;
+            }
+
+            $this->insertAd($watchlistId, $ad);
+        }
+
+        $mailer->sendMail($email, $uniqueAds, !$mailSent);
+
+        if (!$mailSent) {
+            $query->setMailSent(1);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $ads
+     * @param $oldAds
+     * @return array
+     */
+    private function getUniqueAds($ads, $oldAds)
+    {
+        $uniqueIds = $this->getUniqueIds($ads, $oldAds);
+        $uniqueAds = [];
+
+        foreach ($ads as $ad) {
+            if (!in_array($ad->id, $uniqueIds)) {
+                continue;
+            }
+            $uniqueAds[] = $ad;
+        }
+
+        return $uniqueAds;
+    }
+
+    /**
+     * @param $watchlistId
+     * @param $ad
+     * @return $this
+     */
+    private function insertAd($watchlistId, $ad)
+    {
+
+        $adCreatedAt = new \DateTime();
+        $adCreatedAt = $adCreatedAt->setTimestamp($ad->inserted_on);
+
+        $newAd = new Auto();
+        $newAd->setWebUrl($ad->url);
+        $newAd->setImageUrl($ad->img_url);
+        $newAd->setMileage($ad->mileage);
+        $newAd->setPower($ad->power);
+        $newAd->setPrice($ad->price);
+        $newAd->setYear($ad->year);
+        $newAd->setGearbox($ad->gearbox);
+        $newAd->setCity($ad->city);
+        $newAd->setTitle($ad->title);
+        $newAd->setFuel($ad->fuel);
+        $newAd->setWatchlistId($watchlistId);
+        $newAd->setAdId($ad->id);
+        $newAd->setAdCreatedAt($adCreatedAt);
+
+        $this->getEm()->persist($newAd);
+
+        return $this;
     }
 
     /**
@@ -178,5 +245,13 @@ class AppCrawlCommand extends ContainerAwareCommand
     public function getSubscriptionMail()
     {
         return $this->subscriptionMail;
+    }
+
+    /**
+     * @return OutputInterface
+     */
+    public function getOutput()
+    {
+        return $this->output;
     }
 }
