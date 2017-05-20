@@ -124,7 +124,7 @@ $(document).ready(function () {
 
         $.post("/api/subscribe", postData, function () {
         })
-            .done(function (response) {
+            .done(function () {
                 //update subscription box
                 alert('Atlikta!');
 

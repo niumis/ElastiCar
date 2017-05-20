@@ -58,10 +58,10 @@ class Subscription
      */
     private $modelId;
 
-    public function __construct(Container $container, EntityManager $em)
+    public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->em = $em;
+        $this->em = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -102,9 +102,9 @@ class Subscription
         $watchlist->setModelId($this->getModelId());
         $watchlist->setCity('Kaunas');
 
-        $this->em->persist($watchlist);
-        $this->em->flush();
-        $this->em->clear();
+        $this->getEm()->persist($watchlist);
+        $this->getEm()->flush();
+        $this->getEm()->clear();
 
         return $this;
     }

@@ -83,8 +83,8 @@ class Watchlist
 
     public function __construct()
     {
-        $this->mailSent = 0;
-        $this->unsubscribed = 0;
+        $this->mailSent = false;
+        $this->unsubscribed = false;
         $this->updatedAt = new \DateTime();
         $this->createdAt = new \DateTime();
     }
