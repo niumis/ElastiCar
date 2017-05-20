@@ -180,7 +180,7 @@ class Watchlist
     }
 
     /**
-     * @return int
+     * @return boolean
      */
     public function getMailSent()
     {
@@ -188,7 +188,7 @@ class Watchlist
     }
 
     /**
-     * @param int $mailSent
+     * @param boolean $mailSent
      * @return Watchlist
      */
     public function setMailSent($mailSent)
