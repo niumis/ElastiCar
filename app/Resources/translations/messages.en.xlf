@@ -93,6 +93,62 @@
                 <source>year</source>
                 <target>Year</target>
             </trans-unit>
+            <trans-unit id="subscribe">
+                <source>subscribe</source>
+                <target>Subscribe</target>
+            </trans-unit>
+            <trans-unit id="add_email">
+                <source>add_email</source>
+                <target>Enter email address</target>
+            </trans-unit>
+            <trans-unit id="latest_ads">
+                <source>latest_ads</source>
+                <target>Latest ads within 24 hours.</target>
+            </trans-unit>
+            <trans-unit id="no_ads_24">
+                <source>no_ads_24</source>
+                <target>Within 24 hours refresh none of the ads, but...</target>
+            </trans-unit>
+            <trans-unit id="ads_first">
+                <source>ads_first</source>
+                <target>Learn about new ads first!</target>
+            </trans-unit>
+            <trans-unit id="get_messages">
+                <source>get_messages</source>
+                <target>Get notified about new</target>
+            </trans-unit>
+            <trans-unit id="onto_portals">
+                <source>onto_portals</source>
+                <target>ads in just 5 minutes after the occurrence of the most popular ads portals.</target>
+            </trans-unit>
+            <trans-unit id="reg_date">
+                <source>reg_date</source>
+                <target>Registration date</target>
+            </trans-unit>
+            <trans-unit id="mileage">
+                <source>mileage</source>
+                <target>Mileage</target>
+            </trans-unit>
+            <trans-unit id="not_specified">
+                <source>not_specified</source>
+                <target>Not Specified</target>
+            </trans-unit>
+            <trans-unit id="gearbox">
+                <source>gearbox</source>
+                <target>Gearbox</target>
+            </trans-unit>
+            <trans-unit id="power">
+                <source>power</source>
+                <target>Power</target>
+            </trans-unit>
+            <trans-unit id="fuel">
+                <source>fuel</source>
+                <target>Fuel Type</target>
+            </trans-unit>
+            <trans-unit id="city">
+                <source>city</source>
+                <target>City</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
