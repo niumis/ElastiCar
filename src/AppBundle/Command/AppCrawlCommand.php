@@ -129,7 +129,7 @@ class AppCrawlCommand extends ContainerAwareCommand
         $mailer->sendMail($email, $uniqueAds, !$mailSent);
 
         if (!$mailSent) {
-            $query->setMailSent(1);
+            $query->setMailSent(true);
             $this->getOutput()->writeln('Sent first email.');
         }
 
