@@ -104,6 +104,7 @@ class Watchlist
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -122,6 +123,7 @@ class Watchlist
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -140,6 +142,7 @@ class Watchlist
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -158,6 +161,7 @@ class Watchlist
     public function setBrandId($brandId)
     {
         $this->brandId = $brandId;
+
         return $this;
     }
 
@@ -176,6 +180,7 @@ class Watchlist
     public function setModelId($modelId)
     {
         $this->modelId = $modelId;
+
         return $this;
     }
 
@@ -194,6 +199,7 @@ class Watchlist
     public function setMailSent($mailSent)
     {
         $this->mailSent = $mailSent;
+
         return $this;
     }
 
@@ -212,6 +218,7 @@ class Watchlist
     public function setUnsubscribed($unsubscribed)
     {
         $this->unsubscribed = $unsubscribed;
+
         return $this;
     }
 
@@ -230,6 +237,7 @@ class Watchlist
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -248,6 +256,7 @@ class Watchlist
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 }
