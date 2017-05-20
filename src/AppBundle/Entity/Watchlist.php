@@ -51,14 +51,14 @@ class Watchlist
     private $modelId;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="mail_sent", type="boolean")
      */
     private $mailSent;
 
     /**
-     * @var
+     * @var boolean
      *
      * @ORM\Column(name="unsubscribed", type="boolean")
      */
