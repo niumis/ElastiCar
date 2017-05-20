@@ -34,6 +34,14 @@
                 <source>err_500_info</source>
                 <target>Mes turime keletą techninių problemų. Greit bus ištaisyta, aplankykite vėliau.</target>
             </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>AutoSkautas</target>
+            </trans-unit>
+            <trans-unit id="title_info">
+                <source>title_info</source>
+                <target>nusipirk geriausią automobilį</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
