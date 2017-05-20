@@ -8,9 +8,7 @@ use AppBundle\Service\AutoAPI;
 use AppBundle\Service\SubscriptionMail;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class AppCrawlCommand extends ContainerAwareCommand
@@ -56,10 +54,7 @@ class AppCrawlCommand extends ContainerAwareCommand
     {
         $output->writeln('Starting crawler...');
         $em = $this->getEm();
-        $autoApi = $this->getAutoApi();
-
         $watchlistRepository = $em->getRepository('AppBundle:Watchlist');
-        $autoRepository = $em->getRepository('AppBundle:Auto');
 
         $queries = $watchlistRepository->findAll();
         if (!empty($queries)) {
@@ -125,7 +120,7 @@ class AppCrawlCommand extends ContainerAwareCommand
 
         foreach ($uniqueAds as $ad) {
             if ($ad->img_url === null) {
-                continue;
+                $ad->img_url = 'https://autogidas.lt/static/images/b_nofoto.gif';
             }
 
             $this->insertAd($watchlistId, $ad);
@@ -135,6 +130,7 @@ class AppCrawlCommand extends ContainerAwareCommand
 
         if (!$mailSent) {
             $query->setMailSent(1);
+            $this->getOutput()->writeln('Sent first email.');
         }
 
         return $this;

@@ -24,14 +24,14 @@ class Auto
     /**
      * @var int
      *
-     * @ORM\Column(name="ad_id", type="integer", unique=true)
+     * @ORM\Column(name="ad_id", type="integer")
      */
     private $adId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="web_url", type="string", length=190, unique=true)
+     * @ORM\Column(name="web_url", type="string", length=190)
      */
     private $webUrl;
 
