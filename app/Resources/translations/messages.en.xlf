@@ -44,6 +44,55 @@
                 <source>title_info</source>
                 <target>buy the best car</target>
             </trans-unit>
+            <trans-unit id="navigation">
+                <source>navigation</source>
+                <target>Navigation</target>
+            </trans-unit>
+            <trans-unit id="find_car">
+                <source>find_car</source>
+                <target>Find car</target>
+            </trans-unit>
+            <trans-unit id="brand">
+                <source>brand</source>
+                <target>Brand</target>
+            </trans-unit>
+            <trans-unit id="model">
+                <source>model</source>
+                <target>Model</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Next</target>
+            </trans-unit>
+            <trans-unit id="find">
+                <source>find</source>
+                <target>Find</target>
+            </trans-unit>
+            <trans-unit id="best_car">
+                <source>best_car</source>
+                <target>best car</target>
+            </trans-unit>
+            <trans-unit id="select">
+                <source>select</source>
+                <target>Select</target>
+            </trans-unit>
+            <trans-unit id="find_out_first">
+                <source>find_out_first</source>
+                <target>Find Out First!</target>
+            </trans-unit>
+            <trans-unit id="how_it_work">
+                <source>how_it_work</source>
+                <target>How does it work?</target>
+            </trans-unit>
+            <trans-unit id="informed_email">
+                <source>informed_email</source>
+                <target>When you are interested in a new car ad, you will be informed email in just 5 minutes!
+                </target>
+            </trans-unit>
+            <trans-unit id="year">
+                <source>year</source>
+                <target>Year</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
