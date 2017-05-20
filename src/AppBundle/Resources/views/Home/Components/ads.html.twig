@@ -1,20 +1,20 @@
 <div class="section trending-ads cars-ads" id="cars-ads">
     <div class="section-title">
         {% if ads|length > 0 %}
-            <h4>{{ brand }} {{ model }} - {{ 'Naujausi skelbimai per 24 val.'|trans }} <small>({{ ads|length }})</small></h4>
+            <h4>{{ brand }} {{ model }} - {{ 'latest_ads'|trans }} <small>({{ ads|length }})</small></h4>
         {% else %}
-            <h4>{{ 'Per 24 val. neįkeltas nė vienas skelbimas, bet...'|trans }} </h4>
+            <h4>{{ 'no_ads_24'|trans }} </h4>
         {% endif %}
     </div>
 
     <div class="section-email row">
         <div class="col-sm-12 col-md-12 text-center">
-            <h1>{{ 'Sužinok apie naujus skelbimus pirmas!'|trans }}</h1>
-            {{ 'Gaukite pranešimus apie naujus'|trans }} <b>{{ brand }} {{ model }}</b> {{ 'skelbimus vos per 5 minutes nuo jų atsiradimo populiariausiuose skelbimų portaluose.'|trans }}
+            <h1>{{ 'ads_first'|trans }}</h1>
+            {{ 'get_messages'|trans }} <b>{{ brand }} {{ model }}</b> {{ 'onto_portals'|trans }}
             <div class="banner-form">
                 <form action="#">
-                    <input type="text" class="form-control" placeholder="{{ 'Įveskite el. pašto adresą'|trans }}">
-                    <button type="submit" class="form-control" value="{{ 'Prenumeruoti'|trans }}">{{ 'Prenumeruoti'|trans }}</button>
+                    <input type="text" class="form-control" placeholder="{{ 'add_email'|trans }}">
+                    <button type="submit" class="form-control" value="{{ 'subscribe'|trans }}">{{ 'subscribe'|trans }}</button>
                 </form>
             </div>
         </div>
@@ -34,28 +34,28 @@
         <div class="cars-ads-box col-sm-12 col-md-7">
             <div class="car-info">
                 <ul>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ 'Registracijos data'|trans }}: {{ ad.year }}</li>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ 'reg_date'|trans }}: {{ ad.year }}</li>
                     <li>
-                        <i class="fa fa-tachometer" aria-hidden="true"></i>{{ 'Rida'|trans }}:
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>{{ 'mileage'|trans }}:
                         {% if ad.mileage matches '/^\\d+$/' %}
                             {{ ad.mileage|number_format }} km
                         {% else %}
-                            {{ 'Nenurodyta'|trans }}
+                            {{ 'not_specified'|trans }}
                         {% endif %}
                     </li>
-                    <li><i class="fa fa-external-link" aria-hidden="true"></i>{{ 'Pavarų dėžė'|trans }}: {{ (ad.gearbox|default('Nenurodyta'))|trans }}</li>
+                    <li><i class="fa fa-external-link" aria-hidden="true"></i>{{ 'gearbox'|trans }}: {{ (ad.gearbox|default('not_specified'))|trans }}</li>
                 </ul>
             </div>
             <div class="car-info">
                 <ul>
-                    <li><i class="fa fa-eyedropper" aria-hidden="true"></i>{{ 'Galia'|trans }}:
+                    <li><i class="fa fa-eyedropper" aria-hidden="true"></i>{{ 'power'|trans }}:
                         {% if ad.power matches '/^\\d+$/' %}
                             {{ ad.power|number_format }} kW
                         {% else %}
-                            {{ 'Nenurodyta'|trans }}
+                            {{ 'not_specified'|trans }}
                         {% endif %}</li>
-                    <li><i class="fa fa-bitbucket" aria-hidden="true"></i>{{ 'Kuro tipas'|trans }}: {{ (ad.fuel|default('Nenurodyta'))|trans }}</li>
-                    <li><i class="fa fa-database" aria-hidden="true"></i>{{ 'Miestas'|trans }}: {{ ad.city }}</li>
+                    <li><i class="fa fa-bitbucket" aria-hidden="true"></i>{{ 'fuel'|trans }}: {{ (ad.fuel|default('not_specified'))|trans }}</li>
+                    <li><i class="fa fa-database" aria-hidden="true"></i>{{ 'city'|trans }}: {{ ad.city }}</li>
                 </ul>
             </div>
             <div class="ad-meta">
