@@ -149,6 +149,30 @@
                 <source>city</source>
                 <target>City</target>
             </trans-unit>
+            <trans-unit id="find_for_you">
+                <source>find_for_you</source>
+                <target>We will find for You</target>
+            </trans-unit>
+            <trans-unit id="find_for_you_info">
+                <source>find_for_you_info</source>
+                <target>Obtaining the latest ads within five minutes of their occurrence ads sites.</target>
+            </trans-unit>
+            <trans-unit id="report_you">
+                <source>report_you</source>
+                <target>The report you personally</target>
+            </trans-unit>
+            <trans-unit id="report_you_info">
+                <source>report_you_info</source>
+                <target>The new ads lightning speed report to you personally email..</target>
+            </trans-unit>
+            <trans-unit id="buy_best_car">
+                <source>buy_best_car</source>
+                <target>Nusipirksite geriausią automobilį!</target>
+            </trans-unit>
+            <trans-unit id="buy_best_car_info">
+                <source>buy_best_car_info</source>
+                <target>You will see one of the first ad - big chances to buy the best car.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
