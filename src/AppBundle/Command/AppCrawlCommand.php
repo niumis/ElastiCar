@@ -52,13 +52,6 @@ class AppCrawlCommand extends ContainerAwareCommand
         if (!empty($queries)) {
             $output->writeln('Executing queries...');
 
-            /*
-            $map = array();
-            foreach($a as $val) $map[$val] = 1;
-            foreach($b as $val) unset($map[$val]);
-            var_dump(array_keys($map));
-            */
-
             foreach ($queries as $query) {
                 $brandId = $query->getBrandId();
                 $modelId = $query->getModelId();
@@ -66,16 +59,13 @@ class AppCrawlCommand extends ContainerAwareCommand
                 $watchlistId = $query->getId();
 
                 $ads = json_decode($autoApi->getAds($brandId, $modelId));
-                $oldAds = $this
-                    ->em
-                    ->getRepository('AppBundle:Auto')
+                $oldAds = $autoRepository
                     ->findByWatchlistId($watchlistId, ['adId'], 200);
 
                 $output->writeln('Found ' . count($ads) . ' ads for ' . $email . '.');
 
                 $uniqueIds = $this->getUniqueIds($ads, $oldAds);
 
-                $i = 0;
                 foreach ($ads as $ad) {
                     if (!in_array($ad->id, $uniqueIds)) {
                         continue;
