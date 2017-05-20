@@ -2,7 +2,7 @@
 [AutoSkautas.lt](http://elasticar.projektai.nfqakademija.lt/) - car classified aggregator
 ============
 
-## PSR-2 standarts
+## Code standarts
 [![Build Status](https://travis-ci.org/nfqakademija/ElastiCar.svg?branch=master)](https://travis-ci.org/nfqakademija/ElastiCar)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nfqakademija/ElastiCar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nfqakademija/ElastiCar/?branch=master)
 
