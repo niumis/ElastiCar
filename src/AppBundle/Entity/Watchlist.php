@@ -51,6 +51,20 @@ class Watchlist
     private $modelId;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="mail_sent", type="boolean")
+     */
+    private $mailSent;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="unsubscribed", type="boolean")
+     */
+    private $unsubscribed;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
@@ -69,6 +83,8 @@ class Watchlist
 
     public function __construct()
     {
+        $this->mailSent = 0;
+        $this->unsubscribed = 0;
         $this->updatedAt = new \DateTime();
         $this->createdAt = new \DateTime();
     }
@@ -160,6 +176,42 @@ class Watchlist
     public function setModelId($modelId)
     {
         $this->modelId = $modelId;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMailSent()
+    {
+        return $this->mailSent;
+    }
+
+    /**
+     * @param int $mailSent
+     * @return Watchlist
+     */
+    public function setMailSent($mailSent)
+    {
+        $this->mailSent = $mailSent;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnsubscribed()
+    {
+        return $this->unsubscribed;
+    }
+
+    /**
+     * @param mixed $unsubscribed
+     * @return Watchlist
+     */
+    public function setUnsubscribed($unsubscribed)
+    {
+        $this->unsubscribed = $unsubscribed;
         return $this;
     }
 

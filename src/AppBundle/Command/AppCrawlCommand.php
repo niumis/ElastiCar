@@ -4,6 +4,7 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Auto;
 use AppBundle\Service\AutoAPI;
+use AppBundle\Service\SubscriptionMail;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,6 +24,11 @@ class AppCrawlCommand extends ContainerAwareCommand
      */
     private $autoApi;
 
+    /**
+     * @var SubscriptionMail
+     */
+    private $subscriptionMail;
+
 
     protected function configure()
     {
@@ -35,6 +41,7 @@ class AppCrawlCommand extends ContainerAwareCommand
     {
         $this->em = $this->getContainer()->get('doctrine')->getManager();
         $this->autoApi = $this->getContainer()->get('app.auto_api');
+        $this->subscriptionMail = $this->getContainer()->get('app.subscription_mail');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -57,6 +64,7 @@ class AppCrawlCommand extends ContainerAwareCommand
                 $modelId = $query->getModelId();
                 $email = $query->getEmail();
                 $watchlistId = $query->getId();
+                $mailSent = $query->getMailSent();
 
                 $ads = json_decode($autoApi->getAds($brandId, $modelId));
                 $oldAds = $autoRepository
@@ -65,11 +73,13 @@ class AppCrawlCommand extends ContainerAwareCommand
                 $output->writeln('Found ' . count($ads) . ' ads for ' . $email . '.');
 
                 $uniqueIds = $this->getUniqueIds($ads, $oldAds);
+                $uniqueAds = [];
 
                 foreach ($ads as $ad) {
                     if (!in_array($ad->id, $uniqueIds)) {
                         continue;
                     }
+                    $uniqueAds[] = $ad;
 
                     $adCreatedAt = new \DateTime();
                     $adCreatedAt = $adCreatedAt->setTimestamp($ad->inserted_on);
@@ -90,6 +100,16 @@ class AppCrawlCommand extends ContainerAwareCommand
                     $newAd->setAdCreatedAt($adCreatedAt);
 
                     $this->em->persist($newAd);
+                }
+
+                if (!empty($uniqueAds)) {
+                    $mailer = $this->getSubscriptionMail();
+                    $mailer->sendMail($email, $uniqueAds, !$mailSent);
+
+                    if (!$mailSent){
+                        $query->setMailSent(1);
+                        $output->writeln("First mail sent.");
+                    }
                 }
 
                 $this->em->flush();
@@ -150,5 +170,13 @@ class AppCrawlCommand extends ContainerAwareCommand
     public function getAutoApi()
     {
         return $this->autoApi;
+    }
+
+    /**
+     * @return SubscriptionMail
+     */
+    public function getSubscriptionMail()
+    {
+        return $this->subscriptionMail;
     }
 }
