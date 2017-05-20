@@ -111,7 +111,6 @@ class CarController extends Controller
                 'message' => 'Atlikta!'
             ]);
         } else {
-
             $responseString = json_encode([
                 'errors' => 'Invalid request.'
             ]);
@@ -122,5 +121,4 @@ class CarController extends Controller
 
         return $response;
     }
-
 }

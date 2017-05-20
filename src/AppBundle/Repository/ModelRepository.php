@@ -16,8 +16,11 @@ class ModelRepository extends \Doctrine\ORM\EntityRepository
      * @param array $columns
      * @return mixed
      */
-    public function findByBrandWithColumns($brandId, Array $columns){
-        array_walk($columns, function(&$key) { $key = "model.".$key; });
+    public function findByBrandWithColumns($brandId, array $columns)
+    {
+        array_walk($columns, function (&$key) {
+            $key = "model." . $key;
+        });
 
         return $this->createQueryBuilder('model')
             ->select($columns)

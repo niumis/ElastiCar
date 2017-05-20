@@ -60,5 +60,4 @@ class AdminController extends Controller
         return $this->render('AppBundle:Admin/Pages:settings.html.twig', array(// ...
         ));
     }
-
 }

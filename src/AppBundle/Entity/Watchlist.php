@@ -198,5 +198,4 @@ class Watchlist
         $this->createdAt = $createdAt;
         return $this;
     }
-
 }

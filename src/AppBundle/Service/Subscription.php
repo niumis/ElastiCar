@@ -67,12 +67,13 @@ class Subscription
     /**
      * @return bool
      */
-    public function validate(){
+    public function validate()
+    {
 
         $validator = $this->getContainer()->get('validator');
         $errors = $validator->validate($this);
 
-        if (!empty($errors)) {
+        if (count($errors) > 0) {
             return false;
         }
 
@@ -83,7 +84,7 @@ class Subscription
                 'modelId' => $this->getModelId()
             ]);
 
-        if (!$model){
+        if (!$model) {
             return false;
         }
 
@@ -93,7 +94,8 @@ class Subscription
     /**
      * @return $this|null
      */
-    public function subscribe(){
+    public function subscribe()
+    {
         $watchlist = new Watchlist();
         $watchlist->setEmail($this->getEmail());
         $watchlist->setBrandId($this->getBrandId());
@@ -110,14 +112,16 @@ class Subscription
     /**
      * @return Container
      */
-    private function getContainer(){
+    private function getContainer()
+    {
         return $this->container;
     }
 
     /**
      * @return EntityManager
      */
-    private function getEm(){
+    private function getEm()
+    {
         return $this->em;
     }
 
@@ -174,6 +178,4 @@ class Subscription
         $this->modelId = $modelId;
         return $this;
     }
-
-
 }

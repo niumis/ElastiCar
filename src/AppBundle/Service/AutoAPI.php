@@ -18,7 +18,7 @@ class AutoAPI
     private $httpStatusCode = 200;
     private $error = '';
 
-    function __construct(Container $container)
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
@@ -88,7 +88,6 @@ class AutoAPI
             $insertedBefore = time() - $timeToSubtract;
             $ad->inserted_before = $this->secondsToTimeString($timeToSubtract);
             $ad->inserted_on = $insertedBefore;
-
         }, $ads);
 
         return $ads;
@@ -101,13 +100,11 @@ class AutoAPI
     public function secondsToTimeString($seconds)
     {
         //TO-DO: Needs to be translated
-
-        $time = '';
         if ($seconds < 60) {
             $time = 'Prieš 1 min.';
-        } else if ($seconds < (60 * 60)) {
+        } elseif ($seconds < (60 * 60)) {
             $time = 'Prieš ' . floor($seconds / 60) . ' min.';
-        } else if ($seconds < (24 * 60 * 60)) {
+        } elseif ($seconds < (24 * 60 * 60)) {
             $time = 'Prieš ' . (floor($seconds / (60 * 60)) + 1) . ' val.';
         } else {
             $time = 'Prieš 1 d.';
@@ -122,7 +119,7 @@ class AutoAPI
      * @param array $query
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    private function request($method, $endpoint, Array $query = [])
+    private function request($method, $endpoint, array $query = [])
     {
         $api_host = $this->getApiHost();
         $api_key = $this->getApiKey();
@@ -139,7 +136,6 @@ class AutoAPI
                 'query' => $query
             ]);
         } catch (\Exception $e) {
-
             $this->setHttpStatusCode($e->getCode())->setError('Invalid query.');
             return false;
         }
@@ -202,5 +198,4 @@ class AutoAPI
         // Not sure if this is the best place to store API details
         return $this->container->getParameter('app.api_key');
     }
-
 }
