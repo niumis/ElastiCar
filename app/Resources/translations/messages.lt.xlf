@@ -148,6 +148,30 @@
                 <source>city</source>
                 <target>Miestas</target>
             </trans-unit>
+            <trans-unit id="find_for_you">
+                <source>find_for_you</source>
+                <target>Surasime už Jus</target>
+            </trans-unit>
+            <trans-unit id="find_for_you_info">
+                <source>find_for_you_info</source>
+                <target>Randame naujausius skelbimus per penkias minutes nuo jų atsiradimo skelbimų svetainėse.</target>
+            </trans-unit>
+            <trans-unit id="report_you">
+                <source>report_you</source>
+                <target>Pranešime Jums asmeniškai</target>
+            </trans-unit>
+            <trans-unit id="report_you_info">
+                <source>report_you_info</source>
+                <target>Apie naujus skelbimus žaibo greičiu pranešime Jums asmeniškai el. paštu..</target>
+            </trans-unit>
+            <trans-unit id="buy_best_car">
+                <source>buy_best_car</source>
+                <target>Nusipirksite geriausią automobilį!</target>
+            </trans-unit>
+            <trans-unit id="buy_best_car_info">
+                <source>buy_best_car_info</source>
+                <target>Pamatysite skelbimą vieni iš pirmųjų - dideli šansai įsigyti geriausią automobilį.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
