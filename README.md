@@ -4,6 +4,7 @@
 
 ## PSR-2 standarts
 [![Build Status](https://travis-ci.org/nfqakademija/ElastiCar.svg?branch=master)](https://travis-ci.org/nfqakademija/ElastiCar)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nfqakademija/ElastiCar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nfqakademija/ElastiCar/?branch=master)
 
 Check the code style before creating a PR by the following command:
 
