@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{{ "AutoSkautas.lt - nusipirk geriausią automobilį"|trans }}{% endblock %}
+{% block title %}{{ parent() }} - {{ 'title_info' | trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
