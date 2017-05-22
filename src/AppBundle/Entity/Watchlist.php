@@ -51,6 +51,20 @@ class Watchlist
     private $modelId;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="year_from", type="integer")
+     */
+    private $yearFrom;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="year_to", type="integer")
+     */
+    private $yearTo;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="mail_sent", type="boolean")
@@ -183,6 +197,46 @@ class Watchlist
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getYearFrom(): int
+    {
+        return $this->yearFrom;
+    }
+
+    /**
+     * @param int $yearFrom
+     * @return Watchlist
+     */
+    public function setYearFrom(int $yearFrom): Watchlist
+    {
+        $this->yearFrom = $yearFrom;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYearTo(): int
+    {
+        return $this->yearTo;
+    }
+
+    /**
+     * @param int $yearTo
+     * @return Watchlist
+     */
+    public function setYearTo(int $yearTo): Watchlist
+    {
+        $this->yearTo = $yearTo;
+
+        return $this;
+    }
+
+
 
     /**
      * @return boolean
