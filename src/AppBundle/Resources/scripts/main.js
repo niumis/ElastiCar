@@ -41,6 +41,7 @@ $(document).ready(function () {
         }
 
         e.preventDefault();
+        return false;
     });
 
     $('#dropdown-model-ul').on('click', '#dropdown-model-item', function (e) {
@@ -51,6 +52,7 @@ $(document).ready(function () {
         updateDropdownValue('model', modelId);
 
         e.preventDefault();
+        return false;
     });
 
     $('#search-submit').on('click', function (e) {
@@ -98,14 +100,17 @@ $(document).ready(function () {
             });
 
         e.preventDefault();
+        return false;
     });
 
     function updateDropdownText(id, text) {
         $('#dropdown-current-' + id + '-text').text(text);
+        return false;
     }
 
     function updateDropdownValue(id, value) {
         $('#dropdown-current-' + id + '-text').attr('data-value', value);
+        return false;
     }
 
     function getDropdownValue(id) {
@@ -134,5 +139,6 @@ $(document).ready(function () {
             });
 
         e.preventDefault();
+        return false;
     });
 });
