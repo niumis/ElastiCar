@@ -30,13 +30,6 @@ class Watchlist
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="brand_id", type="integer")
@@ -137,25 +130,6 @@ class Watchlist
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     * @return Watchlist
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
 
         return $this;
     }

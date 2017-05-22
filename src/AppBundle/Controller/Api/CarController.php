@@ -51,7 +51,7 @@ class CarController extends Controller
      * @Route("/api/cars/{brandId}/{modelId}", requirements={"brandId": "\d+", "modelId": "\d+"})
      * @Method("GET")
      */
-    public function carsAction($brandId, $modelId)
+    public function carsAction(Request $request, $brandId, $modelId)
     {
         $autoAPI = $this->getAutoAPI();
 
@@ -63,7 +63,10 @@ class CarController extends Controller
             $response->setStatusCode($httpStatusCode);
             $content = $autoAPI->getError();
         } else {
-            $ads = $autoAPI->getAds($brandId, $modelId);
+            $yearFrom = (int)$request->query->get('yearFrom');
+            $yearTo = (int)$request->query->get('yearTo');
+
+            $ads = $autoAPI->getAds($brandId, $modelId, $yearFrom, $yearTo);
             $content = $ads;
         }
 
