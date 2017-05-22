@@ -172,6 +172,8 @@ $(document).ready(function () {
             email: email,
             brandId: brandId,
             modelId: modelId,
+            yearFrom: yearFrom,
+            yearTo: yearTo,
         };
 
         $.post("/api/subscribe", postData, function () {

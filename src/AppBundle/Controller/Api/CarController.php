@@ -97,11 +97,15 @@ class CarController extends Controller
         $email = $request->request->get('email');
         $brandId = (int)$request->request->get('brandId');
         $modelId = (int)$request->request->get('modelId');
+        $yearFrom = (int)$request->request->get('yearFrom');
+        $yearTo = (int)$request->request->get('yearTo');
 
         $subscription = $this->getSubscription();
         $subscription->setEmail($email);
         $subscription->setBrandId($brandId);
         $subscription->setModelId($modelId);
+        $subscription->setYearFrom($yearFrom);
+        $subscription->setYearTo($yearTo);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');

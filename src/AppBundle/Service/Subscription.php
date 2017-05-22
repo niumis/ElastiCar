@@ -24,7 +24,7 @@ class Subscription
     /**
      * @var EntityManager
      */
-    private $em;
+    private $entityManager;
 
     /**
      * @var string
@@ -58,10 +58,30 @@ class Subscription
      */
     private $modelId;
 
+    /**
+     * @var int
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer"
+     * )
+     */
+    private $yearFrom;
+
+    /**
+     * @var int
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer"
+     * )
+     */
+    private $yearTo;
+
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -77,7 +97,7 @@ class Subscription
             return false;
         }
 
-        $model = $this->getEm()
+        $model = $this->getEntityManager()
             ->getRepository('AppBundle:Model')
             ->findOneBy([
                 'brandId' => $this->getBrandId(),
@@ -100,11 +120,12 @@ class Subscription
         $watchlist->setEmail($this->getEmail());
         $watchlist->setBrandId($this->getBrandId());
         $watchlist->setModelId($this->getModelId());
-        $watchlist->setCity('Kaunas');
+        $watchlist->setYearFrom($this->getYearFrom());
+        $watchlist->setYearTo($this->getYearTo());
 
-        $this->getEm()->persist($watchlist);
-        $this->getEm()->flush();
-        $this->getEm()->clear();
+        $this->getEntityManager()->persist($watchlist);
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->clear();
 
         return $this;
     }
@@ -120,9 +141,9 @@ class Subscription
     /**
      * @return EntityManager
      */
-    private function getEm()
+    private function getEntityManager()
     {
-        return $this->em;
+        return $this->entityManager;
     }
 
     /**
@@ -178,4 +199,42 @@ class Subscription
         $this->modelId = $modelId;
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getYearFrom(): int
+    {
+        return $this->yearFrom;
+    }
+
+    /**
+     * @param int $yearFrom
+     * @return Subscription
+     */
+    public function setYearFrom(int $yearFrom): Subscription
+    {
+        $this->yearFrom = $yearFrom;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYearTo(): int
+    {
+        return $this->yearTo;
+    }
+
+    /**
+     * @param int $yearTo
+     * @return Subscription
+     */
+    public function setYearTo(int $yearTo): Subscription
+    {
+        $this->yearTo = $yearTo;
+        return $this;
+    }
+
+
 }
