@@ -6,20 +6,9 @@
             <h4>{{ 'no_ads_24'|trans }} </h4>
         {% endif %}
     </div>
-
-    <div class="section-email row">
-        <div class="col-sm-12 col-md-12 text-center">
-            <h1>{{ 'ads_first'|trans }}</h1>
-            {{ 'get_messages'|trans }} <b>{{ brand }} {{ model }}</b> {{ 'onto_portals'|trans }}
-            <div class="banner-form">
-                <form action="#">
-                    <input type="text" class="form-control" placeholder="{{ 'add_email'|trans }}">
-                    <button type="submit" class="form-control" value="{{ 'subscribe'|trans }}">{{ 'subscribe'|trans }}</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    
+    {% include '@App/Home/Components/subscription-box.html.twig' %}
+    
     {% for ad in ads %}
     <div class="post-item row">
         <div class="item-image-box  col-sm-12 col-md-5">

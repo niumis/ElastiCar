@@ -74,6 +74,4 @@ class Brand
     {
         $this->title = $title;
     }
-
-
 }
