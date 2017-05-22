@@ -1,0 +1,11 @@
+{% set currentYear = "now"|date("Y") %}
+{% for i in currentYear..1985 %}
+    <li><a href="#">{{ i }}</a></li>
+{% endfor %}
+
+{% for i in 1980..1925 %}
+
+    {% if (i % 5) == 0 %}
+        <li><a href="#">{{ i }}</a></li>
+    {% endif %}
+{% endfor %}
