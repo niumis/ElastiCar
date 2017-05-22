@@ -1,0 +1,11 @@
+{% set currentYear = "now"|date("Y") %}
+{% for year in currentYear..1985 %}
+    {% include'@App/Home/Components/SearchBox/year-element.html.twig' with {'year': year, 'id': id} %}
+{% endfor %}
+
+{% for year in 1980..1925 %}
+
+    {% if (year % 5) == 0 %}
+        {% include'@App/Home/Components/SearchBox/year-element.html.twig' with {'year': year, 'id': id} %}
+    {% endif %}
+{% endfor %}
