@@ -1,6 +1,12 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: niumis
+ * Date: 2017-05-22
+ * Time: 21:04
+ */
 
-namespace AppBundle\Controller\Web;
+namespace AppBundle\Controller\Security;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
