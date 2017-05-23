@@ -161,6 +161,7 @@ class Subscription
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -179,6 +180,7 @@ class Subscription
     public function setBrandId($brandId)
     {
         $this->brandId = $brandId;
+
         return $this;
     }
 
@@ -197,6 +199,7 @@ class Subscription
     public function setModelId($modelId)
     {
         $this->modelId = $modelId;
+
         return $this;
     }
 
@@ -215,6 +218,7 @@ class Subscription
     public function setYearFrom(int $yearFrom): Subscription
     {
         $this->yearFrom = $yearFrom;
+
         return $this;
     }
 
@@ -233,6 +237,7 @@ class Subscription
     public function setYearTo(int $yearTo): Subscription
     {
         $this->yearTo = $yearTo;
+
         return $this;
     }
 }
