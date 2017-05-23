@@ -26,8 +26,14 @@ class User implements UserInterface
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     */
+    private $email;
+
+    /**
      * @Assert\Length(max=4096)
+     * @Assert\NotBlank()
      */
     private $plainPassword;
 
@@ -45,6 +51,9 @@ class User implements UserInterface
     private $role;
 
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->role = 'ROLE_USER';
@@ -59,11 +68,35 @@ class User implements UserInterface
     }
 
     /**
-     * @param $username
+     * @param string $username
+     *
+     * @return User
      */
     public function setUsername($username)
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     /**
