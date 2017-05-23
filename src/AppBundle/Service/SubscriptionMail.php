@@ -29,10 +29,10 @@ class SubscriptionMail
      * @param $ads
      * @return bool
      */
-    public function sendMail($email, $ads, $firstMail)
+    public function sendMail($email, $subject, $ads, $firstMail)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Autoskautas.lt')
+            ->setSubject($subject)
             ->setFrom('noreply@autoskautas.lt')
             ->setTo($email)
             ->setBody(

@@ -128,7 +128,8 @@ class AppCrawlCommand extends ContainerAwareCommand
             $this->insertAd($watchlistId, $ad);
         }
 
-        $mailer->sendMail($email, $uniqueAds, !$mailSent);
+        $subject = "Nauji " . $query->getBrandId() . " " . $query->getModelId() . " skelbimai";
+        $mailer->sendMail($email, $subject, $uniqueAds, !$mailSent);
 
         if (!$mailSent) {
             $query->setMailSent(true);
