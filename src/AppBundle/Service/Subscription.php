@@ -235,6 +235,4 @@ class Subscription
         $this->yearTo = $yearTo;
         return $this;
     }
-
-
 }

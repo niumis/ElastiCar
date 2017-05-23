@@ -77,9 +77,8 @@ class AutoAPI
     {
         $newAds = [];
         foreach ($ads as $ad) {
-
             $adYear = strstr($ad->year, '-') ? current(explode('-', $ad->year)) : $ad->year;
-            if ($yearFrom > $adYear || $adYear > $yearTo){
+            if ($yearFrom > $adYear || $adYear > $yearTo) {
                 continue;
             }
 
