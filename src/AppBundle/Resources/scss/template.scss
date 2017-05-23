@@ -2058,3 +2058,72 @@ input, select, a, .transition,
   -o-transition: all 500ms;
   transition: all 500ms;
 }
+
+/* ==========================================================================
+ 	User Page login / Sign up
+ ========================================================================== */
+
+#main.user-page {
+  padding: 60px 0 80px;
+}
+
+.user-account {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 40px 50px;
+}
+
+.user-account h2 {
+  color: #00a651;
+  font-weight: 700;
+  margin-bottom: 55px;
+}
+
+.user-account input {
+  height: 44px;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.user-account .btn {
+  background-color: #00a651;
+  color: #fff;
+  padding: 5px 32px 7px;
+  margin-top: 10px;
+}
+
+.user-account select {
+  height: 44px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #000;
+}
+
+.user-account .checkbox label, .forgot-password a{
+  color:#b9b9b9;
+}
+
+.user-account .checkbox label:hover, .forgot-password a:hover {
+  color:#00a651;
+}
+.user-account .user-option {
+  overflow:hidden;
+  margin-top:55px;
+}
+
+.user-option .forgot-password {
+  margin-top:10px;
+}
+
+.user-page .btn-primary {
+  padding:15px 30px;
+  display:block;
+  font-size:18px;
+  border-radius:4px;
+  margin-top:25px;
+  background-color:#0072bc;
+}
+
+.user-page .btn-primary:hover {
+  background-color:#00a651;
+}
