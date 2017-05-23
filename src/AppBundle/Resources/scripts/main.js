@@ -75,13 +75,13 @@ $(document).ready(function () {
         let yearFrom = parseInt(getDropdownValue('year-from'));
         let yearTo = parseInt(getDropdownValue('year-to'));
 
-        if (!validateBrandModel(brandId, modelId) || !validateYearRange(yearFrom, yearTo)){
+        if (!validateBrandModel(brandId, modelId) || !validateYearRange(yearFrom, yearTo)) {
             return false;
         }
 
         let yearQuery = '';
-        if (yearFrom > 0 || yearTo > 0){
-            yearQuery = '?yearFrom='+yearFrom+'&yearTo='+yearTo;
+        if (yearFrom > 0 || yearTo > 0) {
+            yearQuery = '?yearFrom=' + yearFrom + '&yearTo=' + yearTo;
         }
 
         if (buttonPressed) {
