@@ -6,10 +6,13 @@ $(document).ready(function () {
 
     let brandId, brandName;
     let modelId, modelName;
+    let yearFrom = 0;
+    let yearTo = 0;
 
     $('.dropdown-item').on('click', function (e) {
+        let id = $(this).attr('id');
 
-        if ($(this).attr('id') === 'dropdown-brand-item') {
+        if (id === 'dropdown-brand-item') {
             brandId = $(this).data('value');
             brandName = $(this).data('name');
 
@@ -38,9 +41,20 @@ $(document).ready(function () {
                 .fail(function () {
                     alert('Klaida! Pabandykite vėliau.');
                 });
+        } else if (id === 'dropdown-year-from-item') {
+            yearFrom = $(this).data('value');
+
+            updateDropdownText('year-from', yearFrom);
+            updateDropdownValue('year-from', yearFrom);
+        } else if (id === 'dropdown-year-to-item') {
+            yearTo = $(this).data('value');
+
+            updateDropdownText('year-to', yearTo);
+            updateDropdownValue('year-to', yearTo);
         }
 
         e.preventDefault();
+        return true;
     });
 
     $('#dropdown-model-ul').on('click', '#dropdown-model-item', function (e) {
@@ -51,17 +65,23 @@ $(document).ready(function () {
         updateDropdownValue('model', modelId);
 
         e.preventDefault();
+        return true;
     });
 
     $('#search-submit').on('click', function (e) {
 
         let brandId = parseInt(getDropdownValue('brand'));
         let modelId = parseInt(getDropdownValue('model'));
+        let yearFrom = parseInt(getDropdownValue('year-from'));
+        let yearTo = parseInt(getDropdownValue('year-to'));
 
-        if (brandId <= 0 || modelId <= 0 || isNaN(brandId) || isNaN(modelId)) {
-            alert('Pasirinkite markę ir modelį!');
-
+        if (!validateBrandModel(brandId, modelId) || !validateYearRange(yearFrom, yearTo)) {
             return false;
+        }
+
+        let yearQuery = '';
+        if (yearFrom > 0 || yearTo > 0) {
+            yearQuery = '?yearFrom=' + yearFrom + '&yearTo=' + yearTo;
         }
 
         if (buttonPressed) {
@@ -76,7 +96,7 @@ $(document).ready(function () {
 
         $(body).addClass('loading');
 
-        $.get("/api/cars/" + brandId + "/" + modelId, function () {
+        $.get("/api/cars/" + brandId + "/" + modelId + yearQuery, function () {
         })
             .done(function (cars) {
 
@@ -98,18 +118,50 @@ $(document).ready(function () {
             });
 
         e.preventDefault();
+        return true;
     });
 
     function updateDropdownText(id, text) {
         $('#dropdown-current-' + id + '-text').text(text);
+        return false;
     }
 
     function updateDropdownValue(id, value) {
         $('#dropdown-current-' + id + '-text').attr('data-value', value);
+        return false;
     }
 
     function getDropdownValue(id) {
         return $('#dropdown-current-' + id + '-text').attr('data-value');
+    }
+
+    function validateBrandModel(brandId, modelId) {
+
+        if (isNaN(brandId) || isNaN(modelId) || brandId <= 0 || modelId <= 0) {
+            alert('Pasirinkite markę ir modelį!');
+
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateYearRange(yearFrom, yearTo) {
+        let currentYear = new Date().getFullYear();
+
+        if (isNaN(yearFrom) || isNaN(yearTo) || (yearFrom < 0 || yearFrom > currentYear) || (yearTo < 0 || yearTo > currentYear)) {
+            alert('Pasirinkite automobilio pagaminimo metus!');
+
+            return false;
+        }
+
+        if (yearFrom > yearTo) {
+            alert('Neteisingai pasirinkti automobilio pagaminimo metai!');
+
+            return false;
+        }
+
+        return true;
     }
 
     // Subscription
@@ -120,6 +172,8 @@ $(document).ready(function () {
             email: email,
             brandId: brandId,
             modelId: modelId,
+            yearFrom: yearFrom,
+            yearTo: yearTo,
         };
 
         $.post("/api/subscribe", postData, function () {
@@ -134,5 +188,6 @@ $(document).ready(function () {
             });
 
         e.preventDefault();
+        return false;
     });
 });

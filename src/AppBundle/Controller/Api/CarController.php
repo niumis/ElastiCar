@@ -51,7 +51,7 @@ class CarController extends Controller
      * @Route("/api/cars/{brandId}/{modelId}", requirements={"brandId": "\d+", "modelId": "\d+"})
      * @Method("GET")
      */
-    public function carsAction($brandId, $modelId)
+    public function carsAction(Request $request, $brandId, $modelId)
     {
         $autoAPI = $this->getAutoAPI();
 
@@ -63,7 +63,10 @@ class CarController extends Controller
             $response->setStatusCode($httpStatusCode);
             $content = $autoAPI->getError();
         } else {
-            $ads = $autoAPI->getAds($brandId, $modelId);
+            $yearFrom = (int)$request->query->get('yearFrom');
+            $yearTo = (int)$request->query->get('yearTo');
+
+            $ads = $autoAPI->getAds($brandId, $modelId, $yearFrom, $yearTo);
             $content = $ads;
         }
 
@@ -94,11 +97,15 @@ class CarController extends Controller
         $email = $request->request->get('email');
         $brandId = (int)$request->request->get('brandId');
         $modelId = (int)$request->request->get('modelId');
+        $yearFrom = (int)$request->request->get('yearFrom');
+        $yearTo = (int)$request->request->get('yearTo');
 
         $subscription = $this->getSubscription();
         $subscription->setEmail($email);
         $subscription->setBrandId($brandId);
         $subscription->setModelId($modelId);
+        $subscription->setYearFrom($yearFrom);
+        $subscription->setYearTo($yearTo);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');

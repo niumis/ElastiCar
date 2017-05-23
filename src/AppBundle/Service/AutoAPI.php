@@ -27,9 +27,9 @@ class AutoAPI
      * @param $brand_id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getModels($brand_id = '')
+    public function getModels($brandId = '')
     {
-        $endpoint = empty($brand_id) ? 'models' : 'models/' . $brand_id;
+        $endpoint = empty($brandId) ? 'models' : 'models/' . $brandId;
         $models = $this->request('GET', $endpoint);
 
         return $models->getBody();
@@ -46,27 +46,46 @@ class AutoAPI
     }
 
     /**
-     * @param $brand_id
-     * @param $model_id
-     * @return mixed|\Psr\Http\Message\ResponseInterface|string
+     * @param $brandId
+     * @param $modelId
+     * @param int $yearFrom
+     * @param int $yearTo
+     * @return array|mixed|\Psr\Http\Message\ResponseInterface|string
      */
-    public function getAds($brand_id, $model_id)
+    public function getAds($brandId, $modelId, $yearFrom = 0, $yearTo = 0)
     {
-
-        $ads = $this->request('GET', 'cars/' . $brand_id . '/' . $model_id);
+        $ads = $this->request('GET', 'cars/' . $brandId . '/' . $modelId);
         $ads = $ads->getBody()->getContents();
-
         $ads = json_decode($ads);
-        $ads = $this->addInsertedOn($ads);
 
+        if ($yearFrom > 0 && $yearTo > 0) {
+            $ads = $this->filterByYears($ads, $yearFrom, $yearTo);
+        }
+
+        $ads = $this->addInsertedOn($ads);
 
         usort($ads, function ($a, $b) {
             return ($b->inserted_on - $a->inserted_on);
         });
 
-
         $ads = json_encode($ads);
+
         return $ads;
+    }
+
+    private function filterByYears($ads, $yearFrom, $yearTo)
+    {
+        $newAds = [];
+        foreach ($ads as $ad) {
+            $adYear = strstr($ad->year, '-') ? current(explode('-', $ad->year)) : $ad->year;
+            if ($yearFrom > $adYear || $adYear > $yearTo) {
+                continue;
+            }
+
+            $newAds[] = $ad;
+        }
+
+        return $newAds;
     }
 
     /**
@@ -75,7 +94,6 @@ class AutoAPI
      */
     private function addInsertedOn($ads)
     {
-
         array_map(function (&$ad) {
 
             $timeToSubtract = 0;
@@ -137,6 +155,7 @@ class AutoAPI
             ]);
         } catch (\Exception $e) {
             $this->setHttpStatusCode($e->getCode())->setError('Invalid query.');
+
             return false;
         }
 
@@ -186,7 +205,6 @@ class AutoAPI
      */
     private function getApiHost()
     {
-        // Not sure if this is the best place to store API details
         return $this->container->getParameter('app.api_host');
     }
 
@@ -195,7 +213,6 @@ class AutoAPI
      */
     private function getApiKey()
     {
-        // Not sure if this is the best place to store API details
         return $this->container->getParameter('app.api_key');
     }
 }

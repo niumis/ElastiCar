@@ -1,0 +1,25 @@
+<h3>{{ 'year'|trans }}</h3>
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="dropdown category-dropdown" id="dropdown-year-from">
+            <a data-toggle="dropdown" href="#" aria-expanded="false">
+                <span class="change-text" id="dropdown-current-year-from-text" data-value="0">-</span>
+                <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="dropdown-menu category-change">
+                {% include '@App/Home/Components/SearchBox/year-list.html.twig' with {'id': 'from'} %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="dropdown category-dropdown" id="dropdown-year-to">
+            <a data-toggle="dropdown" href="#" aria-expanded="false">
+                <span class="change-text" id="dropdown-current-year-to-text" data-value="0">-</span>
+                <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="dropdown-menu category-change">
+                {% include '@App/Home/Components/SearchBox/year-list.html.twig' with {'id': 'to'} %}
+            </ul>
+        </div>
+    </div>
+</div>
