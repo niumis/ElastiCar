@@ -1,7 +1,41 @@
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+{% extends 'base.html.twig' %}
+{% block body %}
 
-<button type="submit">Registruotis!</button>
-{{ form_end(form) }}
+    {% include '@App/Home/Components/navbar.html.twig' %}
+
+    <section class="clearfix user-page">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="user-account">
+                        <h2>Registracija</h2>
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Prisijungimo vardas'} }) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Slaptažodis'} }) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Pakartoti slaptažodį'} }) }}
+                        </div>
+
+                        <button type="submit" class="btn">Registruotis</button>
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page">
+        <div class="container" id="content">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
+{% endblock %}
