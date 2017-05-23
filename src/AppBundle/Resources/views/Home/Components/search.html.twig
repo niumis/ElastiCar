@@ -15,38 +15,9 @@
                     <h1>{{ 'find_car'|trans }}</h1>
                     <div class="contact-info">
                         <form action="#">
-                            <h3>{{ 'brand'|trans }}</h3>
-                            <div class="dropdown category-dropdown" id="dropdown-brand">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false">
-                                    <span class="change-text" id="dropdown-current-brand-text" data-value="">{{ 'select'|trans }}</span>
-                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
-                                </a>
-                                <ul class="dropdown-menu category-change">
-                                    {% for brand in brands %}
-                                        <li class="dropdown-item" id="dropdown-brand-item" data-value="{{ brand.brandId }}" data-name="{{ brand.title }}"><a href="#">{{ brand.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <h3>{{ 'model'|trans }}</h3>
-                            <div class="dropdown category-dropdown" id="dropdown-model">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false">
-                                    <span class="change-text" id="dropdown-current-model-text" data-value="">{{ 'select'|trans }}</span>
-                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
-                                </a>
-                                <ul class="dropdown-menu category-change" id="dropdown-model-ul">
-
-                                </ul>
-                            </div>
-                            <h3>{{ 'year'|trans }}</h3>
-                            <div class="dropdown category-dropdown">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false">
-                                    <span class="change-text">Lietuva</span>
-                                    <i class="glyphicon glyphicon-chevron-down dropdown-icon"></i>
-                                </a>
-                                <ul class="dropdown-menu category-change">
-                                    <li><a href="#">Lietuva</a></li>
-                                </ul>
-                            </div>
+                            {% include '@App/Home/Components/SearchBox/brand.html.twig' with {'brands': brands} %}
+                            {% include '@App/Home/Components/SearchBox/model.html.twig' %}
+                            {% include '@App/Home/Components/SearchBox/year.html.twig' %}
                             <button type="submit" class="form-control" id="search-submit" value="{{ 'next'|trans }}">{{ 'next'|trans }}</button>
                         </form>
                     </div>
