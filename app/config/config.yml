@@ -70,19 +70,8 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+
     port: %mailer_port%
     encryption: %mailer_encryption%
     spool:     { type: memory }
-
-#HWIOAuthBundle
-hwi_oauth:
-    # list of names of the firewalls in which this bundle is active, this setting MUST be set
-    firewall_names: [secured_area]
-    resource_owners:
-        facebook:
-            type:                facebook
-            client_id:           447522128930526
-            client_secret:       80c65ce2ae225e5dfd528cfd2b4d9685
-            options:
-                display: popup #dialog is optimized for popup window
-                auth_type: rerequest # Re-asking for Declined Permissions
+    

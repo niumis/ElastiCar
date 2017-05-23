@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% include '@App/Home/Components/navbar.html.twig' %}
+
+    <section class="clearfix user-page">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="user-account">
+                        {% if error %}
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <h2>{{ 'login_head'|trans }}</h2>
+
+                        <form action="{{ path('security_login') }}" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="_username"
+                                       placeholder="Prisijungimo vardas"
+                                       value="{{ last_username }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="_password"
+                                       placeholder="Slaptažodis">
+                            </div>
+                            <button type="submit" class="btn">Prisijungti</button>
+                        </form>
+                    </div>
+                    <a href="{{ path('user_registration') }}" class="btn-primary">Prisiregistruoti</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page">
+        <div class="container" id="content">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
+{% endblock %}
