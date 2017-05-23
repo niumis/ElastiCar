@@ -33,6 +33,8 @@ class RegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            return $this->redirectToRoute('security_login');
         }
 
         return $this->render(
