@@ -25,9 +25,9 @@ class Watchlist
     /**
      * @var int
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="user_id", type="integer")
      */
-    private $email;
+    private $userId;
 
     /**
      * @var int
@@ -118,18 +118,19 @@ class Watchlist
     /**
      * @return int
      */
-    public function getEmail()
+    public function getUserId()
     {
-        return $this->email;
+        return $this->userId;
     }
 
     /**
-     * @param int $email
+     * @param int $userId
+     *
      * @return Watchlist
      */
-    public function setEmail($email)
+    public function setUserId($userId)
     {
-        $this->email = $email;
+        $this->userId = $userId;
 
         return $this;
     }
@@ -209,7 +210,6 @@ class Watchlist
 
         return $this;
     }
-
 
 
     /**
