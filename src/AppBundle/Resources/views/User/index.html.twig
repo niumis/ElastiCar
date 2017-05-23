@@ -3,9 +3,88 @@
 
     {% include '@App/Home/Components/navbar.html.twig' %}
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a href="#" class="btn">{{ app.user.username }}</a>
-    {% endif %}
+    <section class="clearfix myads-page">
+        <div class="container">
+            <div class="ad-profile section">
+                <div class="user-profile">
+
+                    <div class="user">
+                        <h2>Sveiki,
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="#">{{ app.user.username }}</a>
+                            {% endif %}
+                        </h2>
+                        <h5>Paskutinis prisijungimas: 2017-05-23 18:01</h5>
+                    </div>
+
+                    <div class="favorites-user">
+
+                        <div class="favorites">
+                            <a href="#">2
+                                <small>Mano skelbimai</small>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- user-profile -->
+
+                <ul class="user-menu">
+                    <li><a href="{{ path('user_show') }}">Profilis</a></li>
+                    <li class="active"><a href="{{ path('user_index') }}">Skelbimai</a></li>
+                    <li><a href="#">Ištrinti savo paskyrą</a></li>
+                </ul>
+
+            </div><!-- ad-profile -->
+            {% for list in useris %}
+
+            <div class="ads-info">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my-ads section">
+                            <h2>Skelbimai</h2>
+                            <!-- ad-item -->
+                            <div class="ad-item row">
+                                <!-- item-image -->
+                                <div class="item-image-box col-sm-2">
+                                    <div class="item-image">
+                                        <a href="details.html"><img src="images/trending/1.jpg" alt="Image"
+                                                                    class="img-responsive"></a>
+                                    </div><!-- item-image -->
+                                </div>
+
+                                <!-- rending-text -->
+                                <div class="item-info col-sm-10">
+                                    <!-- ad-info -->
+                                    <div class="ad-info">
+                                        <h3 class="item-price">{{ list.price }} €</h3>
+                                        <h4 class="item-title"><a href="#">{{ list.brand_id }}</a>
+                                        </h4>
+                                        <div class="item-cat">
+                                            <span><a href="#">{{ list.title }}</a></span> /
+                                            <span><a href="#">Tv & Video</a></span>
+                                        </div>
+                                    </div><!-- ad-info -->
+
+                                    <!-- ad-meta -->
+                                    <div class="ad-meta">
+                                        <div class="meta-content">
+                                            <span class="dated">Posted On: <a href="#">7 Jan, 16  10:10 pm </a></span>
+                                            <span class="visitors">Visitors: 221</span>
+                                        </div>
+                                        <!-- item-info-right -->
+                                        <div class="user-option pull-right">
+                                            <a class="delete-item" href="#" data-toggle="tooltip" data-placement="top"
+                                               title="Delete this ad"><i class="fa fa-times"></i></a>
+                                        </div><!-- item-info-right -->
+                                    </div><!-- ad-meta -->
+                                </div><!-- item-info -->
+                            </div><!-- ad-item -->
+                        </div>
+                    </div><!-- my-ads -->
+                </div><!-- row -->
+            </div><!-- row -->
+            {% endfor %}
+        </div><!-- container -->
+    </section><!-- myads-page -->
 
     <div class="page">
         <div class="container" id="content">

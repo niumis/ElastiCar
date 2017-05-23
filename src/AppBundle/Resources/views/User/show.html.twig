@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% include '@App/Home/Components/navbar.html.twig' %}
+
+    <section class="clearfix myads-page">
+        <div class="container">
+            <div class="ad-profile section">
+                <div class="user-profile">
+
+                    <div class="user">
+                        <h2>Sveiki,
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="#">{{ app.user.username }}</a>
+                            {% endif %}
+                        </h2>
+                        <h5>Paskutinis prisijungimas: 2017-05-23 18:01</h5>
+                    </div>
+
+                    <div class="favorites-user">
+
+                        <div class="favorites">
+                            <a href="#">2
+                                <small>Mano skelbimai</small>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- user-profile -->
+
+                <ul class="user-menu">
+                    <li class="active"><a href="{{ path('user_show') }}">Profilis</a></li>
+                    <li><a href="{{ path('user_index') }}">Skelbimai</a></li>
+                    <li><a href="#">Ištrinti savo paskyrą</a></li>
+                </ul>
+
+            </div><!-- ad-profile -->
+
+        </div><!-- container -->
+    </section><!-- myads-page -->
+
+    <div class="page">
+        <div class="container" id="content">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
+{% endblock %}
