@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% include '@App/Home/Components/navbar.html.twig' %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="#" class="btn">{{ app.user.username }}</a>
+    {% endif %}
+
+    <div class="page">
+        <div class="container" id="content">
+            {% include '@App/Home/Components/description.html.twig' %}
+        </div>
+    </div>
+
+    <footer id="footer" class="clearfix">
+        {% include '@App/Home/Components/footer.html.twig' %}
+    </footer>
+{% endblock %}
