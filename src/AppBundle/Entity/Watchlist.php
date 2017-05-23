@@ -30,13 +30,6 @@ class Watchlist
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="brand_id", type="integer")
@@ -49,6 +42,20 @@ class Watchlist
      * @ORM\Column(name="model_id", type="integer")
      */
     private $modelId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="year_from", type="integer")
+     */
+    private $yearFrom;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="year_to", type="integer")
+     */
+    private $yearTo;
 
     /**
      * @var boolean
@@ -128,25 +135,6 @@ class Watchlist
     }
 
     /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     * @return Watchlist
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getBrandId()
@@ -183,6 +171,46 @@ class Watchlist
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getYearFrom(): int
+    {
+        return $this->yearFrom;
+    }
+
+    /**
+     * @param int $yearFrom
+     * @return Watchlist
+     */
+    public function setYearFrom(int $yearFrom): Watchlist
+    {
+        $this->yearFrom = $yearFrom;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYearTo(): int
+    {
+        return $this->yearTo;
+    }
+
+    /**
+     * @param int $yearTo
+     * @return Watchlist
+     */
+    public function setYearTo(int $yearTo): Watchlist
+    {
+        $this->yearTo = $yearTo;
+
+        return $this;
+    }
+
+
 
     /**
      * @return boolean

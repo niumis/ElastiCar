@@ -4,12 +4,9 @@ let gulp = require('gulp');
 let babel = require('gulp-babel');
 let sass = require('gulp-sass');
 let concat = require('gulp-concat');
-let uglify = require('gulp-uglify');
 
-let css = require('gulp-css');
 let minify = require('gulp-minify');
 let watch = require('gulp-watch');
-let batch = require('gulp-batch');
 
 let livereload = require('gulp-livereload');
 

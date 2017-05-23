@@ -86,8 +86,10 @@ class AppCrawlCommand extends ContainerAwareCommand
         $modelId = $query->getModelId();
         $email = $query->getEmail();
         $watchlistId = $query->getId();
+        $yearFrom = $query->getYearFrom();
+        $yearTo = $query->getYearTo();
 
-        $ads = json_decode($autoApi->getAds($brandId, $modelId));
+        $ads = json_decode($autoApi->getAds($brandId, $modelId, $yearFrom, $yearTo));
         $oldAds = $autoRepository->findByWatchlistId($watchlistId, ['adId'], 200);
 
         $output->writeln('Found ' . count($ads) . ' ads for ' . $email . '.');
